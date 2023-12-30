@@ -4,9 +4,9 @@ date: 2023-06-01
 categories:
     - tips
 ---
-`Dolphin`中无法加载缩略图, 也无法打开图片.
+`Dolphin`中无法加载缩略图，也无法打开图片。
 
-安装`kimageformats`后解决.
+安装`kimageformats`后解决。
 
 ```bash
 yay -S kimageformats
