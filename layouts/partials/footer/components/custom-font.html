@@ -1,11 +1,19 @@
 <script>
     (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap";
+        const serifChinese = document.createElement('link');
+        serifChinese.href = "https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap";
 
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
+        serifChinese.type = "text/css";
+        serifChinese.rel = "stylesheet";
 
-        document.head.appendChild(customFont);
+        const serif = document.createElement('link');
+        serif.href = "https://fonts.googleapis.com/css?family=Noto+Serif&display=swap";
+
+        serif.type = "text/css";
+        serif.rel = "stylesheet";
+
+        document.head.appendChild(serifChinese);
+        document.head.appendChild(serif);
+
     }());
 </script>

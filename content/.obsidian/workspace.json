@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/post/C14T3P3.md",
+                "file": "en/_index.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "en/post/C14T3P3.md",
+                "file": "en/_index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "en/post/C14T3P3.md",
+                "file": "en/_index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "en/post/C14T3P3.md"
+                "file": "en/_index.md"
               }
             }
           }
@@ -146,12 +146,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ae98d3a6df99bec2",
+  "active": "138f0be2909b2c19",
   "lastOpenFiles": [
+    "zh-cn/_index.md",
+    "zh-cn/post/Gwenview加载HEIC格式图片/index.md",
+    "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/index.md",
+    "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
+    "en/post/C14T3P3.md",
     "snippets/hyphenation-and-justification.css",
     "snippets/page-width.css",
     "snippets",
-    "2023-06-06.md",
-    "en/post/C14T3P3.md"
+    "2023-06-06.md"
   ]
 }
