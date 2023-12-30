@@ -1,0 +1,10 @@
+{
+  "accentColor": "",
+  "enabledCssSnippets": [
+    "hyphenation-and-justification",
+    "page-width"
+  ],
+  "interfaceFontFamily": "",
+  "textFontFamily": "Noto Serif",
+  "baseFontSize": 24
+}
