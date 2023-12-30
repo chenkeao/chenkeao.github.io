@@ -36,7 +36,7 @@ heif-convert input.heic output.jpg
 for file in *.heic; do heif-convert "$file" ${file/%.heic/.jpg} && rm "$file"; done
 ```
 
-此命令的原理是根据当前文件夹下的`.heic`文件生成`.jpg`文件并删除原`.heic`文件, 如果未能生成`.jpg`文件则不会删除原文件. 若未能生成`.jpg`文件的原因是`Input file 'filename.heic' is a JPEG image`则可以使用批量修改后缀的方法直接将文件的后缀改为`.jpg`.
+此命令的原理是根据当前文件夹下的`.heic`文件生成`.jpg`文件, 如果成功生成则删除原`.heic`文件, 如果未成功则不会删除原文件. 若未能生成`.jpg`文件的原因是`Input file 'filename.heic' is a JPEG image`则可以使用批量修改后缀的方法直接将文件的后缀改为`.jpg`.
 
 ### `flac`转`mp3`
 
