@@ -1,0 +1,16 @@
+# Rename this file to languages.toml to enable multilingual support
+
+[zh-cn]
+contentDir = 'content/zh-cn'
+languageName = "中文"
+languagedirection = "ltr"
+title = "陈默的BLOG"
+weight = 1
+
+[en]
+contentDir = 'content/en'
+languageName = "English"
+languagedirection = "ltr"
+title = "Chenmo's BLOG"
+weight = 2
+
