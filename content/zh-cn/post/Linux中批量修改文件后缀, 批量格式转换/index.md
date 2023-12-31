@@ -1,8 +1,8 @@
 ---
-title: "Linux中批量修改文件后缀, 批量格式转换"
+title: 使用Shell批量修改文件后缀, 批量格式转换
 date: 2023-06-06
 categories:
-    - programming
+  - programming
 tags:
   - shell
 ---
