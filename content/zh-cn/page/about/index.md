@@ -1,10 +1,11 @@
 ---
-title: "关于"
+title: 关于
 menu:
-    main:
-        weight: 4
-        params: 
-            icon: user
+  main:
+    weight: 5
+    params:
+      icon: user
+comments: false
 ---
 
 ### 这里有一些代码, 散文和照片

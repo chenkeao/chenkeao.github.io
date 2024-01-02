@@ -1,8 +1,6 @@
 ---
 title: Wayland与Anki
 date: 2023-12-31
-categories:
-  - tips
 slug: wayland-and-anki
 ---
 为了使用`Waydroid`不得已换`X11`为`Wayland`，随之问题就来了。基于`Qt6`的`Anki`似乎与`Wayland`兼容的不太好，无法在`KDE`中使用全局菜单，并且`Goldendict`的`Ctrl+c+c`粘贴板查词功能在`Anki`里也无法使用了。

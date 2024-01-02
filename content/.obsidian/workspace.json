@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "21d90363b8c5bb9b",
+        "id": "6fc4fea53a02308e",
         "type": "tabs",
         "children": [
           {
-            "id": "9dcd163b52fc0162",
+            "id": "ff3296dd215d8b54",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/post/Wayland与Anki/index.md",
+                "file": "en/post/Reading/C14T3P3.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/post/Wayland与Anki/index.md",
+                "file": "en/post/Reading/C14T3P3.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/post/Wayland与Anki/index.md",
+                "file": "en/post/Reading/C14T3P3.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/post/Wayland与Anki/index.md"
+                "file": "en/post/Reading/C14T3P3.md"
               }
             }
           }
@@ -146,12 +146,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9dcd163b52fc0162",
+  "active": "ff3296dd215d8b54",
   "lastOpenFiles": [
+    "zh-cn/page/about/index.md",
+    "en/page/about/index.md",
+    "en/post/Reading/C14T3P3.md",
+    "句子仿写.md",
+    "zh-cn/post/linux-zen与nvidia/index.md",
+    "en/_index.md",
+    "zh-cn/post/Wayland与Anki/index.md",
+    "zh-cn/post/linux-zen与nvidia",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",
-    "zh-cn/post/Wayland与Anki/index.md",
-    "en/post/Reading/C14T3P3.md",
     "zh-cn/post/Wayland与Anki",
     "en/post/Reading/Untitled.md",
     "zh-cn/page/lostnote/index.md",
@@ -169,7 +175,6 @@
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
     "zh-cn/post/GNU Parallel的妙用/index.md",
     "zh-cn/post/饥荒联机版: 专用服务器与多层世界/index.md",
-    "en/_index.md",
     "zh-cn/_index.md",
     "snippets/hyphenation-and-justification.css",
     "snippets/page-width.css",
