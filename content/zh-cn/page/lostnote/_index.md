@@ -2,7 +2,7 @@
 title: "遗之书"
 menu:
     main:
-        weight: 6
+        weight: 7
         params: 
             icon: clock
 ---
