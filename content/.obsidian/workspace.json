@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/post/Reading/C14T3P3.md",
+                "file": "zh-cn/page/about/index.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "en/post/Reading/C14T3P3.md",
+                "file": "zh-cn/page/about/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "en/post/Reading/C14T3P3.md",
+                "file": "zh-cn/page/about/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "en/post/Reading/C14T3P3.md"
+                "file": "zh-cn/page/about/index.md"
               }
             }
           }
@@ -148,15 +148,25 @@
   },
   "active": "ff3296dd215d8b54",
   "lastOpenFiles": [
+    "zh-cn/page/archives/index.md",
+    "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
+    "zh-cn/post/GNU Parallel的妙用/index.md",
+    "zh-cn/post/饥荒联机版: 专用服务器与多层世界/index.md",
+    "zh-cn/page/tips/Wayland与Anki/index.md",
+    "zh-cn/page/tips/linux-zen与nvidia/index.md",
+    "zh-cn/page/tips/Gwenview加载HEIC格式图片/index.md",
+    "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
+    "zh-cn/page/lostnote/_index.md",
+    "zh-cn/page/lostnote/启.md",
+    "Untitled.canvas",
+    "en/_index.md",
+    "en/post/Reading/C14T3P3.md",
     "zh-cn/page/about/index.md",
     "en/page/about/index.md",
-    "en/post/Reading/C14T3P3.md",
     "句子仿写.md",
     "zh-cn/post/linux-zen与nvidia/index.md",
-    "en/_index.md",
     "zh-cn/post/Wayland与Anki/index.md",
     "zh-cn/post/linux-zen与nvidia",
-    "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",
     "zh-cn/post/Wayland与Anki",
     "en/post/Reading/Untitled.md",
@@ -173,12 +183,9 @@
     "zh-cn/post/Gwenview加载HEIC格式图片/1.png",
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
-    "zh-cn/post/GNU Parallel的妙用/index.md",
-    "zh-cn/post/饥荒联机版: 专用服务器与多层世界/index.md",
     "zh-cn/_index.md",
     "snippets/hyphenation-and-justification.css",
     "snippets/page-width.css",
-    "snippets",
-    "2023-06-06.md"
+    "snippets"
   ]
 }
