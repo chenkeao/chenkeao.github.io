@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/page/friends_circle/2024-01-03.md",
+                "file": "zh-cn/page/lostnote/_index.md",
                 "mode": "source",
-                "source": true
+                "source": false
               }
             }
           }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/page/friends_circle/2024-01-03.md",
+                "file": "zh-cn/page/lostnote/_index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/page/friends_circle/2024-01-03.md",
+                "file": "zh-cn/page/lostnote/_index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/page/friends_circle/2024-01-03.md"
+                "file": "zh-cn/page/lostnote/_index.md"
               }
             }
           }
@@ -148,9 +148,11 @@
   },
   "active": "ff3296dd215d8b54",
   "lastOpenFiles": [
-    "zh-cn/page/friends_circle/_index.md",
+    "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/page/friends_circle/2024-01-03.md",
     "zh-cn/page/lostnote/_index.md",
+    "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
+    "zh-cn/page/friends_circle/_index.md",
     "zh-cn/page/about/index.md",
     "zh-cn/page/friends_circle",
     "zh-cn/page/Untitled.md",
@@ -161,7 +163,6 @@
     "zh-cn/page/tips/Wayland与Anki/index.md",
     "zh-cn/page/tips/linux-zen与nvidia/index.md",
     "zh-cn/page/tips/Gwenview加载HEIC格式图片/index.md",
-    "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/page/lostnote/启.md",
     "Untitled.canvas",
     "en/_index.md",
@@ -181,7 +182,6 @@
     "en/post/Reading",
     "en/post/Untitled.md",
     "en/categories/Diary/_index.md",
-    "en/categories/IELTS/_index.md",
     "en/categories/Diary",
     "zh-cn/post/Gwenview加载HEIC格式图片/1.png",
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
