@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "6fc4fea53a02308e",
+        "id": "32a76f34dbb5a066",
         "type": "tabs",
         "children": [
           {
-            "id": "ff3296dd215d8b54",
+            "id": "89b9d9c0aa1f5e09",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "zh-cn/page/lostnote/_index.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/page/lostnote/_index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/page/lostnote/_index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "zh-cn/page/lostnote/_index.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -138,19 +130,25 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "ff3296dd215d8b54",
+  "active": "89b9d9c0aa1f5e09",
   "lastOpenFiles": [
+    "zh-cn/page/tips/KDE Global Menu与Flatpak/index.md",
+    "zh-cn/page/tips/KDE Global Menu与Flatpak",
+    "zh-cn/post/new.md",
+    "zh-cn/posts/new.md",
+    "zh-cn/posts",
+    "未命名.md",
+    "zh-cn/page/lostnote/_index.md",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/page/friends_circle/2024-01-03.md",
-    "zh-cn/page/lostnote/_index.md",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
     "zh-cn/page/friends_circle/_index.md",
     "zh-cn/page/about/index.md",
@@ -176,17 +174,12 @@
     "zh-cn/post/Wayland与Anki",
     "en/post/Reading/Untitled.md",
     "zh-cn/page/lostnote/index.md",
-    "en/post/Diary/2023-12-30/index.md",
     "en/post/Diary/2023-12-30",
     "en/post/Diary",
     "en/post/Reading",
-    "en/post/Untitled.md",
-    "en/categories/Diary/_index.md",
     "en/categories/Diary",
     "zh-cn/post/Gwenview加载HEIC格式图片/1.png",
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
-    "snippets/hyphenation-and-justification.css",
-    "snippets/page-width.css",
-    "snippets"
+    "snippets/hyphenation-and-justification.css"
   ]
 }
