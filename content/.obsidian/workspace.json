@@ -11,8 +11,12 @@
             "id": "89b9d9c0aa1f5e09",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "zh-cn/page/lostnote/20240115.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "zh-cn/page/lostnote/20240115.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "zh-cn/page/lostnote/20240115.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "zh-cn/page/lostnote/20240115.md"
+              }
             }
           }
         ]
@@ -140,13 +148,17 @@
   },
   "active": "89b9d9c0aa1f5e09",
   "lastOpenFiles": [
+    "zh-cn/page/lostnote/启.md",
+    "zh-cn/page/lostnote/20240115.md",
+    "zh-cn/page/lostnote/_index.md",
+    "zh-cn/page/archives/index.md",
+    "zh-cn/page/lostnote/学.md",
     "zh-cn/page/tips/KDE Global Menu与Flatpak/index.md",
     "zh-cn/page/tips/KDE Global Menu与Flatpak",
     "zh-cn/post/new.md",
     "zh-cn/posts/new.md",
     "zh-cn/posts",
     "未命名.md",
-    "zh-cn/page/lostnote/_index.md",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/page/friends_circle/2024-01-03.md",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
@@ -154,14 +166,12 @@
     "zh-cn/page/about/index.md",
     "zh-cn/page/friends_circle",
     "zh-cn/page/Untitled.md",
-    "zh-cn/page/archives/index.md",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
     "zh-cn/post/GNU Parallel的妙用/index.md",
     "zh-cn/post/饥荒联机版: 专用服务器与多层世界/index.md",
     "zh-cn/page/tips/Wayland与Anki/index.md",
     "zh-cn/page/tips/linux-zen与nvidia/index.md",
     "zh-cn/page/tips/Gwenview加载HEIC格式图片/index.md",
-    "zh-cn/page/lostnote/启.md",
     "Untitled.canvas",
     "en/_index.md",
     "en/post/Reading/C14T3P3.md",
@@ -172,8 +182,6 @@
     "zh-cn/post/linux-zen与nvidia",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",
     "zh-cn/post/Wayland与Anki",
-    "en/post/Reading/Untitled.md",
-    "zh-cn/page/lostnote/index.md",
     "en/post/Diary/2023-12-30",
     "en/post/Diary",
     "en/post/Reading",
