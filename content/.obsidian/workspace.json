@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/page/lostnote/20240115.md",
+                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/page/lostnote/20240115.md",
+                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/page/lostnote/20240115.md",
+                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/page/lostnote/20240115.md"
+                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md"
               }
             }
           }
@@ -138,18 +138,21 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
-      "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
     }
   },
-  "active": "89b9d9c0aa1f5e09",
+  "active": "138f0be2909b2c19",
   "lastOpenFiles": [
-    "zh-cn/page/lostnote/启.md",
+    "zh-cn/post/InstallArchLinux",
+    "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
     "zh-cn/page/lostnote/20240115.md",
+    "zh-cn/page/lostnote/20240118.md",
+    "zh-cn/page/lostnote/启.md",
     "zh-cn/page/lostnote/_index.md",
     "zh-cn/page/archives/index.md",
     "zh-cn/page/lostnote/学.md",
@@ -176,9 +179,6 @@
     "en/_index.md",
     "en/post/Reading/C14T3P3.md",
     "en/page/about/index.md",
-    "句子仿写.md",
-    "zh-cn/post/linux-zen与nvidia/index.md",
-    "zh-cn/post/Wayland与Anki/index.md",
     "zh-cn/post/linux-zen与nvidia",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",
     "zh-cn/post/Wayland与Anki",
