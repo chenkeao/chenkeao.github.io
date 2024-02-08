@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
+                "file": "zh-cn/post/GNU Parallel的妙用/index.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
+                "file": "zh-cn/post/GNU Parallel的妙用/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
+                "file": "zh-cn/post/GNU Parallel的妙用/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md"
+                "file": "zh-cn/post/GNU Parallel的妙用/index.md"
               }
             }
           }
@@ -148,11 +148,18 @@
   },
   "active": "e32f1b5f13464fba",
   "lastOpenFiles": [
-    "zh-cn/page/tips/Linux 电子书阅读/1.png",
     "zh-cn/post/饥荒联机版&专用服务器与多层世界/index.md",
-    "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
-    "zh-cn/post/饥荒联机版&专用服务器与多层世界/1.png",
+    "zh-cn/page/tips/_index.md",
+    "zh-cn/page/tips/Wayland与Anki/index.md",
+    "zh-cn/page/tips/linux-zen与nvidia/index.md",
+    "zh-cn/page/tips/KDE Global Menu与Flatpak/index.md",
+    "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
+    "zh-cn/page/tips/Gwenview加载HEIC格式图片/index.md",
+    "zh-cn/page/tips/Gwenview加载HEIC格式图片/1.png",
     "zh-cn/page/tips/KDE窗口装饰元素边框过大/index.md",
+    "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
+    "zh-cn/page/tips/Linux 电子书阅读/1.png",
+    "zh-cn/post/饥荒联机版&专用服务器与多层世界/1.png",
     "Untitled.md",
     "zh-cn/page/tips/Linux 电子书阅读",
     "zh-cn/zh-cn/page/tips/linux_epub_reader.md",
@@ -168,22 +175,17 @@
     "zh-cn/page/lostnote/20240118.md",
     "zh-cn/page/archives/index.md",
     "zh-cn/page/lostnote/学.md",
-    "zh-cn/page/tips/KDE Global Menu与Flatpak/index.md",
     "zh-cn/page/tips/KDE Global Menu与Flatpak",
     "zh-cn/post/new.md",
     "zh-cn/posts/new.md",
     "zh-cn/posts",
     "未命名.md",
-    "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/page/friends_circle/2024-01-03.md",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
     "zh-cn/page/friends_circle/_index.md",
     "zh-cn/page/about/index.md",
     "zh-cn/page/friends_circle",
     "zh-cn/page/Untitled.md",
-    "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
-    "zh-cn/post/GNU Parallel的妙用/index.md",
-    "zh-cn/post/饥荒联机版: 专用服务器与多层世界/index.md",
     "Untitled.canvas",
     "zh-cn/post/linux-zen与nvidia",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",

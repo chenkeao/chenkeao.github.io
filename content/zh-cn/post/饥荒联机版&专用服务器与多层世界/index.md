@@ -8,7 +8,7 @@ categories:
 > 此文全程处于`linux`环境，阅读此文需具备一些`linux`使用经验。
 
 解决饥荒卡顿有两个方法，如果你是单人联机玩家，可以添加[长路独行](https://steamcommunity.com/sharedfiles/filedetails/?id=2657513551)模组，开启后就可以获得与单机版相同的游戏体验，此模组的原理的注意事项可以[点此查看](https://dont-starve-mod.github.io/zh/dsa_index/)。 
-对于联机玩家，可以搭建专用服务器优化卡顿。饥荒联机版专用服务器 (Don't Starve Together Dedicated Server) 是由 klei 官方提供的一个工具，购买饥荒联机版后，在`Steam`的`库`页面勾选`TOOLS`后就可以看到了。
+对于联机玩家，可以搭建专用服务器优化卡顿。饥荒联机版专用服务器 (Don't Starve Together Dedicated Server) 是由 klei 官方提供的一个工具，购买饥荒联机版后，在Steam 的“库”页面勾选 "TOOLS" 后就可以看到了。
 专用服务器可以在云服务器或PC上运行。如果你的电脑配置还可以，并且不要求服务器全天运行，完全可以在自己电脑上搭建专用服务器。
 运行专用服务器每个世界大约需要`1G`内存，同时运行游戏本身也需要内存，因此内存最好在`8G`以上。如图1所示，第一个进程是游戏本身，占用了`1.2G`的内存，第二个进程是专用服务器，占用了`995M`左右的内存。
 

@@ -2,7 +2,7 @@
 title: "Gwenview加载HEIC格式图片"
 date: 2023-06-01
 ---
-`Dolphin`中无法加载缩略图，也无法打开图片。
+Dolphin 中无法加载缩略图，也无法打开图片。
 
 安装`kimageformats`后解决。
 
