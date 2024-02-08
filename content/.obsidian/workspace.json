@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
+                "file": "zh-cn/page/lostnote/20240201.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
+                "file": "zh-cn/page/lostnote/20240201.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
+                "file": "zh-cn/page/lostnote/20240201.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/post/InstallArchLinux/InstallArchLinux.md"
+                "file": "zh-cn/page/lostnote/20240201.md"
               }
             }
           }
@@ -146,14 +146,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "138f0be2909b2c19",
+  "active": "89b9d9c0aa1f5e09",
   "lastOpenFiles": [
-    "zh-cn/post/InstallArchLinux",
-    "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
     "zh-cn/page/lostnote/20240115.md",
-    "zh-cn/page/lostnote/20240118.md",
+    "zh-cn/page/lostnote/20240201.md",
     "zh-cn/page/lostnote/启.md",
     "zh-cn/page/lostnote/_index.md",
+    "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
+    "zh-cn/post/InstallArchLinux",
+    "zh-cn/page/lostnote/20240118.md",
     "zh-cn/page/archives/index.md",
     "zh-cn/page/lostnote/学.md",
     "zh-cn/page/tips/KDE Global Menu与Flatpak/index.md",
@@ -187,7 +188,6 @@
     "en/post/Reading",
     "en/categories/Diary",
     "zh-cn/post/Gwenview加载HEIC格式图片/1.png",
-    "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
-    "snippets/hyphenation-and-justification.css"
+    "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png"
   ]
 }
