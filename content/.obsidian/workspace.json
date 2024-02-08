@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "32a76f34dbb5a066",
+        "id": "59aeb80aadc684dc",
         "type": "tabs",
         "children": [
           {
-            "id": "89b9d9c0aa1f5e09",
+            "id": "e32f1b5f13464fba",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/page/lostnote/20240201.md",
+                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/page/lostnote/20240201.md",
+                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/page/lostnote/20240201.md",
+                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/page/lostnote/20240201.md"
+                "file": "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md"
               }
             }
           }
@@ -146,10 +146,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "89b9d9c0aa1f5e09",
+  "active": "e32f1b5f13464fba",
   "lastOpenFiles": [
-    "zh-cn/page/lostnote/20240115.md",
+    "zh-cn/page/tips/Linux 电子书阅读/1.png",
+    "zh-cn/post/饥荒联机版&专用服务器与多层世界/index.md",
+    "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
+    "zh-cn/post/饥荒联机版&专用服务器与多层世界/1.png",
+    "zh-cn/page/tips/KDE窗口装饰元素边框过大/index.md",
+    "Untitled.md",
+    "zh-cn/page/tips/Linux 电子书阅读",
+    "zh-cn/zh-cn/page/tips/linux_epub_reader.md",
+    "zh-cn/zh-cn/page/tips",
+    "zh-cn/zh-cn/page",
+    "zh-cn/zh-cn",
     "zh-cn/page/lostnote/20240201.md",
+    "zh-cn/page/lostnote/20240115.md",
     "zh-cn/page/lostnote/启.md",
     "zh-cn/page/lostnote/_index.md",
     "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
@@ -173,20 +184,10 @@
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
     "zh-cn/post/GNU Parallel的妙用/index.md",
     "zh-cn/post/饥荒联机版: 专用服务器与多层世界/index.md",
-    "zh-cn/page/tips/Wayland与Anki/index.md",
-    "zh-cn/page/tips/linux-zen与nvidia/index.md",
-    "zh-cn/page/tips/Gwenview加载HEIC格式图片/index.md",
     "Untitled.canvas",
-    "en/_index.md",
-    "en/post/Reading/C14T3P3.md",
-    "en/page/about/index.md",
     "zh-cn/post/linux-zen与nvidia",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",
     "zh-cn/post/Wayland与Anki",
-    "en/post/Diary/2023-12-30",
-    "en/post/Diary",
-    "en/post/Reading",
-    "en/categories/Diary",
     "zh-cn/post/Gwenview加载HEIC格式图片/1.png",
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png"
   ]
