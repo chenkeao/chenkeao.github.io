@@ -1,10 +1,8 @@
 ---
 title: 使用Shell批量修改文件后缀, 批量格式转换
 date: 2023-06-06
-categories:
-  - programming
 tags:
-  - shell
+  - program
 ---
 `shell`脚本是处理这类工作最为简单，快捷的方式。
 

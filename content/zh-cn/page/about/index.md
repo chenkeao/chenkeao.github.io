@@ -2,7 +2,7 @@
 title: 关于
 menu:
   main:
-    weight: 5
+    weight: 1
     params:
       icon: user
 comments: false

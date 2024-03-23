@@ -4,18 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "231b31569819f61f",
+        "id": "f8ae3d4f6a2e42c9",
         "type": "tabs",
         "children": [
           {
-            "id": "b08a8f1313318144",
+            "id": "88b70282ba7e26b7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "zh-cn/_index.md",
+                "file": "zh-cn/page/search/index.md",
                 "mode": "source",
-                "source": false
+                "source": true
               }
             }
           }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "memo",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zh-cn/_index.md",
+                "file": "zh-cn/page/search/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "zh-cn/_index.md",
+                "file": "zh-cn/page/search/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zh-cn/_index.md"
+                "file": "zh-cn/page/search/index.md"
               }
             }
           }
@@ -146,48 +146,49 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "138f0be2909b2c19",
+  "active": "88b70282ba7e26b7",
   "lastOpenFiles": [
-    "zh-cn/page/tips/_index.md",
+    "zh-cn/page/archives/index.md",
+    "zh-cn/page/search/index.md",
+    "zh-cn/page/search",
+    "zh-cn/page/diary/_index.md",
+    "zh-cn/_index.md",
+    "zh-cn/page/memos/_index.md",
+    "zh-cn/post/饥荒联机版&专用服务器与多层世界/index.md",
+    "zh-cn/post/GNU Parallel的妙用/index.md",
+    "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
+    "zh-cn/categories/dontstarve/_index.md",
+    "zh-cn/page/about/index.md",
+    "zh-cn/page/diary",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/index.md",
     "zh-cn/page/tips/Archlinux设置挂载硬盘时无需输入密码/featured-image.png",
-    "zh-cn/page/tips/Gnome中.desktop文件的奇怪问题/index.md",
-    "zh-cn/page/tips/Gwenview加载HEIC格式图片/index.md",
-    "zh-cn/page/tips/Wayland与Anki/index.md",
-    "zh-cn/page/tips/linux-zen与nvidia/index.md",
+    "zh-cn/page/memos/Gnome中.desktop文件的奇怪问题/index.md",
+    "zh-cn/page/memos/Gwenview加载HEIC格式图片/index.md",
+    "zh-cn/page/memos/Wayland与Anki/index.md",
+    "zh-cn/page/memos/linux-zen与nvidia/index.md",
     "zh-cn/page/tips/Linux 电子书阅读/index.md",
-    "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/index.md",
     "2024-03-04.md",
-    "zh-cn/page/about/index.md",
-    "zh-cn/page/archives/index.md",
     "zh-cn/page/lostnote/20240115.md",
     "zh-cn/page/lostnote/20240301.md",
     "zh-cn/page/lostnote/_index.md",
     "zh-cn/page/lostnote/20240201.md",
     "zh-cn/page/lostnote/启.md",
     "zh-cn/page/tips/Gwenview加载HEIC格式图片/Untitled.md",
-    "zh-cn/page/tips/Gnome中.desktop文件的奇怪问题",
-    "zh-cn/post/GNU Parallel的妙用/index.md",
-    "zh-cn/post/饥荒联机版&专用服务器与多层世界/index.md",
-    "zh-cn/page/tips/KDE Global Menu与Flatpak/index.md",
-    "zh-cn/page/tips/Gwenview加载HEIC格式图片/1.png",
-    "zh-cn/page/tips/KDE窗口装饰元素边框过大/index.md",
+    "zh-cn/page/memos/Gnome中.desktop文件的奇怪问题",
+    "zh-cn/page/memos/KDE Global Menu与Flatpak/index.md",
+    "zh-cn/page/memos/Gwenview加载HEIC格式图片/1.png",
+    "zh-cn/page/memos/KDE窗口装饰元素边框过大/index.md",
     "zh-cn/page/tips/Linux 电子书阅读/linux_epub_reader.md",
     "zh-cn/page/tips/Linux 电子书阅读/1.png",
     "zh-cn/post/饥荒联机版&专用服务器与多层世界/1.png",
-    "Untitled.md",
     "zh-cn/page/tips/Linux 电子书阅读",
-    "zh-cn/zh-cn/page/tips/linux_epub_reader.md",
     "zh-cn/zh-cn/page/tips",
     "zh-cn/zh-cn/page",
     "zh-cn/zh-cn",
-    "zh-cn/post/InstallArchLinux/InstallArchLinux.md",
     "zh-cn/post/InstallArchLinux",
-    "zh-cn/page/tips/KDE Global Menu与Flatpak",
+    "zh-cn/page/memos/KDE Global Menu与Flatpak",
     "zh-cn/posts",
-    "zh-cn/page/friends_circle",
     "Untitled.canvas",
-    "zh-cn/post/linux-zen与nvidia",
     "zh-cn/post/Linux中批量修改文件后缀, 批量格式转换/1.png",
     "zh-cn/post/Gwenview加载HEIC格式图片/1.png",
     "zh-cn/post/Archlinux设置挂载硬盘时无需输入密码/featured-image.png"
