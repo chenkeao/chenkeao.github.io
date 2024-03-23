@@ -8,3 +8,4 @@ Google上搜索了一番后发现可以用`WAYLAND_DISPLAY=""`环境变量强制
 ```shell
 WAYLAND_DISPLAY= QT_IM_MODULE=fcitx Anki
 ```
+实际上还有另一种方式，可以为某些 Qt 应用设置 `QT_QPA_PLATFORM=xcb`环境变量以解决其在 Wayland 中表现不正常的问题。
