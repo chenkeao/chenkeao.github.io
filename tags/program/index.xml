@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Program on 陈默的BLOG</title><link>https://chenkeao.github.io/tags/program/</link><description>Recent content in Program on 陈默的BLOG</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 08 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://chenkeao.github.io/tags/program/index.xml" rel="self" type="application/rss+xml"/><item><title>GNU Parallel的妙用</title><link>https://chenkeao.github.io/p/gnu-parallel%E7%9A%84%E5%A6%99%E7%94%A8/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/p/gnu-parallel%E7%9A%84%E5%A6%99%E7%94%A8/</guid><description>&lt;p>Android QQ 的图片文件是以下面这种结构保存的，以&lt;code>Cache_&lt;/code>开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">├── 0a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   ├── Cache_2783644ca99260a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   └── Cache_-4dfb57e9a7cec0a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── 0a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   ├── Cache_373e35b7b8a290a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   ├── Cache_-489f6e9c62ea10a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   └── Cache_57776dc1e17110a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── 0a7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> └── Cache_25d732f84bd7d0a7
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用 GNU Parallel 配合&lt;code>mv&lt;/code>可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_25d732f84bd7d0a7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_2783644ca99260a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_373e35b7b8a290a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_-489f6e9c62ea10a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_-4dfb57e9a7cec0a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── Cache_57776dc1e17110a6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>命令如下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">find . -name &lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span> -type f -print &lt;span class="p">|&lt;/span> parallel mv &lt;span class="o">{}&lt;/span> ./&lt;span class="o">{&lt;/span>/&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
+>https://www.myfreax.com/gnu-parallel/&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>使用Shell批量修改文件后缀, 批量格式转换</title><link>https://chenkeao.github.io/p/%E4%BD%BF%E7%94%A8shell%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80-%E6%89%B9%E9%87%8F%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/p/%E4%BD%BF%E7%94%A8shell%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80-%E6%89%B9%E9%87%8F%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</guid><description>&lt;p>&lt;code>shell&lt;/code>脚本是处理这类工作最为简单，快捷的方式。&lt;/p>
+&lt;h2 id="修改后缀">修改后缀&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> file in *.原后缀&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> mv &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;`echo &lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2"> | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="格式转换">格式转换&lt;/h2>
+&lt;h3 id="heic转jpg">&lt;code>heic&lt;/code>转&lt;code>jpg&lt;/code>&lt;/h3>
+&lt;p>首先，安装转换工具。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yay -S libheif
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后可以使用&lt;code>heif-convert&lt;/code>命令转换。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">heif-convert input.heic output.jpg
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>批量转换，命令如下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> file in *.heic&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> heif-convert &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="si">${&lt;/span>&lt;span class="nv">file&lt;/span>&lt;span class="p">/%.heic/.jpg&lt;/span>&lt;span class="si">}&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> rm &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>此命令的原理是根据当前文件夹下的&lt;code>.heic&lt;/code>文件生成&lt;code>.jpg&lt;/code>文件，如果成功生成则删除原&lt;code>.heic&lt;/code>文件，如果未成功则不会删除原文件。 若未能生成&lt;code>.jpg&lt;/code>文件的原因是&lt;code>Input file 'filename.heic' is a JPEG image&lt;/code>则可以使用批量修改后缀的方法直接将文件的后缀改为&lt;code>.jpg&lt;/code>。&lt;/p>
+&lt;h3 id="flac转mp3">&lt;code>flac&lt;/code>转&lt;code>mp3&lt;/code>&lt;/h3>
+&lt;p>首先，安装转换工具：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yay -S ffmpeg
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后可以使用&lt;code>ffmpeg&lt;/code>命令转换，除了格式转换，&lt;code>ffmpeg&lt;/code>还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" >文档&lt;/a>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ffmpeg -i &lt;span class="s1">&amp;#39;input.flac&amp;#39;&lt;/span> -ab 320k -map_metadata &lt;span class="m">0&lt;/span> -id3v2_version &lt;span class="m">3&lt;/span> &lt;span class="s1">&amp;#39;output.mp3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>批量转换，命令如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> file in *.flac&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> ffmpeg -i &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> -ab 320k -map_metadata &lt;span class="m">0&lt;/span> -id3v2_version &lt;span class="m">3&lt;/span> &lt;span class="si">${&lt;/span>&lt;span class="nv">file&lt;/span>&lt;span class="p">/%.flac/.mp3&lt;/span>&lt;span class="si">}&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> rm &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原理同上。&lt;/p>
+&lt;h3 id="速度优化">速度优化&lt;/h3>
+&lt;p>使用&lt;code>for&lt;/code>循环的方式，所有文件排着队一个一个的被&lt;code>ffmpeg&lt;/code>处理。 这种方式固然可以，但效率太低了。 我的运行环境如下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> -&lt;span class="sb">`&lt;/span> momo@momo-arch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .o+&lt;span class="sb">`&lt;/span> --------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>ooo/ OS: Arch Linux x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>+oooo: Host: 81AC Lenovo ideapad 720S-15IKB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>+oooooo: Kernel: 6.3.6-arch1-1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -+oooooo+: Uptime: &lt;span class="m">6&lt;/span> hours, &lt;span class="m">59&lt;/span> mins
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/:-:++oooo+: Packages: &lt;span class="m">975&lt;/span> &lt;span class="o">(&lt;/span>pacman&lt;span class="o">)&lt;/span>, &lt;span class="m">8&lt;/span> &lt;span class="o">(&lt;/span>flatpak&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/++++/+++++++: Shell: bash 5.1.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/++++++++++++++: Resolution: 1920x1080
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/+++ooooooooooooo/&lt;span class="sb">`&lt;/span> DE: Plasma 5.27.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ./ooosssso++osssssso+&lt;span class="sb">`&lt;/span> WM: kwin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .oossssso-&lt;span class="sb">````&lt;/span>/ossssss+&lt;span class="sb">`&lt;/span> Theme: &lt;span class="o">[&lt;/span>Plasma&lt;span class="o">]&lt;/span>, Layan-Light-Solid &lt;span class="o">[&lt;/span>GTK2/3&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -osssssso. :ssssssso. Icons: Papirus &lt;span class="o">[&lt;/span>Plasma&lt;span class="o">]&lt;/span>, Papirus &lt;span class="o">[&lt;/span>GTK2/3&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> :osssssss/ osssso+++. Terminal: konsole
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /ossssssss/ +ssssooo/- CPU: Intel i5-7300HQ &lt;span class="o">(&lt;/span>4&lt;span class="o">)&lt;/span> @ 3.500GHz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/ossssso+/:- -:/+osssso+- GPU: Intel HD Graphics &lt;span class="m">630&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>+sso+:-&lt;span class="sb">`&lt;/span> &lt;span class="sb">`&lt;/span>.-/+oso: Memory: 7216MiB / 19554MiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>++:. &lt;span class="sb">`&lt;/span>-/+/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .&lt;span class="sb">`&lt;/span> &lt;span class="sb">`&lt;/span>/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>经过测试，处理&lt;code>10&lt;/code>个&lt;code>.flac&lt;/code>文件所需时间为&lt;code>59&lt;/code>秒。 速度慢的原因是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p>
+&lt;p>使用终端工具&lt;a class="link" href="%22https://www.gnu.org/software/parallel/sphinx.html%22" >GNU Parallel&lt;/a>，命令如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ls *.flac &lt;span class="p">|&lt;/span> parallel -j4 &lt;span class="s2">&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>parallel&lt;/code>将从标准输入中读取文件列表，&lt;code>-j&lt;/code>指定了并行进程数，&lt;code>{}&lt;/code>代表输入文件名，&lt;code>{.}&lt;/code>代表没有后缀的输入文件名，其他用法可以&lt;code>man parallel&lt;/code>查看。&lt;/p>
+&lt;p>经过测试，在同样环境下处理同样的&lt;code>.flac&lt;/code>文件仅需&lt;code>17&lt;/code>秒。&lt;/p></description></item></channel></rss>
