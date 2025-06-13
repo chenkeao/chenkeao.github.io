@@ -2,7 +2,7 @@
 title: 日记
 menu:
   main:
-    weight: 2
+    weight: 3
     params:
       icon: date
 ---

@@ -2,7 +2,7 @@
 title: 备忘录
 menu:
   main:
-    weight: 5
+    weight: 4
     params:
       icon: infinity
 ---
