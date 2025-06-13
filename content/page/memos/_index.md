@@ -5,4 +5,5 @@ menu:
     weight: 4
     params:
       icon: infinity
+layout: "feeds"
 ---

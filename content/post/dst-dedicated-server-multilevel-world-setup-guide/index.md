@@ -4,6 +4,8 @@ date: 2023-06-09
 image: 1.png
 tags:
   - DST
+categories:
+  - DST
 ---
 > 此文全程处于`linux`环境，阅读此文需具备一些`linux`使用经验。
 

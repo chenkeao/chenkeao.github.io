@@ -5,4 +5,5 @@ menu:
     weight: 3
     params:
       icon: date
+layout: "feeds"
 ---
