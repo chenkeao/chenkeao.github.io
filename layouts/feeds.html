@@ -69,7 +69,7 @@
     
     {{/* List only pages that are not a subsection */}}
     {{ $paginator := .Paginate $pages }}
-    <section class="article-list">
+    <section class="article-list feed-list">
         {{ range $paginator.Pages }}
             {{ partial "feed" . }}
         {{ end }}

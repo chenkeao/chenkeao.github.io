@@ -1,6 +1,13 @@
 ---
 title: "为 Gwenview 添加 HEIC 支持"
 date: 2023-06-01
+draft: false
+comments: false
+math: true
+toc: false
+readingTime: true
+tags:
+  - Bash
 ---
 Dolphin 中无法加载缩略图，也无法打开图片。
 

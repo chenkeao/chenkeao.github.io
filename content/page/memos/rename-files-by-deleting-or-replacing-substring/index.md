@@ -2,7 +2,7 @@
 title: "Rename Files by Deleting or Replacing Substring"
 date: 2025-06-13T12:38:57+08:00
 draft: false
-comments: true
+comments: false
 math: true
 toc: false
 readingTime: true

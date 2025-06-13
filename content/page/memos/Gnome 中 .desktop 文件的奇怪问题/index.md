@@ -1,6 +1,13 @@
 ---
 title: Gnome 中 .desktop 文件的奇怪问题
 date: 2024-02-18
+draft: false
+comments: false
+math: true
+toc: false
+readingTime: true
+tags:
+  - Bash
 ---
 众所周知，gnome 目前默认使用 wayland，但某些程序在 wayland 下表现不佳。例如 telegram 有时边框外会显示奇怪的阴影，解决方法是开启选项：使用系统边框。然而在 wayland 下没有此选项，取而代之的是：使用 qt 边框，但 qt 边框与 gtk 应用的风格很不统一，导致看起来很丑。解决方法是在其 .desktop 文件中添加环境变量使 telegram 强制使用 x11，事实上，我已经使用`QT_QPA_PLATFORM=xcb`这个环境变量为另一个程序 anki 解决了这个问题。
 

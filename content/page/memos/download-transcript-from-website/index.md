@@ -2,7 +2,7 @@
 title: "Download TBBT Transcript From Website"
 date: 2025-06-13T12:17:40+08:00
 draft: false
-comments: true
+comments: false
 math: true
 toc: false
 readingTime: true

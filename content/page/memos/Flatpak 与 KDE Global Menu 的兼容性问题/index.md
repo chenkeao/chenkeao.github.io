@@ -6,7 +6,7 @@ image:
 math: "false"
 license: 
 hidden: false
-comments: true
+comments: false
 draft: false
 ---
 从 Flatpak 安装的 Obsidian 不显示全局菜单。执行下列命令后解决：
