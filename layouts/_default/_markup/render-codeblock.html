@@ -1,0 +1,46 @@
+<div class="collapsible-code">
+  <div class="code-header" onclick="toggleCode(this)">
+    <span class="icon">▼</span>
+  </div>
+  <div class="code-body">
+    {{ $result := transform.HighlightCodeBlock . }} {{ $result.Wrapped }}
+  </div>
+</div>
+
+<style>
+  .collapsible-code .code-body {
+    overflow: hidden;
+    margin-left: calc((var(--card-padding)) * -1);
+    margin-right: calc((var(--card-padding)) * -1);
+    width: calc(100% + var(--card-padding) * 2);
+    padding: 0 var(--card-padding);
+  }
+
+  .collapsible-code .code-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .collapsible-code .code-header .icon {
+    font-size: 0.65em;
+    color: var(--card-text-color-main);
+    transition: transform 0.2s ease;
+  }
+
+  .collapsible-code.collapsed .code-body {
+    display: none;
+  }
+
+  .collapsible-code.collapsed .icon {
+    transform: rotate(-90deg);
+  }
+</style>
+
+<script>
+  function toggleCode(header) {
+    const wrapper = header.closest(".collapsible-code");
+    wrapper.classList.toggle("collapsed");
+  }
+</script>

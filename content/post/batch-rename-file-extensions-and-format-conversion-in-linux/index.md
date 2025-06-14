@@ -3,6 +3,7 @@ title: 使用 Shell 批量修改文件后缀和批量格式转换
 date: 2023-06-06
 tags:
   - Bash
+slug: batch-rename-file-extensions-and-format-conversion-in-linux
 ---
 
 `shell`脚本是处理这类工作最为简单，快捷的方式。
@@ -15,7 +16,7 @@ for file in *.原后缀; do mv "$file" "`echo $file | sed s/.原后缀/.新后�
 
 ## 格式转换
 
-### `heic`转`jpg`
+### heic 转 jpg
 
 首先，安装转换工具。
 
@@ -37,7 +38,7 @@ for file in *.heic; do heif-convert "$file" ${file/%.heic/.jpg} && rm "$file"; d
 
 这条命令的原理是：根据当前文件夹下的`.heic`文件生成`.jpg`文件，如果成功生成则删除原`.heic`文件，如果未成功则不会删除原文件。 此外，如果未能生成`.jpg`文件的原因是`Input file 'filename.heic' is a JPEG image`，那么可以使用批量修改后缀的方法直接将文件的后缀改为`.jpg`。
 
-### `flac`转`mp3`
+### flac 转 mp3
 
 首先，安装转换工具：
 

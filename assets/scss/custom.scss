@@ -1,17 +1,63 @@
-/*
-    You can add your own custom styles here.
+/**
+*   Global font family
 */
-
-.article-content {
-  text-align: justify;
+:root {
+  --sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans",
+    "Helvetica Neue";
+  --zh-font-family: "Noto Serif CJK SC";
+  --en-font-family: "Noto Serif";
+  --base-font-family: var(--en-font-family), var(--zh-font-family), serif;
+  --code-font-family: Menlo, Monaco, Consolas, "Courier New",
+    var(--zh-font-family), monospace;
 }
 
-.feed-list article {
-  max-height: 500px;
-  overflow: hidden;
+.feed-list {
+  article {
+    padding: var(--card-padding);
+    position: relative;
+  }
+  .article-details {
+    padding: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+  .article-content {
+    padding: 0;
+    max-height: 300px;
+  }
+  .article-content img {
+    display: none;
+  }
+}
+
+.section-card {
   position: relative;
-  mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 50%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 50%, transparent);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden;
+}
+
+.section-overlay {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(160, 160, 160, 0.5) 100%
+  );
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-details {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
 }
 
 .container {
@@ -28,7 +74,7 @@
 
     /* range: 1024-1280 */
     @include respond(lg) {
-      max-width: 1280px;
+      max-width: 1380px;
       --left-sidebar-max-width: 25%;
       --right-sidebar-max-width: 22%;
     }

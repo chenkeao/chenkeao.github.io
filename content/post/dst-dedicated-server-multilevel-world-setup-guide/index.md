@@ -6,7 +6,8 @@ tags:
   - DST
 categories:
   - DST
----
+slug: dst-dedicated-server-multilevel-world-setup-guide
+--- 
 > 此文全程处于`linux`环境，阅读此文需具备一些`linux`使用经验。
 
 解决饥荒卡顿有两个方法，如果你是单人联机玩家，可以添加[长路独行](https://steamcommunity.com/sharedfiles/filedetails/?id=2657513551)模组，开启后就可以获得与单机版相同的游戏体验，此模组的原理的注意事项可以[点此查看](https://dont-starve-mod.github.io/zh/dsa_index/)。 

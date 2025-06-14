@@ -3,6 +3,7 @@ title: GNU Parallel 的妙用
 date: 2023-06-08
 tags:
   - Bash
+slug: GNU-parallel-tips
 ---
 Android QQ 的图片文件是以下面这种结构保存的，以`Cache_`开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。
 

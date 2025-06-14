@@ -8,6 +8,7 @@ toc: false
 readingTime: true
 tags: [Python]
 ---
+
 1. exporting all selected notes with media references
 
 <img src="1.png" alt="" width="50%" style="display: block; margin: auto;"/>
@@ -32,29 +33,25 @@ df = pd.read_csv(
     sep="\t",
     header=None,
     names=[
-        "word", "lemma", "context", "sentence", "examples", "symbol", "voc",
-        "def", "word_sound", "sentence_sound"
+        "word", "lemma", "context", "sentence", "examples", "symbol", "voc", "def",
+        "word_sound", "sentence_sound"
     ],
 )
 
 word_audio_names = df["word_sound"].apply(lambda x: x.strip()[7:-1]).tolist()
 df["sentence_sound"] = df["sentence_sound"].fillna("")
-sentence_audio_names = df["sentence_sound"].apply(
-    lambda x: x.strip()[7:-1]).tolist()
+sentence_audio_names = df["sentence_sound"].apply(lambda x: x.strip()[7:-1]).tolist()
 
-audio_paths = [
-    os.path.join(AUDIO_DIRECTORY, item) for item in word_audio_names
-] + [
-    os.path.join(AUDIO_DIRECTORY, item)
-    for item in sentence_audio_names if item != ""
+audio_paths = [os.path.join(AUDIO_DIRECTORY, item) for item in word_audio_names] + [
+    os.path.join(AUDIO_DIRECTORY, item) for item in sentence_audio_names if item != ""
 ]
 
 
 def normalize_audio(input_file, output_file):
     try:
         command = [
-            "ffmpeg", "-loglevel", "quiet", "-y", "-i", input_file, "-ar",
-            "24000", "-ab", "96k", output_file
+            "ffmpeg", "-loglevel", "quiet", "-y", "-i", input_file, "-ar", "24000",
+            "-ab", "96k", output_file
         ]
         subprocess.run(command, check=True)
         return output_file
@@ -68,9 +65,8 @@ def normalize_audio_multithreaded(file_list, output_dir, max_workers=16):
         print("start normalizing audios")
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [
-                executor.submit(
-                    normalize_audio, input_file,
-                    os.path.join(output_dir, os.path.basename(input_file)))
+                executor.submit(normalize_audio, input_file,
+                                os.path.join(output_dir, os.path.basename(input_file)))
                 for input_file in file_list
             ]
             for _ in tqdm(as_completed(futures), total=len(file_list)):
@@ -96,8 +92,8 @@ with open("file_list.txt", "w") as f:
             f.write(f"file silent.mp3\n")
 
 command = [
-    "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "file_list.txt", "-c",
-    "copy", "output.mp3"
+    "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "file_list.txt", "-c", "copy",
+    "output.mp3"
 ]
 subprocess.run(command, check=True)
 ```

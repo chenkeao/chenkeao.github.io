@@ -9,20 +9,21 @@ readingTime: true
 tags:
   - Python
 ---
+
 ## Introduction
 
 Dictionaries such as Oxford and Longman are used as the sources for the definitions in my flashcards. However, they sometimes contain too much unnecessary information, therefore making it unwieldy and grandiose, leading to a low loading speed and distractions. Since an MDX file utilizes the HTML format to save entries, which closely resembles the tree structure, I use the term "prune" to describe the course of removing branches, i.e. html nodes that contain superfluous elements. Each group of three lines in a mdx file constitutes an entry of a word where the first and the third lines are delimiters while the middle line is html content. Since typically MDX files are quite large, a division step is required for parallel processing. Thus, the breakdown procedures are as follows:
 
-1. split a gigantic mdx file into several small files. Note: the number of lines in each file must be a multiple of 3. 
+1. split a gigantic mdx file into several small files. Note: the number of lines in each file must be a multiple of 3.
 2. process such files parallelly.
 3. merge files into one mdx file.
-
 
 ## Code
 
 ```python
 import sys
 import os
+
 
 def split_file_by_lines(file_path):
     file_name, file_extension = os.path.splitext(file_path)
@@ -76,6 +77,8 @@ merge_files([
     and f.startswith("new")
 ])
 import shutil
+
+
 shutil.rmtree("./divided_files")
 ```
 
