@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>饥荒联机版 on 陈默的博客</title><link>https://chenkeao.github.io/categories/dst/</link><description>Recent content in 饥荒联机版 on 陈默的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 09 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://chenkeao.github.io/categories/dst/index.xml" rel="self" type="application/rss+xml"/><item><title>饥荒联机版专用服务器和多层世界配置指南</title><link>https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/</link><pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/</guid><description>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/1.png" alt="Featured image of post 饥荒联机版专用服务器和多层世界配置指南" />&lt;blockquote>
+&lt;p>此文全程处于&lt;code>linux&lt;/code>环境，阅读此文需具备一些&lt;code>linux&lt;/code>使用经验。&lt;/p>&lt;/blockquote>
+&lt;p>解决饥荒卡顿有两个方法，如果你是单人联机玩家，可以添加&lt;a class="link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2657513551" target="_blank" rel="noopener"
+>长路独行&lt;/a>模组，开启后就可以获得与单机版相同的游戏体验，此模组的原理的注意事项可以&lt;a class="link" href="https://dont-starve-mod.github.io/zh/dsa_index/" target="_blank" rel="noopener"
+>点此查看&lt;/a>。
+对于联机玩家，可以搭建专用服务器优化卡顿。饥荒联机版专用服务器 (Don&amp;rsquo;t Starve Together Dedicated Server) 是由 klei 官方提供的一个工具，购买饥荒联机版后，在Steam 的“库”页面勾选 &amp;ldquo;TOOLS&amp;rdquo; 后就可以看到了。
+专用服务器可以在云服务器或PC上运行。如果你的电脑配置还可以，并且不要求服务器全天运行，完全可以在自己电脑上搭建专用服务器。
+运行专用服务器每个世界大约需要&lt;code>1G&lt;/code>内存，同时运行游戏本身也需要内存，因此内存最好在&lt;code>8G&lt;/code>以上。如图1所示，第一个进程是游戏本身，占用了&lt;code>1.2G&lt;/code>的内存，第二个进程是专用服务器，占用了&lt;code>995M&lt;/code>左右的内存。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/3.png"
+width="781"
+height="117"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/3_hu_a5d89c1ceef36e2f.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/3_hu_17300349174998ac.png 1024w"
+loading="lazy"
+alt="图1"
+class="gallery-image"
+data-flex-grow="667"
+data-flex-basis="1602px"
+>&lt;/p>
+&lt;h2 id="饥荒存档的构成">饥荒存档的构成
+&lt;/h2>&lt;blockquote>
+&lt;p>使用游戏本身创建的存档最多可以有一个森林和一个洞穴。但是饥荒专用服务器支持一个存档内包含任意多个森林和洞穴。&lt;/p>&lt;/blockquote>
+&lt;p>专用服务器的运行单位是一个世界，而不是一个存档。比如说，一个存档中包括2个森林和2个洞穴，那么就需要启动4个专用服务器的进程实例。当然，你也可以不运行全部的世界，如果你不打算去某个世界，完全可以不启动它。这些进程通过网络通信，由于这种灵活的方式，你完全可以将一个存档中的不同的世界运行在不同的电脑上 (当然一般不需要这么做，除非你的世界太大了以至于一台电脑运行起来吃力)。&lt;/p>
+&lt;p>唯一的限制是，每个存档必须有且仅有一个主世界 (Master Shard)，所有其他的世界都需要绑定到主世界。为了区分，每个世界都有一个唯一的&lt;code>id&lt;/code>，通过给洞穴入口或洞穴出口绑定不同的&lt;code>id&lt;/code>，玩家就可以通过他们在多个世界之间穿越。旺达的溯源表也绑定了世界的&lt;code>id&lt;/code>，因此可以穿越到不同的世界。如图2所示，这是一个拥有两个森林和两个洞穴的世界。其中一个森林是主世界，箭头代表可以通过洞穴入口或洞穴出口进出另一个世界。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/1.png"
+width="4572"
+height="3284"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/1_hu_d15d8a795bf7eee.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/1_hu_4f11717f69268b1f.png 1024w"
+loading="lazy"
+alt="图2"
+class="gallery-image"
+data-flex-grow="139"
+data-flex-basis="334px"
+>&lt;/p>
+&lt;p>这个世界对应的存档结构如下:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── &lt;span class="o">[&lt;/span>drwxr-xr-x&lt;span class="o">]&lt;/span> Master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── &lt;span class="o">[&lt;/span>drwxr-xr-x&lt;span class="o">]&lt;/span> Cave1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── &lt;span class="o">[&lt;/span>drwxr-xr-x&lt;span class="o">]&lt;/span> Cave2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── &lt;span class="o">[&lt;/span>drwxr-xr-x&lt;span class="o">]&lt;/span> Forest1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── &lt;span class="o">[&lt;/span>-rw-r--r--&lt;span class="o">]&lt;/span> cluster.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── &lt;span class="o">[&lt;/span>-rw-r--r--&lt;span class="o">]&lt;/span> cluster_token.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>可以看出，每个世界都对应一个文件夹。此外，&lt;code>cluster.ini&lt;/code>存放了世界的一些参数设置，&lt;code>cluster_token.txt&lt;/code>里存放了用户的身份令牌 (身份令牌的获取参见下一章)。这些就是一个 存档的完整内容。
+也可以去查看&lt;code>~/.klei/DontStarveTogether/$SteamUserID/&lt;/code>目录，如果你在本地创建了存档，那么这个目录下就会有以&lt;code>Cluster_X&lt;/code>格式命名的文件夹，其中&lt;code>X&lt;/code>是此存档在游戏中显示的位置。如图3所示，我创建了一个存档，那么此文件夹中就有一个&lt;code>Cluster_1&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/2.png"
+width="1336"
+height="584"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/2_hu_e5399fa5443f3845.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/2_hu_dae6b3a704a2a372.png 1024w"
+loading="lazy"
+alt="图3"
+class="gallery-image"
+data-flex-grow="228"
+data-flex-basis="549px"
+>&lt;/p>
+&lt;p>查看目录结构，可以看出我只添加了一个主世界，没有添加洞穴。由于只有在专用服务器上运行的存档才需要&lt;code>cluster_token.txt&lt;/code>，因此这里没有。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">```bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cluster_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── cluster.ini&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;h2 id="在本地运行专用服务器">在本地运行专用服务器
+&lt;/h2>&lt;h3 id="准备存档文件">准备存档文件
+&lt;/h3>&lt;p>在游戏中创建存档，添加好要启用的模组并设置好世界的参数后生成世界。等待世界生成，进入选人物的步骤后，断开连接。&lt;/p>
+&lt;blockquote>
+&lt;p>一定要添加洞穴，否则存档无法在专用服务器中运行。&lt;/p>&lt;/blockquote>
+&lt;p>进入&lt;code>~/.klei/DontStarveTogether/$SteamUserID/&lt;/code>目录，将刚刚创建的存档&lt;code>Cluster_X&lt;/code>(&lt;code>X&lt;/code>是此存档在游戏中显示的位置)移动到&lt;code>~/.klei/DontStarveTogether/&lt;/code>中。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/.klei/DontStarveTogether/&lt;span class="nv">$SteamUserID&lt;/span>/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv Cluster_X ..&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>使用浏览器打开&lt;a class="link" href="https://accounts.klei.com/login" target="_blank" rel="noopener"
+>Klei Account&lt;/a>，登录自己的&lt;code>Klei&lt;/code>账号，可以使用&lt;code>Steam&lt;/code>登录。登录成功后进入如下页面。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/4.png"
+width="1904"
+height="964"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/4_hu_773e06c67885510e.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/4_hu_b944523b3fc0a23d.png 1024w"
+loading="lazy"
+alt="图4"
+class="gallery-image"
+data-flex-grow="197"
+data-flex-basis="474px"
+>&lt;/p>
+&lt;p>点击导航栏中的&lt;code>游戏&lt;/code>，在游戏列表中点击&lt;code>《饥荒：联机版》的游戏服务器&lt;/code>，如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/5.png"
+width="1365"
+height="843"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/5_hu_745328fdd52dbb11.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/5_hu_9e2f93c1abe22259.png 1024w"
+loading="lazy"
+alt="图5"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>随便起一个名字，点击&lt;code>添加新服务器&lt;/code>，然后复制生成的以&lt;code>pds-g^&lt;/code>开头的代码，如下图所示。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/6.png"
+width="1320"
+height="565"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/6_hu_6d14b992fb944b33.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/6_hu_c37e44ad656196a3.png 1024w"
+loading="lazy"
+alt="图6"
+class="gallery-image"
+data-flex-grow="233"
+data-flex-basis="560px"
+>&lt;/p>
+&lt;p>在&lt;code>~/.klei/DontStarveTogether/Cluster_X&lt;/code>中创建&lt;code>cluster_token.txt&lt;/code>文件，内容为刚刚复制的代码。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;pds-g^...&amp;#34;&lt;/span> &amp;gt; cluster_token.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>至此，存档文件就准备好了。&lt;/p>
+&lt;h3 id="准备专用服务器和模组">准备专用服务器和模组
+&lt;/h3>&lt;p>在&lt;code>Steam&lt;/code>中安装&lt;code>Don't Starve Together Dedicated Server&lt;/code>，进入安装目录 (安装目录可以在&lt;code>Steam&lt;/code>的游戏设置中找到)。
+如果你的存档添加了模组，则需要修改&lt;code>mods&lt;/code>文件夹下的&lt;code>dedicated_server_mods_setup.lua&lt;/code>文件。专用服务器启动时，会根据这个文件的内容自动更新模组，如果你只在存档中添加了模组但是没有修改这个文件，则模组会添加失败。将需要添加的模组的&lt;code>id&lt;/code>以如下这种格式添加到此文件中即可。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-lua" data-lang="lua">&lt;span class="line">&lt;span class="cl">&lt;span class="n">ServerModSetup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;1438233888&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">--多层世界选择器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ServerModSetup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;1418746242&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">--汉化增强 Chinese++&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ServerModSetup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;666155465&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">--show me&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>模组的&lt;code>id&lt;/code>可以通过&lt;code>Steam&lt;/code>创意工坊中的链接查看。在&lt;code>Steam&lt;/code>中模组的详情页面右击空白处，选择&lt;code>Copy Page URL&lt;/code>。链接末尾的&lt;code>?id=&lt;/code>后接的就是它的&lt;code>id&lt;/code>。例如&lt;code>Show Me&lt;/code>的创意工坊链接为&lt;code>https://steamcommunity.com/sharedfiles/filedetails/?id=666155465&lt;/code>，其&lt;code>id&lt;/code>为&lt;code>666155465&lt;/code>。
+除了这种方式，还可以查看此存档中主世界目录中的&lt;code>modoverrides.lua&lt;/code>文件，这个文件保存了当前世界启用的模组的设置。格式如下所示，其中&lt;code>workshop-&lt;/code>后接的数字就是模组的&lt;code>id&lt;/code>。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-lua" data-lang="lua">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">return&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;workshop-1418746242&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;configuration_options&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;clearfont&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="err">，&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;eventplus&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="err">，&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;extratrans&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;enabled&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>既然&lt;code>modoverrides.lua&lt;/code>文件已经保存了模组的&lt;code>id&lt;/code>，那么我们就可以使用脚本将所有添加的模组的&lt;code>id&lt;/code>提取出来。如下命令会根据&lt;code>modoverrides.lua&lt;/code>文件自动生成&lt;code>dedicated_server_mods_setup.lua&lt;/code>文件。&lt;code>cd&lt;/code>到&lt;code>modoverrides.lua&lt;/code>所在目录中执行如下命令，然后将生成的文件复制到&lt;code>专用服务器安装目录/mods&lt;/code>文件夹覆盖原有文件即可。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">cat ./modoverrides.lua &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;\[&amp;#34;workshop-[0-9]+&amp;#34;\].*&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed -r &lt;span class="s1">&amp;#39;s/\[&amp;#34;workshop-([0-9]+)&amp;#34;\].*/ServerModSetup(&amp;#34;\1&amp;#34;)/g&amp;#39;&lt;/span> &amp;gt; dedicated_server_mods_setup.lua&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;h3 id="启动专用服务器">启动专用服务器
+&lt;/h3>&lt;p>&lt;code>cd&lt;/code>到安装目录中的&lt;code>bin64&lt;/code>文件夹，执行&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2">&amp;#34;Cluster_X&amp;#34;&lt;/span> -monitor_parent_process &lt;span class="nv">$$&lt;/span> -shard Caves &lt;span class="p">&amp;amp;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2">&amp;#34;Cluster_X&amp;#34;&lt;/span> -monitor_parent_process &lt;span class="nv">$$&lt;/span> -shard Master&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>&lt;code>-console&lt;/code>指定在游戏中启用控制台。
+&lt;code>-cluster&lt;/code>指定存档的名字，这个名字和要运行的存档文件夹名对应。
+&lt;code>-shard&lt;/code>指定世界碎片的名字。同样，这个名字也要和世界碎片的文件夹名对应。&lt;/p>
+&lt;blockquote>
+&lt;p>在&lt;code>cluster.ini&lt;/code>中也可以指定一个名称，这个名称是在游戏中玩家看的世界名称。而&lt;code>-cluster&lt;/code>指定的只是文件夹的名称，在游戏中是看不到的。&lt;/p>&lt;/blockquote>
+&lt;h2 id="在云服务器运行专用服务器">在云服务器运行专用服务器
+&lt;/h2>&lt;p>购买阿里云或腾讯云提供的云服务器，配置选择&lt;code>1核2G&lt;/code>或者&lt;code>2核4G&lt;/code>即可。安装&lt;code>Debian&lt;/code>或&lt;code>Ubuntu&lt;/code>操作系统，在安全组中开放&lt;code>10888-10999&lt;/code>端口。此处以&lt;code>Debian&lt;/code>为例。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> _,met&lt;span class="nv">$$$$$gg&lt;/span>. momo@debian
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ,g&lt;span class="nv">$$$$$$$$$$$$$$$P&lt;/span>. -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ,g&lt;span class="nv">$$&lt;/span>P&lt;span class="s2">&amp;#34; &amp;#34;&amp;#34;&amp;#34;&lt;/span>Y&lt;span class="nv">$$&lt;/span>.&lt;span class="s2">&amp;#34;. OS: Debian GNU/Linux 11 (bullseye) x86_64
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> ,&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">P&amp;#39; `&lt;/span>&lt;span class="nv">$$&lt;/span>$&lt;span class="s2">. Host: VirtualBox 1.2
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#39;,&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">P ,ggs. `&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">b: Kernel: 5.10.0-23-amd64
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">`d&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">&amp;#39; ,&lt;/span>&lt;span class="nv">$P&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="s1">&amp;#39; . $$$ Uptime: 1 min
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> $$P d$&amp;#39;&lt;/span> ， &lt;span class="nv">$$&lt;/span>P Packages: &lt;span class="m">444&lt;/span> &lt;span class="o">(&lt;/span>dpkg&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$$&lt;/span>: &lt;span class="nv">$$&lt;/span>. - ,d&lt;span class="nv">$$&lt;/span>&lt;span class="s1">&amp;#39; Shell: bash 5.1.4
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> $$; Y$b._ _,d$P&amp;#39;&lt;/span> Resolution: preferred
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Y&lt;span class="nv">$$&lt;/span>. &lt;span class="sb">`&lt;/span>.&lt;span class="sb">`&lt;/span>&lt;span class="s2">&amp;#34;Y&lt;/span>&lt;span class="nv">$$$$&lt;/span>&lt;span class="s2">P&amp;#34;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span> Terminal: /dev/pts/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>&lt;span class="nv">$$&lt;/span>b &lt;span class="s2">&amp;#34;-.__ CPU: Intel i5-7300HQ (2) @ 2.496GHz
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> `Y&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2"> GPU: 00:02.0 VMware SVGA II Adapter
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> `Y&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">. Memory: 78MiB / 3919MiB
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> `&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">b.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> `Y&lt;/span>&lt;span class="nv">$$&lt;/span>&lt;span class="s2">b.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> `&amp;#34;&lt;/span>Y&lt;span class="nv">$b&lt;/span>._
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;ul>
+&lt;li>添加&lt;code>32&lt;/code>位支持&lt;/li>
+&lt;/ul>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo dpkg --add-architecture i386
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt update &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo apt upgrade -y&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;ul>
+&lt;li>安装依赖&lt;/li>
+&lt;/ul>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo apt install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386 -y&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;ul>
+&lt;li>安装&lt;code>SteamCMD&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 这一步的速度视网络环境而定&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p ~/steamcmd/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/steamcmd/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget &lt;span class="s2">&amp;#34;https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xvzf steamcmd_linux.tar.gz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;ul>
+&lt;li>准备存档文件
+这一步骤与上一章中的相同，可以在本地生成存档文件夹，然后上传到服务器。&lt;/li>
+&lt;/ul>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p ~/.klei/DoNotStarveTogether
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在本地&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/.klei/DoNotStarveTogether
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scp -r ./Cluster_X username@xxx.xxx.xxx.xxx:~/.klei/DoNotStarveTogether/&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;ul>
+&lt;li>将以下内容写入&lt;code>run_server.sh&lt;/code>文件并赋予其执行权限。&lt;/li>
+&lt;/ul>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/bin/bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">steamcmd_dir&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/steamcmd&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">install_dir&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/dontstarvetogether_dedicated_server&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">cluster_name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$1&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">dontstarve_dir&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.klei/DoNotStarveTogether&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">function&lt;/span> fail&lt;span class="o">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">echo&lt;/span> Error: &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="m">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">exit&lt;/span> &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">function&lt;/span> check_for_file&lt;span class="o">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="o">[&lt;/span> ! -e &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$1&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> fail &lt;span class="s2">&amp;#34;Missing file: &lt;/span>&lt;span class="nv">$1&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$steamcmd_dir&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">||&lt;/span> fail &lt;span class="s2">&amp;#34;Missing &lt;/span>&lt;span class="nv">$steamcmd_dir&lt;/span>&lt;span class="s2"> directory!&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">check_for_file &lt;span class="s2">&amp;#34;steamcmd.sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">check_for_file &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$dontstarve_dir&lt;/span>&lt;span class="s2">/&lt;/span>&lt;span class="nv">$cluster_name&lt;/span>&lt;span class="s2">/cluster.ini&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">check_for_file &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$dontstarve_dir&lt;/span>&lt;span class="s2">/&lt;/span>&lt;span class="nv">$cluster_name&lt;/span>&lt;span class="s2">/cluster_token.txt&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">check_for_file &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$dontstarve_dir&lt;/span>&lt;span class="s2">/&lt;/span>&lt;span class="nv">$cluster_name&lt;/span>&lt;span class="s2">/Master/server.ini&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">check_for_file &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$dontstarve_dir&lt;/span>&lt;span class="s2">/&lt;/span>&lt;span class="nv">$cluster_name&lt;/span>&lt;span class="s2">/Caves/server.ini&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./steamcmd.sh +force_install_dir &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$install_dir&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> +login anonymous +app_update &lt;span class="m">343050&lt;/span> validate +quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">check_for_file &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$install_dir&lt;/span>&lt;span class="s2">/bin64&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$dontstarve_dir&lt;/span>&lt;span class="s2">/&lt;/span>&lt;span class="nv">$cluster_name&lt;/span>&lt;span class="s2">/Master/modoverrides.lua&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> grep -E &lt;span class="s1">&amp;#39;\[&amp;#34;workshop-[0-9]+&amp;#34;\].*&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed -r &lt;span class="s1">&amp;#39;s/\[&amp;#34;workshop-([0-9]+)&amp;#34;\].*/ServerModSetup(&amp;#34;\1&amp;#34;)/g&amp;#39;&lt;/span> &amp;gt; &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$install_dir&lt;/span>&lt;span class="s2">/mods/dedicated_server_mods_setup.lua&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$install_dir&lt;/span>&lt;span class="s2">/bin64&amp;#34;&lt;/span> &lt;span class="o">||&lt;/span> fail
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">run_shared&lt;/span>&lt;span class="o">=(&lt;/span>./dontstarve_dedicated_server_nullrenderer_x64&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">run_shared&lt;/span>&lt;span class="o">+=(&lt;/span>-console&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">run_shared&lt;/span>&lt;span class="o">+=(&lt;/span>-cluster &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$cluster_name&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">run_shared&lt;/span>&lt;span class="o">+=(&lt;/span>-monitor_parent_process &lt;span class="nv">$$&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">run_shared&lt;/span>&lt;span class="p">[@]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> -shard Caves &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s/^/Caves: /&amp;#39;&lt;/span> &lt;span class="p">&amp;amp;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">run_shared&lt;/span>&lt;span class="p">[@]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> -shard Master &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s/^/Master: /&amp;#39;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>这个脚本是我在&lt;code>Klei&lt;/code>官方提供的脚本的基础上优化修改而来。运行时需要提供存档文件夹的名称作为脚本的第一个参数。脚本将会检查存档文件是否完整，使用&lt;code>SteamCMD&lt;/code>更新专用服务器并根据存档的模组设置文件&lt;code>modoverrides.lua&lt;/code>自动生成&lt;code>dedicated_server_mods_setup.lua&lt;/code>文件。&lt;/p>
+&lt;ul>
+&lt;li>运行脚本&lt;/li>
+&lt;/ul>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">./run_server.sh Cluster_X&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>由于第一次运行时要下载专用服务器，速度会比较慢。当终端输出&lt;code>Sim paused&lt;/code>时就说明启动完毕，可以在游戏中搜索加入了。&lt;/p>
+&lt;blockquote>
+&lt;p>可以使用&lt;code>tmux&lt;/code>或&lt;code>screen&lt;/code>等工具，这样脚本就可以在后台运行了。&lt;/p>&lt;/blockquote>
+&lt;h2 id="多层世界">多层世界
+&lt;/h2>&lt;p>理论上来说，一个存档中可以添加无数个世界。配置多层世界需要修改存档根目录中的&lt;code>cluster.ini&lt;/code>和每个世界目录中的&lt;code>server.ini&lt;/code>。
+首先看一下的&lt;code>cluster.ini&lt;/code>的内容。&lt;/p>
+&lt;blockquote>
+&lt;p>TODO 文件内容分析&lt;/p>&lt;/blockquote>
+&lt;p>使用多层世界选择器可以解决给洞穴入口绑定&lt;code>id&lt;/code>的麻烦。类似于路由器的工作方式，玩家选择目标世界，由多层世界选择器将玩家送到对应世界，如图7所示。&lt;/p>
+&lt;p>&lt;img src="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/7.png"
+width="5284"
+height="3284"
+srcset="https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/7_hu_a7a906cb0a78475b.png 480w, https://chenkeao.github.io/post/dst-dedicated-server-multilevel-world-setup-guide/7_hu_482376d2d41c2926.png 1024w"
+loading="lazy"
+alt="图7"
+class="gallery-image"
+data-flex-grow="160"
+data-flex-basis="386px"
+>&lt;/p>
+&lt;h2 id="常见问题">常见问题
+&lt;/h2>&lt;h3 id="connecting-anonymously-to-steam-public-retry-retry">Connecting anonymously to Steam Public&amp;hellip;: Retry Retry
+&lt;/h3>&lt;p>无法连接到&lt;code>Steam&lt;/code>的服务器，这一般是由于&lt;code>GFW&lt;/code>，科学上网即可解决。&lt;/p>
+&lt;h3 id="服务器启动失败-cluster_tokentxt-do-not-exist">服务器启动失败: cluster_token.txt do not exist
+&lt;/h3>&lt;p>检查&lt;code>cluster_token.txt&lt;/code>是否存在，内容是否正确。&lt;/p>
+&lt;h3 id="服务器启动失败-libcurl-gnultsso4">服务器启动失败: libcurl-gnults.so.4
+&lt;/h3>&lt;p>安装&lt;code>libcurl-gnults&lt;/code>。&lt;/p>
+&lt;h3 id="全部模组没有添加成功">全部模组没有添加成功
+&lt;/h3>&lt;p>查看&lt;code>modoverrides.lua&lt;/code>和&lt;code>dedicated_server_mods_setup.lua&lt;/code>是否都存在，内容是否正确。&lt;/p>
+&lt;h3 id="部分模组没有添加成功">部分模组没有添加成功
+&lt;/h3>&lt;p>因为网络原因，有时专用服务器会在下载某些模组时失败。如果运行后发现只有一部分模组，一般重新运行专用服务器即可。&lt;/p>
+&lt;h3 id="游戏大厅内无法搜索到世界">游戏大厅内无法搜索到世界
+&lt;/h3>&lt;p>可以通过控制台指令&lt;code>c_connect(&amp;quot;xxx.xxx.xxx.xxx&amp;quot;，10999，&amp;quot;password&amp;quot;)&lt;/code>加入世界，其中第一个参数是服务器的&lt;code>IP&lt;/code>地址，第二个参数是主世界碎片的端口号，第三个参数是世界的密码。&lt;/p></description></item></channel></rss>

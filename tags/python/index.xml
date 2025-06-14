@@ -1,0 +1,1750 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 陈默的博客</title><link>https://chenkeao.github.io/tags/python/</link><description>Recent content in Python on 陈默的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Jun 2025 12:29:01 +0800</lastBuildDate><atom:link href="https://chenkeao.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Convert IPynb to PDF With Reporting Format</title><link>https://chenkeao.github.io/post/convert-ipynb-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 12:29:01 +0800</pubDate><guid>https://chenkeao.github.io/post/convert-ipynb-to-pdf-with-reporting-format/</guid><description>&lt;p>Install &lt;code>nbconvert&lt;/code> via &lt;code>pip&lt;/code>&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install nbconvert&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>Now, the command&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">jupyter nbconvert --to pdf --template-file report filename.ipynb&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p>
+&lt;p>The template consists of two files: &lt;code>assignment.tex.j2&lt;/code> and &lt;code>style_assignment.tex.j2&lt;/code>, which are modified duplicates of existing files. Template files are located in &lt;code>share\jupyter\nbconvert\templates\latex&lt;/code>. Duplicate &lt;code>report.tex.j2&lt;/code> and modify the second line to&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">((* set cell&lt;span class="nb">_&lt;/span>style = &amp;#39;style&lt;span class="nb">_&lt;/span>assignment.tex.j2&amp;#39; *))&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>The file &lt;code>style_assignment.tex.j2&lt;/code> is a duplicate of &lt;code>style_jupyter.tex.j2&lt;/code> with the line&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">{&lt;/span>&lt;span class="k">\ttfamily\llap&lt;/span>&lt;span class="nb">{{&lt;/span>&lt;span class="k">\color&lt;/span>&lt;span class="nb">{&lt;/span>#2&lt;span class="nb">}&lt;/span>[#3]:&lt;span class="k">\hspace&lt;/span>&lt;span class="nb">{&lt;/span>3pt&lt;span class="nb">}&lt;/span>#4&lt;span class="nb">}}&lt;/span>&lt;span class="k">\vspace&lt;/span>&lt;span class="nb">{&lt;/span>-&lt;span class="k">\baselineskip&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>replaced by&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">{&lt;/span>&lt;span class="k">\ttfamily\llap&lt;/span>&lt;span class="nb">{{&lt;/span>&lt;span class="k">\color&lt;/span>&lt;span class="nb">{&lt;/span>#2&lt;span class="nb">}&lt;/span>&lt;span class="k">\hspace&lt;/span>&lt;span class="nb">{&lt;/span>3pt&lt;span class="nb">}&lt;/span>#4&lt;span class="nb">}}}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>Moreover, in order to support Chinese, the code below should be added&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>xeCJK&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\setCJKmainfont&lt;/span>&lt;span class="nb">{&lt;/span>SimSun&lt;span class="nb">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>Now that custom files are used, the command is&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">jupyter nbconvert --to pdf --template-file assignment filename.ipynb&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>The complete file is shown as follows:&lt;/p>
+&lt;ol>
+&lt;li>assignment.tex.j2&lt;/li>
+&lt;/ol>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Default to the notebook output style
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* if not cell&lt;span class="nb">_&lt;/span>style is defined *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* set cell&lt;span class="nb">_&lt;/span>style = &amp;#39;style&lt;span class="nb">_&lt;/span>assignment.tex.j2&amp;#39; *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endif *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Inherit from the specified cell style.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* extends cell&lt;span class="nb">_&lt;/span>style *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Latex Book
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block predoc *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* block tableofcontents *))&lt;span class="k">\tableofcontents&lt;/span>((* endblock tableofcontents *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock predoc *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block docclass *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\documentclass&lt;/span>&lt;span class="nb">{&lt;/span>report&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock docclass *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block markdowncell scoped *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((( cell.source | citation2latex | strip&lt;span class="nb">_&lt;/span>files&lt;span class="nb">_&lt;/span>prefix | convert&lt;span class="nb">_&lt;/span>pandoc(&amp;#39;markdown+tex&lt;span class="nb">_&lt;/span>math&lt;span class="nb">_&lt;/span>double&lt;span class="nb">_&lt;/span>backslash&amp;#39;, &amp;#39;json&amp;#39;,extra&lt;span class="nb">_&lt;/span>args=[]) | resolve&lt;span class="nb">_&lt;/span>references | convert&lt;span class="nb">_&lt;/span>pandoc(&amp;#39;json&amp;#39;,&amp;#39;latex&amp;#39;, extra&lt;span class="nb">_&lt;/span>args=[&amp;#34;--top-level-division=chapter&amp;#34;]) )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock markdowncell *))&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;ol start="2">
+&lt;li>style_assignment.tex.j2&lt;/li>
+&lt;/ol>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;span class="lnt">170
+&lt;/span>&lt;span class="lnt">171
+&lt;/span>&lt;span class="lnt">172
+&lt;/span>&lt;span class="lnt">173
+&lt;/span>&lt;span class="lnt">174
+&lt;/span>&lt;span class="lnt">175
+&lt;/span>&lt;span class="lnt">176
+&lt;/span>&lt;span class="lnt">177
+&lt;/span>&lt;span class="lnt">178
+&lt;/span>&lt;span class="lnt">179
+&lt;/span>&lt;span class="lnt">180
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">((=- IPython input/output style -=))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- block packages -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>xeCJK&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\setCJKmainfont&lt;/span>&lt;span class="nb">{&lt;/span>SimSun&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\usepackage&lt;/span>&lt;span class="na">[breakable]&lt;/span>&lt;span class="nb">{&lt;/span>tcolorbox&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>parskip&lt;span class="nb">}&lt;/span> &lt;span class="c">% Stop auto-indenting (to mimic markdown behaviour)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> ((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endblock packages -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- block definitions -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Pygments definitions
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> (((- resources.latex.pygments&lt;span class="nb">_&lt;/span>definitions )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% For linebreaks inside Verbatim environment from package fancyvrb.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\makeatletter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newbox\Wrappedcontinuationbox&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newbox\Wrappedvisiblespacebox&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedvisiblespace&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\textcolor&lt;/span>&lt;span class="nb">{&lt;/span>red&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textvisiblespace&lt;/span>&lt;span class="nb">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedcontinuationsymbol&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\textcolor&lt;/span>&lt;span class="nb">{&lt;/span>red&lt;span class="nb">}{&lt;/span>&lt;span class="k">\llap&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\tiny&lt;/span>&lt;span class="s">$&lt;/span>&lt;span class="nv">\m&lt;/span>&lt;span class="nb">@th&lt;/span>&lt;span class="nv">\hookrightarrow&lt;/span>&lt;span class="s">$&lt;/span>&lt;span class="nb">}}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedcontinuationindent&lt;/span> &lt;span class="nb">{&lt;/span>3ex &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedafterbreak&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox&lt;/span>&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Take advantage of the already applied Pygments mark-up to insert
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% potential linebreaks for TeX processing.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% {, &amp;lt;, #, %, $, &amp;#39; and &amp;#34;: go to next line.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% _, }, ^, &amp;amp;, &amp;gt;, - and ~: stay at end of broken line.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% Use of \textquotesingle for straight quote.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\newcommand*\Wrappedbreaksatspecials&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZus&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\_&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\_&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZob&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\{&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\{&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZcb&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\}&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\}&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZca&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\^&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\^&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZam&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;amp;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;amp;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZlt&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\&amp;lt;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;lt;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZgt&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;gt;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;gt;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZsh&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\#&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\#&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZpc&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\%&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\%&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZdl&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\$&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\$&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZhy&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\-&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\-&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZsq&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\textquotesingle&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textquotesingle&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZdq&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\&amp;#34;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;#34;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZti&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\~&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\~&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Some characters . , ; ? ! / are not pygmentized.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% This macro makes them &amp;#34;active&amp;#34; and they will insert potential linebreaks
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\newcommand*\Wrappedbreaksatpunct&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\.\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\.&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\.&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\,\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\,&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\,&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\;\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\;&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\;&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\:\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\:&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\:&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\?\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\?&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\?&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\!\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\!&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\!&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\/\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\/&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\/&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\.\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\,\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\;\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\:\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\?\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\!\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\/\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\~&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatother&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\let\OriginalVerbatim&lt;/span>=&lt;span class="k">\Verbatim&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatletter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\renewcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\Verbatim&lt;/span>&lt;span class="nb">}&lt;/span>[1][1]&lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">%\parskip\z@skip
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\sbox\Wrappedcontinuationbox&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\Wrappedcontinuationsymbol&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\sbox\Wrappedvisiblespacebox&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\FV&lt;/span>@SetupFont&lt;span class="k">\Wrappedvisiblespace&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\FancyVerbFormatLine&lt;/span> ##1&lt;span class="nb">{&lt;/span>&lt;span class="k">\hsize\linewidth&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\vtop&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\raggedright\hyphenpenalty\z&lt;/span>@&lt;span class="k">\exhyphenpenalty\z&lt;/span>@
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\doublehyphendemerits\z&lt;/span>@&lt;span class="k">\finalhyphendemerits\z&lt;/span>@
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\strut&lt;/span> ##1&lt;span class="k">\strut&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% If the linebreak is at a space, the latter will be displayed as visible
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% space at end of first line, and a continuation symbol starts next line.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% Stretch/shrink are however usually zero for typewriter font.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\FV&lt;/span>@Space &lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\nobreak\hskip\z&lt;/span>@ plus&lt;span class="k">\fontdimen&lt;/span>3&lt;span class="k">\font&lt;/span> minus&lt;span class="k">\fontdimen&lt;/span>4&lt;span class="k">\font&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\copy\Wrappedvisiblespacebox&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">{&lt;/span>&lt;span class="k">\kern\fontdimen&lt;/span>2&lt;span class="k">\font&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Allow breaks at special characters using \PYG... macros.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\Wrappedbreaksatspecials&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\OriginalVerbatim&lt;/span>&lt;span class="na">[#1,codes*=\Wrappedbreaksatpunct]&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatother&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Exact colors from NB
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> ((*- block style&lt;span class="nb">_&lt;/span>colors *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>incolor&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>303F9F&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>outcolor&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>D84315&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>cellborder&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>CFCFCF&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>cellbackground&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>F7F7F7&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endblock style&lt;span class="nb">_&lt;/span>colors *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\makeatletter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\boxspacing&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\kern\kvtcb&lt;/span>@left@rule&lt;span class="k">\kern\kvtcb&lt;/span>@boxsep&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatother&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- block style&lt;span class="nb">_&lt;/span>prompt *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\prompt&lt;/span>&lt;span class="nb">}&lt;/span>[4]&lt;span class="nb">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">{&lt;/span>&lt;span class="k">\ttfamily\llap&lt;/span>&lt;span class="nb">{{&lt;/span>&lt;span class="k">\color&lt;/span>&lt;span class="nb">{&lt;/span>#2&lt;span class="nb">}&lt;/span>&lt;span class="k">\hspace&lt;/span>&lt;span class="nb">{&lt;/span>3pt&lt;span class="nb">}&lt;/span>#4&lt;span class="nb">}}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* endblock style&lt;span class="nb">_&lt;/span>prompt *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endblock definitions -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Input
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block input scoped *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( draw&lt;span class="nb">_&lt;/span>cell(cell.source | highlight&lt;span class="nb">_&lt;/span>code(strip&lt;span class="nb">_&lt;/span>verbatim=True), cell, &amp;#39;In&amp;#39;, &amp;#39;incolor&amp;#39;, &amp;#39;&lt;span class="k">\\&lt;/span>boxspacing&amp;#39;) )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock input *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Output
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- if charlim is not defined -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* set charlim = 80 *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block execute&lt;span class="nb">_&lt;/span>result scoped *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- for type in output.data | filter&lt;span class="nb">_&lt;/span>data&lt;span class="nb">_&lt;/span>type -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- if type in [&amp;#39;text/plain&amp;#39;]*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( draw&lt;span class="nb">_&lt;/span>cell(output.data[&amp;#39;text/plain&amp;#39;] | wrap&lt;span class="nb">_&lt;/span>text(charlim) | escape&lt;span class="nb">_&lt;/span>latex | ansi2latex, cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;, &amp;#39;&lt;span class="k">\\&lt;/span>boxspacing&amp;#39;) )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* else -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( &amp;#34; &amp;#34; )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( draw&lt;span class="nb">_&lt;/span>prompt(cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;,&amp;#39;&amp;#39;) )))((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endfor -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock execute&lt;span class="nb">_&lt;/span>result *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block stream *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>[commandchars=&lt;span class="k">\\\{\}&lt;/span>]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((( output.text | wrap&lt;span class="nb">_&lt;/span>text(charlim) | escape&lt;span class="nb">_&lt;/span>latex | strip&lt;span class="nb">_&lt;/span>trailing&lt;span class="nb">_&lt;/span>newline | ansi2latex )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock stream *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%==============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Support Macros
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%==============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Name: draw_cell
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Purpose: Renders an output/input prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((*- if draw&lt;span class="nb">_&lt;/span>cell is not defined -*)) &lt;span class="c">% Required to allow overriding.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* macro draw&lt;span class="nb">_&lt;/span>cell(text, cell, prompt, prompt&lt;span class="nb">_&lt;/span>color, extra&lt;span class="nb">_&lt;/span>space) -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- if prompt == &amp;#39;In&amp;#39; -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- set style = &amp;#34;breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder&amp;#34;-*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- else -*))((*- set style = &amp;#34;breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0&amp;#34;-*))((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tcolorbox&lt;span class="nb">}&lt;/span>[((( style )))]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(((- draw&lt;span class="nb">_&lt;/span>prompt(cell, prompt, prompt&lt;span class="nb">_&lt;/span>color, extra&lt;span class="nb">_&lt;/span>space) )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>[commandchars=&lt;span class="k">\\\{\}&lt;/span>]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((( text )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tcolorbox&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endmacro *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Name: draw_prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Purpose: Renders an output/input prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* macro draw&lt;span class="nb">_&lt;/span>prompt(cell, prompt, prompt&lt;span class="nb">_&lt;/span>color, extra&lt;span class="nb">_&lt;/span>space) -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- if cell.execution&lt;span class="nb">_&lt;/span>count is defined -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- set execution&lt;span class="nb">_&lt;/span>count = &amp;#34;&amp;#34; ~ (cell.execution&lt;span class="nb">_&lt;/span>count | replace(None, &amp;#34; &amp;#34;)) -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- else -*))((*- set execution&lt;span class="nb">_&lt;/span>count = &amp;#34; &amp;#34; -*))((*- endif *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- if (resources.global&lt;span class="nb">_&lt;/span>content&lt;span class="nb">_&lt;/span>filter.include&lt;span class="nb">_&lt;/span>output&lt;span class="nb">_&lt;/span>prompt and prompt == &amp;#39;Out&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> or (resources.global&lt;span class="nb">_&lt;/span>content&lt;span class="nb">_&lt;/span>filter.include&lt;span class="nb">_&lt;/span>input&lt;span class="nb">_&lt;/span>prompt and prompt == &amp;#39;In&amp;#39; ) *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\prompt&lt;/span>&lt;span class="nb">{&lt;/span>(((prompt)))&lt;span class="nb">}{&lt;/span>(((prompt&lt;span class="nb">_&lt;/span>color)))&lt;span class="nb">}{&lt;/span>(((execution&lt;span class="nb">_&lt;/span>count)))&lt;span class="nb">}{&lt;/span>(((extra&lt;span class="nb">_&lt;/span>space)))&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endmacro *))&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>Furthermore, if you want to hide code:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;span class="lnt">170
+&lt;/span>&lt;span class="lnt">171
+&lt;/span>&lt;span class="lnt">172
+&lt;/span>&lt;span class="lnt">173
+&lt;/span>&lt;span class="lnt">174
+&lt;/span>&lt;span class="lnt">175
+&lt;/span>&lt;span class="lnt">176
+&lt;/span>&lt;span class="lnt">177
+&lt;/span>&lt;span class="lnt">178
+&lt;/span>&lt;span class="lnt">179
+&lt;/span>&lt;span class="lnt">180
+&lt;/span>&lt;span class="lnt">181
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-latex" data-lang="latex">&lt;span class="line">&lt;span class="cl">((=- IPython input/output style -=))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- block packages -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>xeCJK&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\setCJKmainfont&lt;/span>&lt;span class="nb">{&lt;/span>SimSun&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\usepackage&lt;/span>&lt;span class="na">[breakable]&lt;/span>&lt;span class="nb">{&lt;/span>tcolorbox&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\usepackage&lt;/span>&lt;span class="nb">{&lt;/span>parskip&lt;span class="nb">}&lt;/span> &lt;span class="c">% Stop auto-indenting (to mimic markdown behaviour)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> ((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endblock packages -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- block definitions -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Pygments definitions
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> (((- resources.latex.pygments&lt;span class="nb">_&lt;/span>definitions )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% For linebreaks inside Verbatim environment from package fancyvrb.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\makeatletter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newbox\Wrappedcontinuationbox&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newbox\Wrappedvisiblespacebox&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedvisiblespace&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\textcolor&lt;/span>&lt;span class="nb">{&lt;/span>red&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textvisiblespace&lt;/span>&lt;span class="nb">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedcontinuationsymbol&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\textcolor&lt;/span>&lt;span class="nb">{&lt;/span>red&lt;span class="nb">}{&lt;/span>&lt;span class="k">\llap&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\tiny&lt;/span>&lt;span class="s">$&lt;/span>&lt;span class="nv">\m&lt;/span>&lt;span class="nb">@th&lt;/span>&lt;span class="nv">\hookrightarrow&lt;/span>&lt;span class="s">$&lt;/span>&lt;span class="nb">}}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedcontinuationindent&lt;/span> &lt;span class="nb">{&lt;/span>3ex &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand*\Wrappedafterbreak&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox&lt;/span>&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Take advantage of the already applied Pygments mark-up to insert
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% potential linebreaks for TeX processing.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% {, &amp;lt;, #, %, $, &amp;#39; and &amp;#34;: go to next line.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% _, }, ^, &amp;amp;, &amp;gt;, - and ~: stay at end of broken line.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% Use of \textquotesingle for straight quote.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\newcommand*\Wrappedbreaksatspecials&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZus&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\_&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\_&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZob&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\{&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\{&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZcb&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\}&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\}&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZca&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\^&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\^&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZam&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;amp;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;amp;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZlt&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\&amp;lt;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;lt;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZgt&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;gt;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;gt;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZsh&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\#&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\#&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZpc&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\%&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\%&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZdl&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\$&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\$&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZhy&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\-&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\-&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZsq&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\textquotesingle&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\textquotesingle&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZdq&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{}{&lt;/span>&lt;span class="k">\Wrappedafterbreak\char&lt;/span>`&lt;span class="k">\&amp;#34;&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\&amp;#34;&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\PYGZti&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\~&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\~&lt;/span>&lt;span class="nb">}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Some characters . , ; ? ! / are not pygmentized.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% This macro makes them &amp;#34;active&amp;#34; and they will insert potential linebreaks
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\newcommand*\Wrappedbreaksatpunct&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\.\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\.&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\.&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\,\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\,&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\,&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\;\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\;&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\;&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\:\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\:&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\:&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\?\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\?&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\?&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\!\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\!&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\!&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\/\lowercase&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\def&lt;/span>~&lt;span class="nb">}{&lt;/span>&lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\/&lt;/span>&lt;span class="nb">}}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\hbox&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\char&lt;/span>`&lt;span class="k">\/&lt;/span>&lt;span class="nb">}}}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\.\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\,\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\;\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\:\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\?\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\!\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\catcode&lt;/span>`&lt;span class="k">\/\active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\lccode&lt;/span>`&lt;span class="k">\~&lt;/span>`&lt;span class="k">\~&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatother&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\let\OriginalVerbatim&lt;/span>=&lt;span class="k">\Verbatim&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatletter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\renewcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\Verbatim&lt;/span>&lt;span class="nb">}&lt;/span>[1][1]&lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">%\parskip\z@skip
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\sbox\Wrappedcontinuationbox&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\Wrappedcontinuationsymbol&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\sbox\Wrappedvisiblespacebox&lt;/span> &lt;span class="nb">{&lt;/span>&lt;span class="k">\FV&lt;/span>@SetupFont&lt;span class="k">\Wrappedvisiblespace&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\FancyVerbFormatLine&lt;/span> ##1&lt;span class="nb">{&lt;/span>&lt;span class="k">\hsize\linewidth&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\vtop&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\raggedright\hyphenpenalty\z&lt;/span>@&lt;span class="k">\exhyphenpenalty\z&lt;/span>@
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\doublehyphendemerits\z&lt;/span>@&lt;span class="k">\finalhyphendemerits\z&lt;/span>@
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\strut&lt;/span> ##1&lt;span class="k">\strut&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% If the linebreak is at a space, the latter will be displayed as visible
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% space at end of first line, and a continuation symbol starts next line.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="c">% Stretch/shrink are however usually zero for typewriter font.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\def\FV&lt;/span>@Space &lt;span class="nb">{&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\nobreak\hskip\z&lt;/span>@ plus&lt;span class="k">\fontdimen&lt;/span>3&lt;span class="k">\font&lt;/span> minus&lt;span class="k">\fontdimen&lt;/span>4&lt;span class="k">\font&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\discretionary&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\copy\Wrappedvisiblespacebox&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\Wrappedafterbreak&lt;/span>&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">{&lt;/span>&lt;span class="k">\kern\fontdimen&lt;/span>2&lt;span class="k">\font&lt;/span>&lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Allow breaks at special characters using \PYG... macros.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\Wrappedbreaksatspecials&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\OriginalVerbatim&lt;/span>&lt;span class="na">[#1,codes*=\Wrappedbreaksatpunct]&lt;/span>&lt;span class="c">%
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatother&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% Exact colors from NB
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> ((*- block style&lt;span class="nb">_&lt;/span>colors *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>incolor&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>303F9F&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>outcolor&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>D84315&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>cellborder&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>CFCFCF&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\definecolor&lt;/span>&lt;span class="nb">{&lt;/span>cellbackground&lt;span class="nb">}{&lt;/span>HTML&lt;span class="nb">}{&lt;/span>F7F7F7&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endblock style&lt;span class="nb">_&lt;/span>colors *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span> &lt;span class="k">\makeatletter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\boxspacing&lt;/span>&lt;span class="nb">}{&lt;/span>&lt;span class="k">\kern\kvtcb&lt;/span>@left@rule&lt;span class="k">\kern\kvtcb&lt;/span>@boxsep&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\makeatother&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- block style&lt;span class="nb">_&lt;/span>prompt *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\newcommand&lt;/span>&lt;span class="nb">{&lt;/span>&lt;span class="k">\prompt&lt;/span>&lt;span class="nb">}&lt;/span>[4]&lt;span class="nb">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">{&lt;/span>&lt;span class="k">\ttfamily\llap&lt;/span>&lt;span class="nb">{{&lt;/span>&lt;span class="k">\color&lt;/span>&lt;span class="nb">{&lt;/span>#2&lt;span class="nb">}&lt;/span>&lt;span class="k">\hspace&lt;/span>&lt;span class="nb">{&lt;/span>3pt&lt;span class="nb">}&lt;/span>#4&lt;span class="nb">}}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* endblock style&lt;span class="nb">_&lt;/span>prompt *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endblock definitions -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Input
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block input scoped *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">% input hidden
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* endblock input *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Output
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%===============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- if charlim is not defined -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* set charlim = 80 *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block execute&lt;span class="nb">_&lt;/span>result scoped *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- for type in output.data | filter&lt;span class="nb">_&lt;/span>data&lt;span class="nb">_&lt;/span>type -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- if type in [&amp;#39;text/plain&amp;#39;]*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( draw&lt;span class="nb">_&lt;/span>cell(output.data[&amp;#39;text/plain&amp;#39;] | wrap&lt;span class="nb">_&lt;/span>text(charlim) | escape&lt;span class="nb">_&lt;/span>latex | ansi2latex, cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;, &amp;#39;&lt;span class="k">\\&lt;/span>boxspacing&amp;#39;) )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((* else -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( &amp;#34; &amp;#34; )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((( draw&lt;span class="nb">_&lt;/span>prompt(cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;,&amp;#39;&amp;#39;) )))((( super() )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endfor -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock execute&lt;span class="nb">_&lt;/span>result *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* block stream *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>[commandchars=&lt;span class="k">\\\{\}&lt;/span>]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((( output.text | wrap&lt;span class="nb">_&lt;/span>text(charlim) | escape&lt;span class="nb">_&lt;/span>latex | strip&lt;span class="nb">_&lt;/span>trailing&lt;span class="nb">_&lt;/span>newline | ansi2latex )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((* endblock stream *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%==============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Support Macros
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">%==============================================================================
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Name: draw_cell
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Purpose: Renders an output/input prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((*- if draw&lt;span class="nb">_&lt;/span>cell is not defined -*)) &lt;span class="c">% Required to allow overriding.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* macro draw&lt;span class="nb">_&lt;/span>cell(text, cell, prompt, prompt&lt;span class="nb">_&lt;/span>color, extra&lt;span class="nb">_&lt;/span>space) -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- if prompt == &amp;#39;In&amp;#39; -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- set style = &amp;#34;breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder&amp;#34;-*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- else -*))((*- set style = &amp;#34;breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0&amp;#34;-*))((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>tcolorbox&lt;span class="nb">}&lt;/span>[((( style )))]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(((- draw&lt;span class="nb">_&lt;/span>prompt(cell, prompt, prompt&lt;span class="nb">_&lt;/span>color, extra&lt;span class="nb">_&lt;/span>space) )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\begin&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>[commandchars=&lt;span class="k">\\\{\}&lt;/span>]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((( text )))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>Verbatim&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\end&lt;/span>&lt;span class="nb">{&lt;/span>tcolorbox&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endmacro *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Name: draw_prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">% Purpose: Renders an output/input prompt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>((* macro draw&lt;span class="nb">_&lt;/span>prompt(cell, prompt, prompt&lt;span class="nb">_&lt;/span>color, extra&lt;span class="nb">_&lt;/span>space) -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- if cell.execution&lt;span class="nb">_&lt;/span>count is defined -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- set execution&lt;span class="nb">_&lt;/span>count = &amp;#34;&amp;#34; ~ (cell.execution&lt;span class="nb">_&lt;/span>count | replace(None, &amp;#34; &amp;#34;)) -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- else -*))((*- set execution&lt;span class="nb">_&lt;/span>count = &amp;#34; &amp;#34; -*))((*- endif *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- if (resources.global&lt;span class="nb">_&lt;/span>content&lt;span class="nb">_&lt;/span>filter.include&lt;span class="nb">_&lt;/span>output&lt;span class="nb">_&lt;/span>prompt and prompt == &amp;#39;Out&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> or (resources.global&lt;span class="nb">_&lt;/span>content&lt;span class="nb">_&lt;/span>filter.include&lt;span class="nb">_&lt;/span>input&lt;span class="nb">_&lt;/span>prompt and prompt == &amp;#39;In&amp;#39; ) *))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">\prompt&lt;/span>&lt;span class="nb">{&lt;/span>(((prompt)))&lt;span class="nb">}{&lt;/span>(((prompt&lt;span class="nb">_&lt;/span>color)))&lt;span class="nb">}{&lt;/span>(((execution&lt;span class="nb">_&lt;/span>count)))&lt;span class="nb">}{&lt;/span>(((extra&lt;span class="nb">_&lt;/span>space)))&lt;span class="nb">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ((*- endif -*))
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">((*- endmacro *))&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script></description></item><item><title>Merge Anki Audios</title><link>https://chenkeao.github.io/post/merge-anki-audios/</link><pubDate>Fri, 13 Jun 2025 12:26:05 +0800</pubDate><guid>https://chenkeao.github.io/post/merge-anki-audios/</guid><description>&lt;ol>
+&lt;li>exporting all selected notes with media references&lt;/li>
+&lt;/ol>
+&lt;img src="1.png" alt="" width="50%" style="display: block; margin: auto;"/>
+&lt;ol start="2">
+&lt;li>extract media paths from the exported file&lt;/li>
+&lt;li>write a python script merging all selected audios into one&lt;/li>
+&lt;/ol>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">subprocess&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">pandas&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">pd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">concurrent.futures&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">ThreadPoolExecutor&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">as_completed&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">random&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">AUDIO_DIRECTORY&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">r&lt;/span>&lt;span class="s2">&amp;#34;C:\Users\kyle\AppData\Roaming\Anki2\Eng\collection.media&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">SILENT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">r&lt;/span>&lt;span class="s2">&amp;#34;C:\Users\momo\Home\Projects\Anki\silent.mp3&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">list_file_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;../notes.txt&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">df&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_csv&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_file_path&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sep&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\t&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">header&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">names&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;word&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;lemma&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;context&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;sentence&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;examples&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;symbol&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;voc&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;def&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;word_sound&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;sentence_sound&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">word_audio_names&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">df&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;word_sound&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">apply&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">lambda&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tolist&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">df&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;sentence_sound&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">df&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;sentence_sound&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fillna&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">sentence_audio_names&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">df&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;sentence_sound&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">apply&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">lambda&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tolist&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">audio_paths&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">AUDIO_DIRECTORY&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">word_audio_names&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">AUDIO_DIRECTORY&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">sentence_audio_names&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">normalize_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">command&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;ffmpeg&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-loglevel&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;quiet&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-y&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-i&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-ar&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;24000&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;-ab&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;96k&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">command&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">check&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">output_file&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CalledProcessError&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="kc">None&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">normalize_audio_multithreaded&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_list&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">max_workers&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_dir&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_dir&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;start normalizing audios&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">ThreadPoolExecutor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">max_workers&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">max_workers&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">executor&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">futures&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">executor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">submit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">normalize_audio&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">basename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">input_file&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">file_list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">_&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">as_completed&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">futures&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">total&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_list&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">pass&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;files has prepared well&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">normalize_audio_multithreaded&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">audio_paths&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;temp&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">audio_paths&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[(&lt;/span>&lt;span class="n">w&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">w&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">zip&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">word_audio_names&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sentence_audio_names&lt;/span>&lt;span class="p">)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">random&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shuffle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">audio_paths&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;file_list.txt&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">w&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">audio_paths&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file &amp;#39;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;temp&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">w&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file silent.mp3&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file &amp;#39;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;temp&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">w&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file silent.mp3&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file &amp;#39;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;temp&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file silent.mp3&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;file silent.mp3&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">command&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;ffmpeg&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-y&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-f&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;concat&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-safe&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;0&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-i&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;file_list.txt&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-c&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;copy&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;output.mp3&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">command&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">check&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script></description></item><item><title>Prune a Dictionary File(.mdx)</title><link>https://chenkeao.github.io/post/prune-a-dictionary-file.mdx/</link><pubDate>Fri, 13 Jun 2025 12:23:34 +0800</pubDate><guid>https://chenkeao.github.io/post/prune-a-dictionary-file.mdx/</guid><description>&lt;h2 id="introduction">Introduction
+&lt;/h2>&lt;p>Dictionaries such as Oxford and Longman are used as the sources for the definitions in my flashcards. However, they sometimes contain too much unnecessary information, therefore making it unwieldy and grandiose, leading to a low loading speed and distractions. Since an MDX file utilizes the HTML format to save entries, which closely resembles the tree structure, I use the term &amp;ldquo;prune&amp;rdquo; to describe the course of removing branches, i.e. html nodes that contain superfluous elements. Each group of three lines in a mdx file constitutes an entry of a word where the first and the third lines are delimiters while the middle line is html content. Since typically MDX files are quite large, a division step is required for parallel processing. Thus, the breakdown procedures are as follows:&lt;/p>
+&lt;ol>
+&lt;li>split a gigantic mdx file into several small files. Note: the number of lines in each file must be a multiple of 3.&lt;/li>
+&lt;li>process such files parallelly.&lt;/li>
+&lt;li>merge files into one mdx file.&lt;/li>
+&lt;/ol>
+&lt;h2 id="code">Code
+&lt;/h2>&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">split_file_by_lines&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">file_name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">file_extension&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">splitext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lines_per_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">28311&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">folder_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;divided_files&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">folder_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">folder_path&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">raise&lt;/span> &lt;span class="ne">BaseException&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;directory exists&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">file_count&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">line&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lines&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">line&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">lines_per_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_file_name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">file_name&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">_&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">file_count&lt;/span>&lt;span class="si">:&lt;/span>&lt;span class="s2">02d&lt;/span>&lt;span class="si">}{&lt;/span>&lt;span class="n">file_extension&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">folder_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">new_file_name&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">chunk_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chunk_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">writelines&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">file_count&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_file_name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">file_name&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">_&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">file_count&lt;/span>&lt;span class="si">}{&lt;/span>&lt;span class="n">file_extension&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">folder_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">new_file_name&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">chunk_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chunk_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">writelines&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">file_count&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">merge_files&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">files&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;res.txt&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">pass&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">file&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">files&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">isfile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">content&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;a&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">content&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">split_file_by_lines&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;./mdx.txt&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">system&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">r&lt;/span>&lt;span class="s1">&amp;#39;ls ./divided_files | parallel -j16 &amp;#34;python3 ./prune.py ./divided_files/&lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1"> ./divided_files/new_&lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1">&amp;#34;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">merge_files&lt;/span>&lt;span class="p">([&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;./divided_files&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">listdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;./divided_files&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">isfile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;./divided_files&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ow">and&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">startswith&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;new&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">shutil&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">shutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rmtree&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;./divided_files&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>detailed pruning code:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="ch">#!/usr/bin/python&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">bs4&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">BeautifulSoup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">remove_tags_with_class&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">html_content&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">soup&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">BeautifulSoup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">html_content&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">features&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;html.parser&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decompose&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;idm-gs-blk&amp;#34;&lt;/span>&lt;span class="p">)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decompose&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;pv-gs-blk&amp;#34;&lt;/span>&lt;span class="p">)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">def_tags&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;def&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">def_tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">def_tags&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">xhtml_a_texts&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">a_tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">a_tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">def_tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;xhtml:a&amp;#34;&lt;/span>&lt;span class="p">)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decompose&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">def_tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;chn&amp;#34;&lt;/span>&lt;span class="p">)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_soup&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">BeautifulSoup&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">r&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;html.parser&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">def_tags&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">def_tag&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">def_tags&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_tag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_tag&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;p&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">string&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">def_tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_text&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">def_tag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">replace_with&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_tag&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_soup&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">process_html_file&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readlines&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">outfile&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">line&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">startswith&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&amp;lt;head&amp;gt;&amp;lt;link&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_line&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">remove_tags_with_class&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">line&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outfile&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_line&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">outfile&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">line&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">input_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">output_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">process_html_file&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script></description></item><item><title>Deep Learning 1</title><link>https://chenkeao.github.io/post/deep-learning-1/</link><pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/post/deep-learning-1/</guid><description>&lt;p>11&lt;/p></description></item></channel></rss>

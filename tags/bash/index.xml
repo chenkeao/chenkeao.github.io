@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bash on 陈默的博客</title><link>https://chenkeao.github.io/tags/bash/</link><description>Recent content in Bash on 陈默的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Jun 2025 12:38:57 +0800</lastBuildDate><atom:link href="https://chenkeao.github.io/tags/bash/index.xml" rel="self" type="application/rss+xml"/><item><title>Rename Files by Deleting or Replacing Substring</title><link>https://chenkeao.github.io/notes/rename-files-by-deleting-or-replacing-substring/</link><pubDate>Fri, 13 Jun 2025 12:38:57 +0800</pubDate><guid>https://chenkeao.github.io/notes/rename-files-by-deleting-or-replacing-substring/</guid><description>&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> f in &lt;span class="sb">`&lt;/span>ls *.mp3&lt;span class="sb">`&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s/生活大爆炸/TBBT/g&amp;#39;&lt;/span>&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">done&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script></description></item><item><title>Convert All Mp4 to Mp3 in One Command</title><link>https://chenkeao.github.io/notes/convert-all-mp4-to-mp3-in-one-command/</link><pubDate>Fri, 13 Jun 2025 12:37:35 +0800</pubDate><guid>https://chenkeao.github.io/notes/convert-all-mp4-to-mp3-in-one-command/</guid><description>&lt;p>I get a directory like following:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── S01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS01E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS01E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS01E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── S02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS02E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS02E02.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS02E03.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── S03
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS03E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS03E02.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS03E03.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── S04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS04E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS04E02.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS04E03.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── S05
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS05E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS05E02.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS05E03.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   ├── TBBTS05E04.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │  ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> └── S06
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── TBBTS06E01.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── TBBTS06E02.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── TBBTS06E03.mp4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>I want to transform all mp4 files to mp3 and move them to a new directory called mp3 in current directory.
+here is the command:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> find . -name &lt;span class="s2">&amp;#34;*.mp4&amp;#34;&lt;/span> -type f -print &lt;span class="p">|&lt;/span> parallel -j20 &lt;span class="s2">&amp;#34;ffmpeg -i {} ./mp3/{/.}.mp3&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>where &lt;code>{/.}&lt;/code> represents a clear file name that stripped extension name and path&lt;/p></description></item><item><title>Download TBBT Transcript From Website</title><link>https://chenkeao.github.io/notes/download-tbbt-transcript-from-website/</link><pubDate>Fri, 13 Jun 2025 12:17:40 +0800</pubDate><guid>https://chenkeao.github.io/notes/download-tbbt-transcript-from-website/</guid><description>&lt;h2 id="urls-of-transcripts">URLs of transcripts
+&lt;/h2>&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;span class="lnt">170
+&lt;/span>&lt;span class="lnt">171
+&lt;/span>&lt;span class="lnt">172
+&lt;/span>&lt;span class="lnt">173
+&lt;/span>&lt;span class="lnt">174
+&lt;/span>&lt;span class="lnt">175
+&lt;/span>&lt;span class="lnt">176
+&lt;/span>&lt;span class="lnt">177
+&lt;/span>&lt;span class="lnt">178
+&lt;/span>&lt;span class="lnt">179
+&lt;/span>&lt;span class="lnt">180
+&lt;/span>&lt;span class="lnt">181
+&lt;/span>&lt;span class="lnt">182
+&lt;/span>&lt;span class="lnt">183
+&lt;/span>&lt;span class="lnt">184
+&lt;/span>&lt;span class="lnt">185
+&lt;/span>&lt;span class="lnt">186
+&lt;/span>&lt;span class="lnt">187
+&lt;/span>&lt;span class="lnt">188
+&lt;/span>&lt;span class="lnt">189
+&lt;/span>&lt;span class="lnt">190
+&lt;/span>&lt;span class="lnt">191
+&lt;/span>&lt;span class="lnt">192
+&lt;/span>&lt;span class="lnt">193
+&lt;/span>&lt;span class="lnt">194
+&lt;/span>&lt;span class="lnt">195
+&lt;/span>&lt;span class="lnt">196
+&lt;/span>&lt;span class="lnt">197
+&lt;/span>&lt;span class="lnt">198
+&lt;/span>&lt;span class="lnt">199
+&lt;/span>&lt;span class="lnt">200
+&lt;/span>&lt;span class="lnt">201
+&lt;/span>&lt;span class="lnt">202
+&lt;/span>&lt;span class="lnt">203
+&lt;/span>&lt;span class="lnt">204
+&lt;/span>&lt;span class="lnt">205
+&lt;/span>&lt;span class="lnt">206
+&lt;/span>&lt;span class="lnt">207
+&lt;/span>&lt;span class="lnt">208
+&lt;/span>&lt;span class="lnt">209
+&lt;/span>&lt;span class="lnt">210
+&lt;/span>&lt;span class="lnt">211
+&lt;/span>&lt;span class="lnt">212
+&lt;/span>&lt;span class="lnt">213
+&lt;/span>&lt;span class="lnt">214
+&lt;/span>&lt;span class="lnt">215
+&lt;/span>&lt;span class="lnt">216
+&lt;/span>&lt;span class="lnt">217
+&lt;/span>&lt;span class="lnt">218
+&lt;/span>&lt;span class="lnt">219
+&lt;/span>&lt;span class="lnt">220
+&lt;/span>&lt;span class="lnt">221
+&lt;/span>&lt;span class="lnt">222
+&lt;/span>&lt;span class="lnt">223
+&lt;/span>&lt;span class="lnt">224
+&lt;/span>&lt;span class="lnt">225
+&lt;/span>&lt;span class="lnt">226
+&lt;/span>&lt;span class="lnt">227
+&lt;/span>&lt;span class="lnt">228
+&lt;/span>&lt;span class="lnt">229
+&lt;/span>&lt;span class="lnt">230
+&lt;/span>&lt;span class="lnt">231
+&lt;/span>&lt;span class="lnt">232
+&lt;/span>&lt;span class="lnt">233
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-1-pilot-episode/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-2-the-big-bran-hypothesis/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-3-the-fuzzy-boots-corollary/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-4-the-luminous-fish-effect/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-5-the-hamburger-postulate/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-6-the-middle-earth-paradigm/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-7-the-dumpling-paradox/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-8-the-grasshopper-experiment/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-9-the-cooper-hofstadter-polarization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-10-the-loobenfeld-decay/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-11-the-pancake-batter-anomaly/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-12-the-jerusalem-duality/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-13-the-bat-jar-conjecture/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-14-the-nerdvana-annihilation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-15-the-porkchop-indeterminacy/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-16-the-peanut-reaction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-17-the-tangerine-factor/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-01-the-bad-fish-paradigm/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-02-the-codpiece-topology/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-03-the-barbarian-sublimation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-04-the-griffin-equivalency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-5-the-euclid-alternative/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-06-the-cooper-nowitzki-theorem-2/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-07-the-panty-pinata-polarization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-1-episode-08-the-lizard-spock-expansion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-09-the-white-asparagus-triangulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-11-the-vartabedian-conundrum/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-11-the-bath-item-gift-hypothesis/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-12-the-killer-robot-instability/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-13-the-friendship-algorithm/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-14-the-financial-permeability-2/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-15-the-maternal-capacitance/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-16-the-cushion-saturation-3/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-17-the-terminator-decoupling/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-18-the-work-song-nanocluster/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-19-the-dead-hooker-juxtaposition/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-20-the-hofstadter-isotope/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-21-the-vegas-renormalization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-22-the-classified-materials-turbulence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-2-episode-23-the-monopolar-expedition/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-01-the-electric-can-opener-fluctuation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-02-the-jiminy-conjecture/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-03-the-gothowitz-deviation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-04-the-pirate-solution/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-05-the-creepy-candy-coating-corollary/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-06-the-cornhusker-vortex/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-07-the-guitarist-amplification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-08-the-adhesive-duck-deficiency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-09-the-vengeance-formulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-10-the-gorilla-experiment/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-11-the-maternal-congruence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-12-the-psychic-vortex/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-13-the-bozeman-reaction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-14-the-einstein-approximation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-15-the-large-hadron-collision/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-16-the-excelsior-acquisition/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-17-the-precious-fragmentation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-18-the-pants-alternative/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-19-the-wheaton-recurrence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-20-the-spaghetti-catalyst/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-21-the-plimpton-stimulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-22-the-staircase-implementation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-3-episode-23-the-lunar-excitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-01-the-robotic-manipulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-02-the-cruciferous-vegetable-amplification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-03-the-zazzy-substitution/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-04-the-hot-troll-deviation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-05-the-desperation-emanation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-06-the-irish-pub-formulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-07-the-apology-insufficiency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-08-the-21-second-excitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-09-the-boyfriend-complexity/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-10-the-alien-parasite-hypothesis/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-11-the-justice-league-recombination/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-12-the-bus-pants-utilization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-13-the-love-car-displacement/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-14-the-thespian-catalyst/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-15-the-benefactor-factor/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-16-the-cohabitation-formulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-17-the-toast-derivation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-18-the-prestidigitation-approximation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-19-the-zarnecki-incursion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-20-the-herb-garden-germination/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-21-the-agreement-dissection/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-22-the-wildebeest-implementation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-23-the-engagement-reaction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-4-episode-24-the-roommate-transmogrification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-01-the-skank-reflex-analysis/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-02-the-infestation-hypothesis/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-03-the-pulled-groin-extrapolation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-04-the-wiggly-finger-catalyst/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-05-the-russian-rocket-reaction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-06-the-rhinitis-revelation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-07-the-good-guy-fluctuation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-08-the-isolation-permutation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-09-the-ornithophobia-diffusion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-10-the-flaming-spittoon-acquisition/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-11-the-speckerman-recurrence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-12-the-shiny-trinket-maneouvre/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-13-the-recombination-hypothesis/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-14-the-beta-test-initiation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-15-the-friendship-contraction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-16-the-vacation-solution/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-17-the-rothman-disintegration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-18-the-werewolf-transformation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-19-the-weekend-vortex/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-20-the-transporter-malfunction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-21-the-hawking-excitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-22-the-stag-convergence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-23-the-launch-acceleration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-5-episode-24-the-countdown-reflection/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-01-the-date-night-variable/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-02-the-decoupling-fluctuation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-03-the-higgs-boson-observation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-04-the-re-entry-minimization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-05-the-holographic-excitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-06-the-extract-obliteration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-07-the-habitation-configuration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-08-the-43-peculiarity/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-09-the-parking-spot-escalation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-10-the-fish-guts-displacement/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-11-the-santa-simulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-12-the-egg-salad-equivalency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-13-the-bakersfield-expedition/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-14-the-cooperkripke-inversion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-15-the-spoiler-alert-segmentation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-16-the-tangible-affection-proof/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-17-the-monster-isolation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-18-the-contractual-obligation-implementation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-19-the-closet-reconfiguration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-20-the-tenure-turbulence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-21-the-closure-alternative/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-6-episode-22-the-proton-resurgence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-06-episode-23-the-love-spell-potential/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-06-episode-24-the-bon-voyage-reaction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-01-the-hofstadter-insufficiency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-02-the-deception-verification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-03-the-scavenger-vortex/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-04-the-raiders-minimization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-05-the-workplace-proximity/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-06-the-romance-resonance/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-07-the-proton-displacement/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-08-the-itchy-brain-simulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-09-the-thanksgiving-decoupling/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-10-the-discovery-dissipation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-11-the-cooper-extraction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-12-the-hesitation-ramification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-13-the-occupation-recalibration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-14-the-convention-conundrum/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-15-the-locomotive-manipulation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-16-the-table-polarisation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-17-the-friendship-turbulence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-18-the-mommy-observation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-19-the-indecision-amalgamation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-20-the-relationship-diremption/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-21-the-anything-can-happen-recurrence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-22-the-proton-transmogrification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-23-the-gorilla-dissolution/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-24-the-status-quo-combustion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-01-the-locomotion-interruption/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-02-the-junior-professor-solution/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-03-the-first-pitch-insufficiency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-04-the-hook-up-reverbration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-7-episode-05-the-focus-attenuation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-06-the-expedition-approximation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-07-the-misinterpretation-agitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-08-the-prom-equivalency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-09-the-septum-deviation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-10-the-champagne-reflection/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-11-the-clean-room-infiltration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-12-the-space-probe-disintegration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-13-the-anxiety-optimisation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-14-the-troll-manifestation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-15-the-comic-book-store-regeneration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-16-the-intimacy-acceleration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-17-the-colonization-application/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-18-the-leftover-thermalization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-19-the-skywalker-incursion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-20-the-fortification-implementation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-21-the-communication-deterioration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-22-the-graduation-transmission/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-23-the-maternal-combustion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-8-episode-24-the-commitment-determination/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-01-the-matrimonial-momentum/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-02-the-separation-oscillation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-03-the-batchelor-party-corrosion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-04-the-2003-approximation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-05-the-perspiration-implementation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-06-the-helium-insufficiency/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-07-the-spock-resonance/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-08-the-mystery-date-observation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-09-the-platonic-permutation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-10-the-earworm-reverberation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-11-the-opening-night-excitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-12-the-sales-call-sublimation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-13-the-empathy-optimisation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-14-the-meemaw-materialisation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-15-the-valentino-submergence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-16-the-positive-negative-reaction/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-17-the-celebration-experimentation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-18-the-application-deterioration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-19-the-solder-excursion-diversion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-20-the-big-bear-precipitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-21-the-viewing-party-combustion/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-22-the-fermentation-bifurcation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-23-the-line-substitution-solution/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-9-episode-24-the-convergence-convergence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-01-the-conjugal-conjecture/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-02-the-military-miniturization/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-03-the-dependence-transcendence/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-04-the-cohabitation-experimentation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-05-the-hot-tub-contamination/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-06-the-foetal-kick-catalyst/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-07-the-veracity-elasticity/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-08-the-brain-bowl-incubation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-09-the-geology-elevation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-10-the-property-division-collision/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-11-the-birthday-synchronicity/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-12-the-holiday-summation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-13-the-romance-recalibration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-14-the-emotion-detection-automation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-15-the-locomotion-reverberation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-16-the-allowance-evaporation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-17-the-comic-con-conundrum/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-18-the-escape-hatch-identification/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-19-the-collaboration-fluctuation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-20-the-recollection-dissipation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-21-the-separation-agitation/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-22-the-cognition-regeneration/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-23-the-gyroscopic-collapse/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-24-the-long-distance-dissonance/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;h2 id="script">Script
+&lt;/h2>&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">requests&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">bs4&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">BeautifulSoup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">url_list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">download_script&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">requests&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">encoding&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">soup&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">BeautifulSoup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;html.parser&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">script_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;h2&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">class_&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;title&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_text&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">script_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">script_text&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;## &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">title&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">div&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">soup&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;div&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">class_&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;entrytext&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">p_tags&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">div&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;p&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">p&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">p_tags&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_text&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">before&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">after&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">script_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">script_text&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;**&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">before&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;**&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">after&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">script_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">script_text&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">text&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">script_text&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;TBBT.md&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;a&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">url_list&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">download_script&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">file&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script></description></item><item><title>Gnome 中 .desktop 文件的奇怪问题</title><link>https://chenkeao.github.io/notes/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/notes/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</guid><description>&lt;p>众所周知，gnome 目前默认使用 wayland，但某些程序在 wayland 下表现不佳。例如 telegram 有时边框外会显示奇怪的阴影，解决方法是开启选项：使用系统边框。然而在 wayland 下没有此选项，取而代之的是：使用 qt 边框，但 qt 边框与 gtk 应用的风格很不统一，导致看起来很丑。解决方法是在其 .desktop 文件中添加环境变量使 telegram 强制使用 x11，事实上，我已经使用&lt;code>QT_QPA_PLATFORM=xcb&lt;/code>这个环境变量为另一个程序 anki 解决了这个问题。&lt;/p>
+&lt;p>然而，同样的方法对 telegram 却失效了。经过一番摸索我发现，直接运行 .desktop 文件，在命令行运行指令或使用&lt;code>dex&lt;/code>命令运行都生效，可一旦从 gnome 的应用抽屉里启动或使用&lt;code>gtk-launch&lt;/code>命令运行启动就不生效。这说明文件本身并没有问题，问题出在 gtk 和 gnome 上。问题到这里就陷入了僵局，但是我灵光一现，想到问题或许是 telegram 的 .desktop 文件奇怪的名字导致的：由于 telegram 的全名为 telegram-desktop，因此其 .desktop 文件名为 org.telegram.desktop.desktop。我怀疑是这两个重复的 .desktop 后缀在作祟， 于是我将其改名为 telegram.desktop，随后&lt;code>update-desktop-datebase ~/.local/share/applications/&lt;/code>，问题果然解决。&lt;/p></description></item><item><title>Anki 与 Wayland 的兼容性问题</title><link>https://chenkeao.github.io/notes/anki-compatibility-with-wayland/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/notes/anki-compatibility-with-wayland/</guid><description>&lt;p>为了使用 waydroid 不得已换 X11 为 Wayland，随之问题就来了。基于 Qt6 的 Anki 似乎与 Wayland 兼容的不太好，无法在 KDE 中使用全局菜单，并且 Goldendict 的&lt;code>Ctrl+c+c&lt;/code>粘贴板查词功能在 Anki 里也无法使用了。
+Google上搜索了一番后发现可以用&lt;code>WAYLAND_DISPLAY=&amp;quot;&amp;quot;&lt;/code>环境变量强制 Anki 使用 X11 解决。使用后果然没有上述问题了，但是出现了新的问题： fcitx 无法在 Anki 里使用了。略微思考后，我想起来我遵从 Wayland 的建议删掉了在&lt;code>/etc/environment&lt;/code>全局设置的&lt;code>QT_IM_MODULE=fcitx&lt;/code>。这个问题官方的建议也提及了，可以单独为 Anki 设置环境变量，设置后问题果然解决。启动命令：&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WAYLAND_DISPLAY&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="nv">QT_IM_MODULE&lt;/span>&lt;span class="o">=&lt;/span>fcitx Anki&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>实际上还有另一种方式，可以为某些 Qt 应用设置 &lt;code>QT_QPA_PLATFORM=xcb&lt;/code>环境变量以解决其在 Wayland 中表现不正常的问题。&lt;/p></description></item><item><title>GNU Parallel 的妙用</title><link>https://chenkeao.github.io/post/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/post/gnu-parallel-tips/</guid><description>&lt;p>Android QQ 的图片文件是以下面这种结构保存的，以&lt;code>Cache_&lt;/code>开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">├── 0a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   ├── Cache_2783644ca99260a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   └── Cache_-4dfb57e9a7cec0a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── 0a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   ├── Cache_373e35b7b8a290a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   ├── Cache_-489f6e9c62ea10a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│   └── Cache_57776dc1e17110a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── 0a7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> └── Cache_25d732f84bd7d0a7&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>使用 GNU Parallel 配合&lt;code>mv&lt;/code>可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_25d732f84bd7d0a7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_2783644ca99260a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_373e35b7b8a290a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_-489f6e9c62ea10a6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Cache_-4dfb57e9a7cec0a0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── Cache_57776dc1e17110a6&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>命令如下:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">find . -name &lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span> -type f -print &lt;span class="p">|&lt;/span> parallel mv &lt;span class="o">{}&lt;/span> ./&lt;span class="o">{&lt;/span>/&lt;span class="o">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;blockquote>
+&lt;p>参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
+>https://www.myfreax.com/gnu-parallel/&lt;/a>&lt;/p>&lt;/blockquote></description></item><item><title>使用 Shell 批量修改文件后缀和批量格式转换</title><link>https://chenkeao.github.io/post/batch-rename-file-extensions-and-format-conversion-in-linux/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/post/batch-rename-file-extensions-and-format-conversion-in-linux/</guid><description>&lt;p>&lt;code>shell&lt;/code>脚本是处理这类工作最为简单，快捷的方式。&lt;/p>
+&lt;h2 id="修改后缀">修改后缀
+&lt;/h2>&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> file in *.原后缀&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> mv &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;`echo &lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2"> | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;h2 id="格式转换">格式转换
+&lt;/h2>&lt;h3 id="heic-转-jpg">heic 转 jpg
+&lt;/h3>&lt;p>首先，安装转换工具。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yay -S libheif&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>然后可以使用&lt;code>heif-convert&lt;/code>命令转换。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">heif-convert input.heic output.jpg&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>批量转换，命令如下。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> file in *.heic&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> heif-convert &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="si">${&lt;/span>&lt;span class="nv">file&lt;/span>&lt;span class="p">/%.heic/.jpg&lt;/span>&lt;span class="si">}&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> rm &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>这条命令的原理是：根据当前文件夹下的&lt;code>.heic&lt;/code>文件生成&lt;code>.jpg&lt;/code>文件，如果成功生成则删除原&lt;code>.heic&lt;/code>文件，如果未成功则不会删除原文件。 此外，如果未能生成&lt;code>.jpg&lt;/code>文件的原因是&lt;code>Input file 'filename.heic' is a JPEG image&lt;/code>，那么可以使用批量修改后缀的方法直接将文件的后缀改为&lt;code>.jpg&lt;/code>。&lt;/p>
+&lt;h3 id="flac-转-mp3">flac 转 mp3
+&lt;/h3>&lt;p>首先，安装转换工具：&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yay -S ffmpeg&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>然后可以使用&lt;code>ffmpeg&lt;/code>命令转换，除了格式转换，&lt;code>ffmpeg&lt;/code>还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" >文档&lt;/a>。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ffmpeg -i &lt;span class="s1">&amp;#39;input.flac&amp;#39;&lt;/span> -ab 320k -map_metadata &lt;span class="m">0&lt;/span> -id3v2_version &lt;span class="m">3&lt;/span> &lt;span class="s1">&amp;#39;output.mp3&amp;#39;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>批量转换，命令如下：&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> file in *.flac&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> ffmpeg -i &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> -ab 320k -map_metadata &lt;span class="m">0&lt;/span> -id3v2_version &lt;span class="m">3&lt;/span> &lt;span class="si">${&lt;/span>&lt;span class="nv">file&lt;/span>&lt;span class="p">/%.flac/.mp3&lt;/span>&lt;span class="si">}&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> rm &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$file&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>原理同上。&lt;/p>
+&lt;h3 id="速度优化">速度优化
+&lt;/h3>&lt;p>使用&lt;code>for&lt;/code>循环的方式，所有文件排着队一个一个的被&lt;code>ffmpeg&lt;/code>处理。 这种方式固然可以，但效率太低了。 我的运行环境如下:&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> -&lt;span class="sb">`&lt;/span> momo@momo-arch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .o+&lt;span class="sb">`&lt;/span> --------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>ooo/ OS: Arch Linux x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>+oooo: Host: 81AC Lenovo ideapad 720S-15IKB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>+oooooo: Kernel: 6.3.6-arch1-1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -+oooooo+: Uptime: &lt;span class="m">6&lt;/span> hours, &lt;span class="m">59&lt;/span> mins
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/:-:++oooo+: Packages: &lt;span class="m">975&lt;/span> &lt;span class="o">(&lt;/span>pacman&lt;span class="o">)&lt;/span>, &lt;span class="m">8&lt;/span> &lt;span class="o">(&lt;/span>flatpak&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/++++/+++++++: Shell: bash 5.1.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/++++++++++++++: Resolution: 1920x1080
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/+++ooooooooooooo/&lt;span class="sb">`&lt;/span> DE: Plasma 5.27.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ./ooosssso++osssssso+&lt;span class="sb">`&lt;/span> WM: kwin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .oossssso-&lt;span class="sb">````&lt;/span>/ossssss+&lt;span class="sb">`&lt;/span> Theme: &lt;span class="o">[&lt;/span>Plasma&lt;span class="o">]&lt;/span>, Layan-Light-Solid &lt;span class="o">[&lt;/span>GTK2/3&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -osssssso. :ssssssso. Icons: Papirus &lt;span class="o">[&lt;/span>Plasma&lt;span class="o">]&lt;/span>, Papirus &lt;span class="o">[&lt;/span>GTK2/3&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> :osssssss/ osssso+++. Terminal: konsole
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /ossssssss/ +ssssooo/- CPU: Intel i5-7300HQ &lt;span class="o">(&lt;/span>4&lt;span class="o">)&lt;/span> @ 3.500GHz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>/ossssso+/:- -:/+osssso+- GPU: Intel HD Graphics &lt;span class="m">630&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>+sso+:-&lt;span class="sb">`&lt;/span> &lt;span class="sb">`&lt;/span>.-/+oso: Memory: 7216MiB / 19554MiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`&lt;/span>++:. &lt;span class="sb">`&lt;/span>-/+/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .&lt;span class="sb">`&lt;/span> &lt;span class="sb">`&lt;/span>/ &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>经过测试，处理&lt;code>10&lt;/code>个&lt;code>.flac&lt;/code>文件所需时间为&lt;code>59&lt;/code>秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p>
+&lt;p>使用终端工具&lt;a class="link" href="%22https://www.gnu.org/software/parallel/sphinx.html%22" >GNU Parallel&lt;/a>，命令如下：&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ls *.flac &lt;span class="p">|&lt;/span> parallel -j4 &lt;span class="s2">&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;p>&lt;code>parallel&lt;/code>将从标准输入中读取文件列表，&lt;code>-j&lt;/code>指定了并行进程数，&lt;code>{}&lt;/code>代表输入文件名，&lt;code>{.}&lt;/code>代表没有后缀的输入文件名，其他用法可以&lt;code>man parallel&lt;/code>查看。&lt;/p>
+&lt;p>经过测试，在同样环境下处理同样的&lt;code>.flac&lt;/code>文件仅需&lt;code>17&lt;/code>秒。&lt;/p></description></item><item><title>为 Gwenview 添加 HEIC 支持</title><link>https://chenkeao.github.io/notes/%E4%B8%BA-gwenview-%E6%B7%BB%E5%8A%A0-heic-%E6%94%AF%E6%8C%81/</link><pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate><guid>https://chenkeao.github.io/notes/%E4%B8%BA-gwenview-%E6%B7%BB%E5%8A%A0-heic-%E6%94%AF%E6%8C%81/</guid><description>&lt;p>Dolphin 中无法加载缩略图，也无法打开图片。&lt;/p>
+&lt;p>安装&lt;code>kimageformats&lt;/code>后解决。&lt;/p>
+&lt;div class="collapsible-code">
+&lt;div class="code-header" onclick="toggleCode(this)">
+&lt;span class="icon">▼&lt;/span>
+&lt;/div>
+&lt;div class="code-body">
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yay -S kimageformats&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.collapsible-code .code-body {
+overflow: hidden;
+margin-left: calc((var(--card-padding)) * -1);
+margin-right: calc((var(--card-padding)) * -1);
+width: calc(100% + var(--card-padding) * 2);
+padding: 0 var(--card-padding);
+}
+.collapsible-code .code-header {
+display: flex;
+align-items: center;
+cursor: pointer;
+user-select: none;
+}
+.collapsible-code .code-header .icon {
+font-size: 0.65em;
+color: var(--card-text-color-main);
+transition: transform 0.2s ease;
+}
+.collapsible-code.collapsed .code-body {
+display: none;
+}
+.collapsible-code.collapsed .icon {
+transform: rotate(-90deg);
+}
+&lt;/style>
+&lt;script>
+function toggleCode(header) {
+const wrapper = header.closest(".collapsible-code");
+wrapper.classList.toggle("collapsed");
+}
+&lt;/script>
+&lt;blockquote>
+&lt;p>参考 &lt;a class="link" href="https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/" target="_blank" rel="noopener"
+>https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/&lt;/a>&lt;/p>&lt;/blockquote></description></item></channel></rss>
