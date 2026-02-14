@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on Kyle's Blog</title><link>https://keao.me/tags/shell/</link><description>Recent content in Shell on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 12:07:36 +1100</lastBuildDate><atom:link href="https://keao.me/tags/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>Toggle Color Theme on Plasma</title><link>https://keao.me/posts/toggle-color-theme-on-plasma/</link><pubDate>Sun, 12 Oct 2025 12:07:36 +1100</pubDate><guid>https://keao.me/posts/toggle-color-theme-on-plasma/</guid><description>&lt;p&gt;Plasma introduced a quick settings panel in plasma 6, where you can toggle between &lt;code&gt;Breeze&lt;/code&gt; and &lt;code&gt;Breeze Dark&lt;/code&gt; themes. However, it will change the entire theme, ruining customizations like icons. You can toggle the color scheme manually by using the following command:&lt;/p&gt;
+&lt;p&gt;For dark theme:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze-dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme BreezeDark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Light.profile/DefaultProfile=Dark.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;For light theme:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme Breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Dark.profile/DefaultProfile=Light.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Before running the commands, ensure you have the &lt;code&gt;Papirus&lt;/code&gt; icon theme installed and &lt;code&gt;Light&lt;/code&gt; and &lt;code&gt;Dark&lt;/code&gt; &lt;code&gt;konsole&lt;/code&gt; profiles created. It will change the desktop theme, color scheme, cursor theme, icon theme, and &lt;code&gt;konsole&lt;/code&gt; profile. Moreover, you can create two scripts and bind them to keyboard shortcuts for easy toggling.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;24/10/25 Update&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Plasma 6.5 was released, introducing a new feature to automatically switch between light and dark themes based on the time of day. However, it does not support custom icon themes and &lt;code&gt;konsole&lt;/code&gt; profiles. A workaround is to run a script that monitors the theme change event and applies the necessary changes.&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;span class="lnt"&gt;49
+&lt;/span&gt;&lt;span class="lnt"&gt;50
+&lt;/span&gt;&lt;span class="lnt"&gt;51
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Monitor KDE theme changes and execute commands&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Function to check current color scheme&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;check_theme&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Query KDE&amp;#39;s color scheme setting (KF6 uses kreadconfig6)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;kreadconfig6 --file kdeglobals --group General --key ColorScheme&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Check if it&amp;#39;s a dark theme (common dark themes contain &amp;#34;Dark&amp;#34; in name)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="nv"&gt;$theme&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; *&lt;span class="s2"&gt;&amp;#34;Dark&amp;#34;&lt;/span&gt;* &lt;span class="o"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="nv"&gt;$theme&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; *&lt;span class="s2"&gt;&amp;#34;Breeze Dark&amp;#34;&lt;/span&gt;* &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;dark&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;light&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Get initial state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;previous_theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;check_theme&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Current theme: &lt;/span&gt;&lt;span class="nv"&gt;$previous_theme&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Monitor D-Bus for KDE settings changes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;dbus-monitor --session &lt;span class="s2"&gt;&amp;#34;type=&amp;#39;signal&amp;#39;,interface=&amp;#39;org.kde.KGlobalSettings&amp;#39;,member=&amp;#39;notifyChange&amp;#39;&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;read&lt;/span&gt; -r line&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# When we detect a change notification&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="nv"&gt;$line&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; *&lt;span class="s2"&gt;&amp;#34;notifyChange&amp;#34;&lt;/span&gt;* &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; sleep 0.5 &lt;span class="c1"&gt;# Small delay to ensure settings are written&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;current_theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;check_theme&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Only act if theme actually changed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="nv"&gt;$current_theme&lt;/span&gt; !&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$previous_theme&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Theme changed: &lt;/span&gt;&lt;span class="nv"&gt;$previous_theme&lt;/span&gt;&lt;span class="s2"&gt; -&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;$current_theme&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="nv"&gt;$current_theme&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;dark&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Executing dark theme commands...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Add your dark theme commands here&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; notify-send &lt;span class="s2"&gt;&amp;#34;Dark Mode&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Switched to dark theme&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; /usr/lib/plasma-changeicons Papirus-Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Light.profile/DefaultProfile=Dark.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="nv"&gt;$current_theme&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;light&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Executing light theme commands...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Add your light theme commands here&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; notify-send &lt;span class="s2"&gt;&amp;#34;Light Mode&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Switched to light theme&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; /usr/lib/plasma-changeicons Papirus-Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Dark.profile/DefaultProfile=Light.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;previous_theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$current_theme&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;A user-level systemd service can be created to run this script in the background:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[Unit]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Description=KDE Theme Monitor
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;After=graphical-session.target
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[Service]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Type=simple
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ExecStart=/home/username/.local/bin/theme-monitor.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Restart=on-failure
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[Install]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WantedBy=default.target&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;And the commands to enable and start the service:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user &lt;span class="nb"&gt;enable&lt;/span&gt; theme-monitor.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user start theme-monitor.service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Even though this solution works, it&amp;rsquo;s quite hacky and heavy. Hoping for a better built-in feature in the future Plasma releases.&lt;/p&gt;</description></item><item><title>One Time Reboot to Win Shortcut</title><link>https://keao.me/posts/one-time-reboot-to-win-shortcut/</link><pubDate>Tue, 16 Sep 2025 23:00:17 +1000</pubDate><guid>https://keao.me/posts/one-time-reboot-to-win-shortcut/</guid><description>&lt;h2 id="reboot-to-windows-once-from-linux"&gt;Reboot to Windows Once from Linux
+&lt;/h2&gt;&lt;p&gt;On a dual-boot machine, you may occasionally want to reboot into Windows from Linux for a specific task—such as using a Windows-only application—and then return to Linux afterward. While GRUB allows you to choose which OS to boot, it is more convenient to have a one-time reboot option that boots directly into Windows, then automatically returns to Linux as the default on subsequent boots. This can be accomplished using &lt;code&gt;efibootmgr&lt;/code&gt; to set the next boot entry to Windows.&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo efibootmgr -n &amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Here, &lt;code&gt;&amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/code&gt; is the boot entry number for Windows, which you can find by running &lt;code&gt;efibootmgr&lt;/code&gt; without any arguments. The output will list all boot entries and their numbers. For example:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;BootCurrent: &lt;span class="m"&gt;0005&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Timeout: &lt;span class="m"&gt;2&lt;/span&gt; seconds
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;BootOrder: 0005,0004,2001,2002,2003
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0001* EFI PXE &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; IPv4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0002* EFI PXE &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; IPv6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0004* Windows Boot Manager
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0005* GRUB&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;To set the next boot to Windows, run:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;After executing this command, reboot your machine. It will boot into Windows for that session. On the next reboot, it will default back to Linux.&lt;/p&gt;
+&lt;h2 id="creating-a-shortcut-script"&gt;Creating a Shortcut Script
+&lt;/h2&gt;&lt;p&gt;To streamline this process, create a simple script at &lt;code&gt;/usr/local/bin/reboot2win&lt;/code&gt;:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/usr/bin/env bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# reboot2win: A script to reboot into Windows once&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;logger -t reboot2win &lt;span class="s2"&gt;&amp;#34;reboot2win executed by &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SUDO_USER&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;$USER&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# privileged command(s) below:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/bin/efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/systemctl reboot&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Make it executable and set ownership to root for security:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod +x /usr/local/bin/reboot2win &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo chown root:root /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Now you can run &lt;code&gt;sudo reboot2win&lt;/code&gt; to reboot into Windows once.&lt;/p&gt;
+&lt;h2 id="make-it-even-easier-with-polkit"&gt;Make It Even Easier with Polkit
+&lt;/h2&gt;&lt;p&gt;To avoid typing &lt;code&gt;sudo&lt;/code&gt; every time, you can create a polkit rule to allow your user to run the script without a password prompt. Create a file at &lt;code&gt;/etc/polkit-1/rules.d/50-reboot2win.rules&lt;/code&gt; with the following content:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;polkit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addRule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;action&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;action&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;org.freedesktop.policykit.exec&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;program&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;action&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lookup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;program&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;program&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;/usr/local/bin/reboot2win&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isInGroup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;wheel&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;local&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;polkit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Result&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;YES&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;polkit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Result&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;NOT_HANDLED&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;This rule allows users in the &lt;code&gt;wheel&lt;/code&gt; group to execute the &lt;code&gt;reboot2win&lt;/code&gt; script without a password prompt. Adjust the group name if your user belongs to a different group.&lt;/p&gt;
+&lt;p&gt;To apply the rule, restart the polkit service:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart polkit&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Now you can simply run the following command without &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkexec /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Finally, you can add an &lt;code&gt;alias&lt;/code&gt; or a desktop shortcut for easier access. Also, to avoid accidentally running the command, you can use a confirmation prompt dialog such as &lt;code&gt;kdialog&lt;/code&gt; or &lt;code&gt;zenity&lt;/code&gt;. For example, using &lt;code&gt;kdialog&lt;/code&gt;:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -lc &lt;span class="s1"&gt;&amp;#39;kdialog --yesno &amp;#34;Are you sure you want to reboot the system?&amp;#34;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkexec /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;This will show a confirmation dialog before executing the reboot command.&lt;/p&gt;</description></item><item><title>GNU Parallel 的妙用</title><link>https://keao.me/posts/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnu-parallel-tips/</guid><description>&lt;p&gt;Android QQ 的图片文件是以下面这种结构保存的，以&lt;code&gt;Cache_&lt;/code&gt;开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── 0a0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   ├── Cache_2783644ca99260a0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   └── Cache_-4dfb57e9a7cec0a0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── 0a6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   ├── Cache_373e35b7b8a290a6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   ├── Cache_-489f6e9c62ea10a6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   └── Cache_57776dc1e17110a6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── 0a7
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_25d732f84bd7d0a7
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_2783644ca99260a0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_373e35b7b8a290a6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-489f6e9c62ea10a6
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-4dfb57e9a7cec0a0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;命令如下:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;blockquote&gt;
+&lt;p&gt;参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
+&gt;https://www.myfreax.com/gnu-parallel/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>使用 Shell 批量修改文件后缀和批量格式转换</title><link>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</guid><description>&lt;img src="https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/image.png" alt="Featured image of post 使用 Shell 批量修改文件后缀和批量格式转换" /&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 脚本是处理这类工作最为简单，快捷的方式。&lt;/p&gt;
+&lt;h2 id="修改后缀"&gt;修改后缀
+&lt;/h2&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;h2 id="格式转换"&gt;格式转换
+&lt;/h2&gt;&lt;h3 id="heic-转-jpg"&gt;heic 转 jpg
+&lt;/h3&gt;&lt;p&gt;首先，安装转换工具。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id="flac-转-mp3"&gt;flac 转 mp3
+&lt;/h3&gt;&lt;p&gt;首先，安装转换工具：&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;原理同上。&lt;/p&gt;
+&lt;h3 id="速度优化"&gt;速度优化
+&lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;for&lt;/code&gt; 循环的方式，所有文件排着队一个一个的被 &lt;code&gt;ffmpeg&lt;/code&gt; 处理。 这种方式固然可以，但效率太低了。 我的运行环境如下:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&lt;span class="sb"&gt;`&lt;/span&gt; momo@momo-arch
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .o+&lt;span class="sb"&gt;`&lt;/span&gt; --------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;ooo/ OS: Arch Linux x86_64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;+oooo: Host: 81AC Lenovo ideapad 720S-15IKB
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;+oooooo: Kernel: 6.3.6-arch1-1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -+oooooo+: Uptime: &lt;span class="m"&gt;6&lt;/span&gt; hours, &lt;span class="m"&gt;59&lt;/span&gt; mins
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/:-:++oooo+: Packages: &lt;span class="m"&gt;975&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;pacman&lt;span class="o"&gt;)&lt;/span&gt;, &lt;span class="m"&gt;8&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;flatpak&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/++++/+++++++: Shell: bash 5.1.16
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/++++++++++++++: Resolution: 1920x1080
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/+++ooooooooooooo/&lt;span class="sb"&gt;`&lt;/span&gt; DE: Plasma 5.27.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ./ooosssso++osssssso+&lt;span class="sb"&gt;`&lt;/span&gt; WM: kwin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .oossssso-&lt;span class="sb"&gt;````&lt;/span&gt;/ossssss+&lt;span class="sb"&gt;`&lt;/span&gt; Theme: &lt;span class="o"&gt;[&lt;/span&gt;Plasma&lt;span class="o"&gt;]&lt;/span&gt;, Layan-Light-Solid &lt;span class="o"&gt;[&lt;/span&gt;GTK2/3&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -osssssso. :ssssssso. Icons: Papirus &lt;span class="o"&gt;[&lt;/span&gt;Plasma&lt;span class="o"&gt;]&lt;/span&gt;, Papirus &lt;span class="o"&gt;[&lt;/span&gt;GTK2/3&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; :osssssss/ osssso+++. Terminal: konsole
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; /ossssssss/ +ssssooo/- CPU: Intel i5-7300HQ &lt;span class="o"&gt;(&lt;/span&gt;4&lt;span class="o"&gt;)&lt;/span&gt; @ 3.500GHz
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/ossssso+/:- -:/+osssso+- GPU: Intel HD Graphics &lt;span class="m"&gt;630&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;+sso+:-&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;.-/+oso: Memory: 7216MiB / 19554MiB
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;++:. &lt;span class="sb"&gt;`&lt;/span&gt;-/+/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
+&lt;p&gt;使用终端工具&lt;a class="link" href="%22https://www.gnu.org/software/parallel/sphinx.html%22" &gt;GNU Parallel&lt;/a&gt;，命令如下：&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
+&lt;p&gt;经过测试，在同样环境下处理同样的 &lt;code&gt;.flac&lt;/code&gt; 文件仅需 &lt;code&gt;17&lt;/code&gt; 秒。&lt;/p&gt;</description></item></channel></rss>

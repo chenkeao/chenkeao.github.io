@@ -1,0 +1,310 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Histogram A very common tool for data exploration is histogram, which provides a clear visualization of the distribution of a dataset. It can be viewed as a discrete approximation of the underlying probability density function (PDF) of the data.\n"><title>From Histogram to Attention</title><link rel=canonical href=https://keao.me/posts/from-histogram-to-attention/><link rel=stylesheet href=/scss/style.min.18cd05c6f7933fa6d9ffde49c61db742f2b7bd389967e2adeb886ef3b2faf2d1.css><meta property='og:title' content="From Histogram to Attention"><meta property='og:description' content="Histogram A very common tool for data exploration is histogram, which provides a clear visualization of the distribution of a dataset. It can be viewed as a discrete approximation of the underlying probability density function (PDF) of the data.\n"><meta property='og:url' content='https://keao.me/posts/from-histogram-to-attention/'><meta property='og:site_name' content="Kyle's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:published_time' content='2025-11-28T09:38:45+00:00'><meta property='article:modified_time' content='2025-11-28T09:38:45+00:00'><meta name=twitter:title content="From Histogram to Attention"><meta name=twitter:description content="Histogram A very common tool for data exploration is histogram, which provides a clear visualization of the distribution of a dataset. It can be viewed as a discrete approximation of the underlying probability density function (PDF) of the data.\n"><link rel="shortcut icon" href=/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_aca0d8cefa979dd.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kyle's Blog</a></h1><h2 class=site-description>Nothing happened to me</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li class=current><a href=/posts/articles/><svg width="512" height="512" viewBox="0 0 256 256" fill="currentColor"><path fill="currentColor" d="M52 136a4 4 0 01-4 4H24a4 4 0 010-8h12V60H24a4 4 0 010-8h16a4 4 0 013.39 1.87L80 112.45l36.61-58.57A4 4 0 01120 52h16a4 4 0 010 8h-12v72h12a4 4 0 010 8h-24a4 4 0 010-8h4V70l-32.61 52.12a4 4 0 01-6.78.0L44 70v62h4a4 4 0 014 4zm116-28h72a4 4 0 000-8h-72a4 4 0 000 8zm72 24h-72a4 4 0 000 8h72a4 4 0 000-8zm0 32H72a4 4 0 000 8h168a4 4 0 000-8zm0 32H72a4 4 0 000 8h168a4 4 0 000-8z"/></svg>
+<span>文章</span></a></li><li><a href=/posts/notes/><svg class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M9.828 9.172a4 4 0 100 5.656A10 10 0 0012 12a10 10 0 012.172-2.828 4 4 0 110 5.656A10 10 0 0112 12 10 10 0 009.828 9.172"/></svg>
+<span>笔记</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#histogram>Histogram</a></li><li><a href=#kde>KDE</a></li><li><a href=#kernel-regression>Kernel Regression</a></li><li><a href=#attention>Attention</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/posts/from-histogram-to-attention/>From Histogram to Attention</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2025-11-28T09:38:45Z>2025-11-28</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 5 分钟</time></div></footer></div></header><section class=article-content><h2 id=histogram>Histogram</h2><p>A very common tool for data exploration is histogram, which provides a clear visualization of the distribution of a dataset. It can be viewed as a discrete approximation of the underlying probability density function (PDF) of the data.</p><details class=code-fold open><summary><div class=code-summary-wrapper><span class=code-summary>Show/Hide the code</span></div></summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>histogram</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>bins</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>asarray</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>bins</span><span class=p>,</span> <span class=nb>int</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>bin_edges</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=n>data</span><span class=o>.</span><span class=n>min</span><span class=p>(),</span> <span class=n>data</span><span class=o>.</span><span class=n>max</span><span class=p>(),</span> <span class=n>bins</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>bin_edges</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>asarray</span><span class=p>(</span><span class=n>bins</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>counts</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>zeros</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>bin_edges</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>bin_edges</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>mask</span> <span class=o>=</span> <span class=p>(</span><span class=n>data</span> <span class=o>&gt;=</span> <span class=n>bin_edges</span><span class=p>[</span><span class=n>i</span><span class=p>])</span> <span class=o>&amp;</span> <span class=p>(</span><span class=n>data</span> <span class=o>&lt;</span> <span class=n>bin_edges</span><span class=p>[</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=n>counts</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>sum</span><span class=p>(</span><span class=n>mask</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>counts</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>+=</span> <span class=n>np</span><span class=o>.</span><span class=n>sum</span><span class=p>(</span><span class=n>data</span> <span class=o>==</span> <span class=n>bin_edges</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>counts</span><span class=p>,</span> <span class=n>bin_edges</span></span></span></code></pre></td></tr></table></div></div></details><details class=code-fold open><summary><div class=code-summary-wrapper><span class=code-summary>Show/Hide the code</span></div></summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>seed</span><span class=p>(</span><span class=mi>42</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>data</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>concatenate</span><span class=p>([</span><span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>normal</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mf>0.6</span><span class=p>,</span> <span class=mi>6</span><span class=p>),</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>normal</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mf>0.6</span><span class=p>,</span> <span class=mi>6</span><span class=p>)])</span>
+</span></span><span class=line><span class=cl><span class=n>counts</span><span class=p>,</span> <span class=n>bin_edges</span> <span class=o>=</span> <span class=n>histogram</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>bins</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>bar</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>bin_edges</span><span class=p>[:</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>counts</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>width</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>diff</span><span class=p>(</span><span class=n>bin_edges</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>alpha</span><span class=o>=</span><span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>align</span><span class=o>=</span><span class=s2>&#34;edge&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span><span class=o>=</span><span class=s2>&#34;Histogram&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div></details><img src=index_files/figure-markdown_strict/cell-3-output-1.png width=645 height=411><h2 id=kde>KDE</h2><p>Kernel Density Estimation (KDE), on the other hand, provides a smooth estimate of the PDF of the data.</p><p>According to the definition of PDF, it is the derivative of the Cumulative Distribution Function (CDF) \(F(x)\):</p>$$
+f(x) = F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x-h)}{2h}
+$$<p>Here, \(F(x+h)-F(x-h)\) represents the probability that a random variable falls within the interval \([x-h, x+h]\), namely \(P(x-h \le X \le x+h)\). We can estimate this probability using the frequency. That is, we can count the number of data points that fall within this interval and divide it by the total number of data points \(N\):</p>$$
+P(x-h \le X \le x + h) \approx \frac{\text{Count of points in } [x-h, x+h]}{N}
+$$<p>Therefore, we can estimate the PDF as follows:</p>$$
+\hat{f}(x) = \lim_{h \to 0} \frac{1}{2Nh} \cdot \text{Count of points in } [x-h, x+h]
+$$<p>To express the count function mathematically, we can define an indicator function:</p>$$
+I(u) = \begin{cases}
+1 & \text{if } |u| \le 1 \\
+0 & \text{if } |u| > 1
+\end{cases}
+$$<p>Here, \(u\) is a normalized distance defined as \(u = \frac{x - x_i}{h}\), where \(x_i\) represents each data point. When \(|u| < 1\), \(x_i\) falls within the interval \([x - h, x + h]\) and \(I(u) = 1\); otherwise, \(I(u) = 0\). Thus, we can express the count of points in the interval as:</p>$$
+\text{Count of points in } [x-h, x+h] = \sum_{i=1}^{N} I\left(\frac{x - x_i}{h}\right)
+$$<p>Correspondingly, the estimated PDF becomes:</p>$$
+\hat{f}(x) = \frac{1}{N} \sum_{i=1}^{N} \frac{1}{2h} I\left(\frac{x - x_i}{h}\right)
+$$<details class=code-fold open><summary><div class=code-summary-wrapper><span class=code-summary>Show/Hide the code</span></div></summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>compute_kde</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>xvals</span><span class=p>,</span> <span class=n>h</span><span class=p>,</span> <span class=n>kernel</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>N</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>u</span> <span class=o>=</span> <span class=p>(</span><span class=n>xvals</span><span class=p>[:,</span> <span class=kc>None</span><span class=p>]</span> <span class=o>-</span> <span class=n>data</span><span class=p>[</span><span class=kc>None</span><span class=p>,</span> <span class=p>:])</span> <span class=o>/</span> <span class=n>h</span>
+</span></span><span class=line><span class=cl>    <span class=n>kernels</span> <span class=o>=</span> <span class=n>kernel</span><span class=p>(</span><span class=n>u</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>density</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>sum</span><span class=p>(</span><span class=n>kernels</span><span class=p>,</span> <span class=n>axis</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span> <span class=o>/</span> <span class=p>(</span><span class=n>N</span> <span class=o>*</span> <span class=n>h</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>scaled_kernels</span> <span class=o>=</span> <span class=n>kernels</span> <span class=o>/</span> <span class=p>(</span><span class=n>N</span> <span class=o>*</span> <span class=n>h</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>density</span><span class=p>,</span> <span class=n>scaled_kernels</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>uniform_kernel</span><span class=p>(</span><span class=n>u</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mf>0.5</span> <span class=o>*</span> <span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>abs</span><span class=p>(</span><span class=n>u</span><span class=p>)</span> <span class=o>&lt;=</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>h</span> <span class=o>=</span> <span class=mf>0.3</span>
+</span></span><span class=line><span class=cl><span class=n>xvals</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>500</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>yvals</span><span class=p>,</span> <span class=n>component_curves</span> <span class=o>=</span> <span class=n>compute_kde</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>xvals</span><span class=p>,</span> <span class=n>h</span><span class=p>,</span> <span class=n>uniform_kernel</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>figure</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=mi>6</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>xvals</span><span class=p>,</span> <span class=n>yvals</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;blue&#34;</span><span class=p>,</span> <span class=n>linewidth</span><span class=o>=</span><span class=mi>3</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=s2>&#34;KDE Estimate&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>np</span><span class=o>.</span><span class=n>zeros_like</span><span class=p>(</span><span class=n>data</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;kx&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>markersize</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>markeredgewidth</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span><span class=o>=</span><span class=s2>&#34;Data Points $x_i$&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span> <span class=o>=</span> <span class=s2>&#34;Individual Kernels&#34;</span> <span class=k>if</span> <span class=n>i</span> <span class=o>==</span> <span class=mi>0</span> <span class=k>else</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>xvals</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>component_curves</span><span class=p>[:,</span> <span class=n>i</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>        <span class=n>color</span><span class=o>=</span><span class=s2>&#34;red&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>linestyle</span><span class=o>=</span><span class=s2>&#34;--&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>alpha</span><span class=o>=</span><span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>linewidth</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>label</span><span class=o>=</span><span class=n>label</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s2>&#34;x&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylabel</span><span class=p>(</span><span class=s2>&#34;Probability Density&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>(</span><span class=kc>True</span><span class=p>,</span> <span class=n>alpha</span><span class=o>=</span><span class=mf>0.3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>tight_layout</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div></details><img src=index_files/figure-markdown_strict/cell-4-output-1.png width=949 height=564><p>Instead of purely counting the points within the interval, which equates to using a uniform kernel, we can use other kernel functions to assign different weights to the points based on their distance from \(x\). For example, using a Gaussian kernel will produce a much smoother estimate:</p><details class=code-fold open><summary><div class=code-summary-wrapper><span class=code-summary>Show/Hide the code</span></div></summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>gaussian_kernel</span><span class=p>(</span><span class=n>u</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=mi>1</span> <span class=o>/</span> <span class=n>np</span><span class=o>.</span><span class=n>sqrt</span><span class=p>(</span><span class=mi>2</span> <span class=o>*</span> <span class=n>np</span><span class=o>.</span><span class=n>pi</span><span class=p>))</span> <span class=o>*</span> <span class=n>np</span><span class=o>.</span><span class=n>exp</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span> <span class=o>*</span> <span class=n>u</span><span class=o>**</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>yvals</span><span class=p>,</span> <span class=n>component_curves</span> <span class=o>=</span> <span class=n>compute_kde</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>xvals</span><span class=p>,</span> <span class=n>h</span><span class=p>,</span> <span class=n>gaussian_kernel</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>figure</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=mi>6</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>xvals</span><span class=p>,</span> <span class=n>yvals</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;blue&#34;</span><span class=p>,</span> <span class=n>linewidth</span><span class=o>=</span><span class=mi>3</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=s2>&#34;KDE Estimate&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>np</span><span class=o>.</span><span class=n>zeros_like</span><span class=p>(</span><span class=n>data</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;kx&#34;</span><span class=p>,</span>   
+</span></span><span class=line><span class=cl>    <span class=n>markersize</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>markeredgewidth</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span><span class=o>=</span><span class=s2>&#34;Data Points $x_i$&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span> <span class=o>=</span> <span class=s2>&#34;Individual Kernels&#34;</span> <span class=k>if</span> <span class=n>i</span> <span class=o>==</span> <span class=mi>0</span> <span class=k>else</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>xvals</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>component_curves</span><span class=p>[:,</span> <span class=n>i</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>        <span class=n>color</span><span class=o>=</span><span class=s2>&#34;red&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>linestyle</span><span class=o>=</span><span class=s2>&#34;--&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>alpha</span><span class=o>=</span><span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>linewidth</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>label</span><span class=o>=</span><span class=n>label</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s2>&#34;x&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylabel</span><span class=p>(</span><span class=s2>&#34;Probability Density&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>(</span><span class=kc>True</span><span class=p>,</span> <span class=n>alpha</span><span class=o>=</span><span class=mf>0.3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>tight_layout</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div></details><img src=index_files/figure-markdown_strict/cell-5-output-1.png width=949 height=564><p>Triangular Kernel:</p><details class=code-fold open><summary><div class=code-summary-wrapper><span class=code-summary>Show/Hide the code</span></div></summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>triangular_kernel</span><span class=p>(</span><span class=n>u</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=mi>1</span> <span class=o>-</span> <span class=n>np</span><span class=o>.</span><span class=n>abs</span><span class=p>(</span><span class=n>u</span><span class=p>))</span> <span class=o>*</span> <span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>abs</span><span class=p>(</span><span class=n>u</span><span class=p>)</span> <span class=o>&lt;=</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>yvals</span><span class=p>,</span> <span class=n>component_curves</span> <span class=o>=</span> <span class=n>compute_kde</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>xvals</span><span class=p>,</span> <span class=n>h</span><span class=p>,</span> <span class=n>triangular_kernel</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>figure</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=mi>6</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>xvals</span><span class=p>,</span> <span class=n>yvals</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;blue&#34;</span><span class=p>,</span> <span class=n>linewidth</span><span class=o>=</span><span class=mi>3</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=s2>&#34;KDE Estimate&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>np</span><span class=o>.</span><span class=n>zeros_like</span><span class=p>(</span><span class=n>data</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;kx&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>markersize</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>markeredgewidth</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span><span class=o>=</span><span class=s2>&#34;Data Points $x_i$&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span> <span class=o>=</span> <span class=s2>&#34;Individual Kernels&#34;</span> <span class=k>if</span> <span class=n>i</span> <span class=o>==</span> <span class=mi>0</span> <span class=k>else</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>xvals</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>component_curves</span><span class=p>[:,</span> <span class=n>i</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>        <span class=n>color</span><span class=o>=</span><span class=s2>&#34;red&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>linestyle</span><span class=o>=</span><span class=s2>&#34;--&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>alpha</span><span class=o>=</span><span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>linewidth</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>label</span><span class=o>=</span><span class=n>label</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s2>&#34;x&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylabel</span><span class=p>(</span><span class=s2>&#34;Probability Density&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>(</span><span class=kc>True</span><span class=p>,</span> <span class=n>alpha</span><span class=o>=</span><span class=mf>0.3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>tight_layout</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div></details><img src=index_files/figure-markdown_strict/cell-6-output-1.png width=949 height=564><h2 id=kernel-regression>Kernel Regression</h2><p>Moving from estimating the probability of \(X\) to estimating the expected value of a response variable \(Y\) given \(X=x\), we can apply a similar kernel-based approach known as kernel regression.</p><h2 id=attention>Attention</h2></section><footer class=article-footer></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{const e=document.querySelectorAll(".main-article");e.forEach(e=>{renderMathInElement(e,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})})</script></article><script src=https://utteranc.es/client.js repo=chenkeao/blog_comments issue-term=pathname crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>let utterancesLoaded=!1;function setUtterancesTheme(e){let t=document.querySelector(".utterances iframe");t&&t.contentWindow.postMessage({type:"set-theme",theme:`github-${e}`},"https://utteranc.es")}addEventListener("message",e=>{if(e.origin!=="https://utteranc.es")return;utterancesLoaded=!0,setUtterancesTheme(document.documentElement.dataset.scheme)}),window.addEventListener("onColorSchemeChange",e=>{if(!utterancesLoaded)return;setUtterancesTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+2023 -
+2026 Kyle's Blog</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.34.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.3e05c8861d1692a931db6712cd5300092bbddcf20039458cb433b86ca84dae92.js defer></script><script type=text/javascript src=/ts/custom.611cdbd57686f1467e2f74fa6439f02a292eaf3cc652d9caa6274c9fdf6fbbd7.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

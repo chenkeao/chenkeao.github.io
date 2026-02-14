@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jupyter on Kyle's Blog</title><link>https://keao.me/tags/jupyter/</link><description>Recent content in Jupyter on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 13 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://keao.me/tags/jupyter/index.xml" rel="self" type="application/rss+xml"/><item><title>Convert Jupyter Notebook to PDF With Reporting Format</title><link>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</guid><description>&lt;img src="https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/image.png" alt="Featured image of post Convert Jupyter Notebook to PDF With Reporting Format" /&gt;&lt;p&gt;Install &lt;code&gt;nbconvert&lt;/code&gt; via &lt;code&gt;pip&lt;/code&gt;&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Now, the command&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
+&lt;p&gt;The template consists of two files: &lt;code&gt;assignment.tex.j2&lt;/code&gt; and &lt;code&gt;style_assignment.tex.j2&lt;/code&gt;, which are modified duplicates of existing files. Template files are located in &lt;code&gt;share\jupyter\nbconvert\templates\latex&lt;/code&gt;. Duplicate &lt;code&gt;report.tex.j2&lt;/code&gt; and modify the second line to&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;replaced by&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;assignment.tex.j2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Default to the notebook output style
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* if not cell&lt;span class="nb"&gt;_&lt;/span&gt;style is defined *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endif *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Inherit from the specified cell style.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* extends cell&lt;span class="nb"&gt;_&lt;/span&gt;style *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Latex Book
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block predoc *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* block tableofcontents *))&lt;span class="k"&gt;\tableofcontents&lt;/span&gt;((* endblock tableofcontents *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock predoc *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block docclass *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;report&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock docclass *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block markdowncell scoped *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( cell.source | citation2latex | strip&lt;span class="nb"&gt;_&lt;/span&gt;files&lt;span class="nb"&gt;_&lt;/span&gt;prefix | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;markdown+tex&lt;span class="nb"&gt;_&lt;/span&gt;math&lt;span class="nb"&gt;_&lt;/span&gt;double&lt;span class="nb"&gt;_&lt;/span&gt;backslash&amp;#39;, &amp;#39;json&amp;#39;,extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[]) | resolve&lt;span class="nb"&gt;_&lt;/span&gt;references | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;json&amp;#39;,&amp;#39;latex&amp;#39;, extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[&amp;#34;--top-level-division=chapter&amp;#34;]) )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;ol start="2"&gt;
+&lt;li&gt;style_assignment.tex.j2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt; 10
+&lt;/span&gt;&lt;span class="lnt"&gt; 11
+&lt;/span&gt;&lt;span class="lnt"&gt; 12
+&lt;/span&gt;&lt;span class="lnt"&gt; 13
+&lt;/span&gt;&lt;span class="lnt"&gt; 14
+&lt;/span&gt;&lt;span class="lnt"&gt; 15
+&lt;/span&gt;&lt;span class="lnt"&gt; 16
+&lt;/span&gt;&lt;span class="lnt"&gt; 17
+&lt;/span&gt;&lt;span class="lnt"&gt; 18
+&lt;/span&gt;&lt;span class="lnt"&gt; 19
+&lt;/span&gt;&lt;span class="lnt"&gt; 20
+&lt;/span&gt;&lt;span class="lnt"&gt; 21
+&lt;/span&gt;&lt;span class="lnt"&gt; 22
+&lt;/span&gt;&lt;span class="lnt"&gt; 23
+&lt;/span&gt;&lt;span class="lnt"&gt; 24
+&lt;/span&gt;&lt;span class="lnt"&gt; 25
+&lt;/span&gt;&lt;span class="lnt"&gt; 26
+&lt;/span&gt;&lt;span class="lnt"&gt; 27
+&lt;/span&gt;&lt;span class="lnt"&gt; 28
+&lt;/span&gt;&lt;span class="lnt"&gt; 29
+&lt;/span&gt;&lt;span class="lnt"&gt; 30
+&lt;/span&gt;&lt;span class="lnt"&gt; 31
+&lt;/span&gt;&lt;span class="lnt"&gt; 32
+&lt;/span&gt;&lt;span class="lnt"&gt; 33
+&lt;/span&gt;&lt;span class="lnt"&gt; 34
+&lt;/span&gt;&lt;span class="lnt"&gt; 35
+&lt;/span&gt;&lt;span class="lnt"&gt; 36
+&lt;/span&gt;&lt;span class="lnt"&gt; 37
+&lt;/span&gt;&lt;span class="lnt"&gt; 38
+&lt;/span&gt;&lt;span class="lnt"&gt; 39
+&lt;/span&gt;&lt;span class="lnt"&gt; 40
+&lt;/span&gt;&lt;span class="lnt"&gt; 41
+&lt;/span&gt;&lt;span class="lnt"&gt; 42
+&lt;/span&gt;&lt;span class="lnt"&gt; 43
+&lt;/span&gt;&lt;span class="lnt"&gt; 44
+&lt;/span&gt;&lt;span class="lnt"&gt; 45
+&lt;/span&gt;&lt;span class="lnt"&gt; 46
+&lt;/span&gt;&lt;span class="lnt"&gt; 47
+&lt;/span&gt;&lt;span class="lnt"&gt; 48
+&lt;/span&gt;&lt;span class="lnt"&gt; 49
+&lt;/span&gt;&lt;span class="lnt"&gt; 50
+&lt;/span&gt;&lt;span class="lnt"&gt; 51
+&lt;/span&gt;&lt;span class="lnt"&gt; 52
+&lt;/span&gt;&lt;span class="lnt"&gt; 53
+&lt;/span&gt;&lt;span class="lnt"&gt; 54
+&lt;/span&gt;&lt;span class="lnt"&gt; 55
+&lt;/span&gt;&lt;span class="lnt"&gt; 56
+&lt;/span&gt;&lt;span class="lnt"&gt; 57
+&lt;/span&gt;&lt;span class="lnt"&gt; 58
+&lt;/span&gt;&lt;span class="lnt"&gt; 59
+&lt;/span&gt;&lt;span class="lnt"&gt; 60
+&lt;/span&gt;&lt;span class="lnt"&gt; 61
+&lt;/span&gt;&lt;span class="lnt"&gt; 62
+&lt;/span&gt;&lt;span class="lnt"&gt; 63
+&lt;/span&gt;&lt;span class="lnt"&gt; 64
+&lt;/span&gt;&lt;span class="lnt"&gt; 65
+&lt;/span&gt;&lt;span class="lnt"&gt; 66
+&lt;/span&gt;&lt;span class="lnt"&gt; 67
+&lt;/span&gt;&lt;span class="lnt"&gt; 68
+&lt;/span&gt;&lt;span class="lnt"&gt; 69
+&lt;/span&gt;&lt;span class="lnt"&gt; 70
+&lt;/span&gt;&lt;span class="lnt"&gt; 71
+&lt;/span&gt;&lt;span class="lnt"&gt; 72
+&lt;/span&gt;&lt;span class="lnt"&gt; 73
+&lt;/span&gt;&lt;span class="lnt"&gt; 74
+&lt;/span&gt;&lt;span class="lnt"&gt; 75
+&lt;/span&gt;&lt;span class="lnt"&gt; 76
+&lt;/span&gt;&lt;span class="lnt"&gt; 77
+&lt;/span&gt;&lt;span class="lnt"&gt; 78
+&lt;/span&gt;&lt;span class="lnt"&gt; 79
+&lt;/span&gt;&lt;span class="lnt"&gt; 80
+&lt;/span&gt;&lt;span class="lnt"&gt; 81
+&lt;/span&gt;&lt;span class="lnt"&gt; 82
+&lt;/span&gt;&lt;span class="lnt"&gt; 83
+&lt;/span&gt;&lt;span class="lnt"&gt; 84
+&lt;/span&gt;&lt;span class="lnt"&gt; 85
+&lt;/span&gt;&lt;span class="lnt"&gt; 86
+&lt;/span&gt;&lt;span class="lnt"&gt; 87
+&lt;/span&gt;&lt;span class="lnt"&gt; 88
+&lt;/span&gt;&lt;span class="lnt"&gt; 89
+&lt;/span&gt;&lt;span class="lnt"&gt; 90
+&lt;/span&gt;&lt;span class="lnt"&gt; 91
+&lt;/span&gt;&lt;span class="lnt"&gt; 92
+&lt;/span&gt;&lt;span class="lnt"&gt; 93
+&lt;/span&gt;&lt;span class="lnt"&gt; 94
+&lt;/span&gt;&lt;span class="lnt"&gt; 95
+&lt;/span&gt;&lt;span class="lnt"&gt; 96
+&lt;/span&gt;&lt;span class="lnt"&gt; 97
+&lt;/span&gt;&lt;span class="lnt"&gt; 98
+&lt;/span&gt;&lt;span class="lnt"&gt; 99
+&lt;/span&gt;&lt;span class="lnt"&gt;100
+&lt;/span&gt;&lt;span class="lnt"&gt;101
+&lt;/span&gt;&lt;span class="lnt"&gt;102
+&lt;/span&gt;&lt;span class="lnt"&gt;103
+&lt;/span&gt;&lt;span class="lnt"&gt;104
+&lt;/span&gt;&lt;span class="lnt"&gt;105
+&lt;/span&gt;&lt;span class="lnt"&gt;106
+&lt;/span&gt;&lt;span class="lnt"&gt;107
+&lt;/span&gt;&lt;span class="lnt"&gt;108
+&lt;/span&gt;&lt;span class="lnt"&gt;109
+&lt;/span&gt;&lt;span class="lnt"&gt;110
+&lt;/span&gt;&lt;span class="lnt"&gt;111
+&lt;/span&gt;&lt;span class="lnt"&gt;112
+&lt;/span&gt;&lt;span class="lnt"&gt;113
+&lt;/span&gt;&lt;span class="lnt"&gt;114
+&lt;/span&gt;&lt;span class="lnt"&gt;115
+&lt;/span&gt;&lt;span class="lnt"&gt;116
+&lt;/span&gt;&lt;span class="lnt"&gt;117
+&lt;/span&gt;&lt;span class="lnt"&gt;118
+&lt;/span&gt;&lt;span class="lnt"&gt;119
+&lt;/span&gt;&lt;span class="lnt"&gt;120
+&lt;/span&gt;&lt;span class="lnt"&gt;121
+&lt;/span&gt;&lt;span class="lnt"&gt;122
+&lt;/span&gt;&lt;span class="lnt"&gt;123
+&lt;/span&gt;&lt;span class="lnt"&gt;124
+&lt;/span&gt;&lt;span class="lnt"&gt;125
+&lt;/span&gt;&lt;span class="lnt"&gt;126
+&lt;/span&gt;&lt;span class="lnt"&gt;127
+&lt;/span&gt;&lt;span class="lnt"&gt;128
+&lt;/span&gt;&lt;span class="lnt"&gt;129
+&lt;/span&gt;&lt;span class="lnt"&gt;130
+&lt;/span&gt;&lt;span class="lnt"&gt;131
+&lt;/span&gt;&lt;span class="lnt"&gt;132
+&lt;/span&gt;&lt;span class="lnt"&gt;133
+&lt;/span&gt;&lt;span class="lnt"&gt;134
+&lt;/span&gt;&lt;span class="lnt"&gt;135
+&lt;/span&gt;&lt;span class="lnt"&gt;136
+&lt;/span&gt;&lt;span class="lnt"&gt;137
+&lt;/span&gt;&lt;span class="lnt"&gt;138
+&lt;/span&gt;&lt;span class="lnt"&gt;139
+&lt;/span&gt;&lt;span class="lnt"&gt;140
+&lt;/span&gt;&lt;span class="lnt"&gt;141
+&lt;/span&gt;&lt;span class="lnt"&gt;142
+&lt;/span&gt;&lt;span class="lnt"&gt;143
+&lt;/span&gt;&lt;span class="lnt"&gt;144
+&lt;/span&gt;&lt;span class="lnt"&gt;145
+&lt;/span&gt;&lt;span class="lnt"&gt;146
+&lt;/span&gt;&lt;span class="lnt"&gt;147
+&lt;/span&gt;&lt;span class="lnt"&gt;148
+&lt;/span&gt;&lt;span class="lnt"&gt;149
+&lt;/span&gt;&lt;span class="lnt"&gt;150
+&lt;/span&gt;&lt;span class="lnt"&gt;151
+&lt;/span&gt;&lt;span class="lnt"&gt;152
+&lt;/span&gt;&lt;span class="lnt"&gt;153
+&lt;/span&gt;&lt;span class="lnt"&gt;154
+&lt;/span&gt;&lt;span class="lnt"&gt;155
+&lt;/span&gt;&lt;span class="lnt"&gt;156
+&lt;/span&gt;&lt;span class="lnt"&gt;157
+&lt;/span&gt;&lt;span class="lnt"&gt;158
+&lt;/span&gt;&lt;span class="lnt"&gt;159
+&lt;/span&gt;&lt;span class="lnt"&gt;160
+&lt;/span&gt;&lt;span class="lnt"&gt;161
+&lt;/span&gt;&lt;span class="lnt"&gt;162
+&lt;/span&gt;&lt;span class="lnt"&gt;163
+&lt;/span&gt;&lt;span class="lnt"&gt;164
+&lt;/span&gt;&lt;span class="lnt"&gt;165
+&lt;/span&gt;&lt;span class="lnt"&gt;166
+&lt;/span&gt;&lt;span class="lnt"&gt;167
+&lt;/span&gt;&lt;span class="lnt"&gt;168
+&lt;/span&gt;&lt;span class="lnt"&gt;169
+&lt;/span&gt;&lt;span class="lnt"&gt;170
+&lt;/span&gt;&lt;span class="lnt"&gt;171
+&lt;/span&gt;&lt;span class="lnt"&gt;172
+&lt;/span&gt;&lt;span class="lnt"&gt;173
+&lt;/span&gt;&lt;span class="lnt"&gt;174
+&lt;/span&gt;&lt;span class="lnt"&gt;175
+&lt;/span&gt;&lt;span class="lnt"&gt;176
+&lt;/span&gt;&lt;span class="lnt"&gt;177
+&lt;/span&gt;&lt;span class="lnt"&gt;178
+&lt;/span&gt;&lt;span class="lnt"&gt;179
+&lt;/span&gt;&lt;span class="lnt"&gt;180
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((=- IPython input/output style -=))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block packages -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="na"&gt;[breakable]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;parskip&lt;span class="nb"&gt;}&lt;/span&gt; &lt;span class="c"&gt;% Stop auto-indenting (to mimic markdown behaviour)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endblock packages -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block definitions -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Pygments definitions
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (((- resources.latex.pygments&lt;span class="nb"&gt;_&lt;/span&gt;definitions )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% For linebreaks inside Verbatim environment from package fancyvrb.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newbox\Wrappedcontinuationbox&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newbox\Wrappedvisiblespacebox&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedvisiblespace&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\textcolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;red&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\textvisiblespace&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedcontinuationsymbol&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\textcolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;red&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\llap&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\tiny&lt;/span&gt;&lt;span class="s"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;\m&lt;/span&gt;&lt;span class="nb"&gt;@th&lt;/span&gt;&lt;span class="nv"&gt;\hookrightarrow&lt;/span&gt;&lt;span class="s"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedcontinuationindent&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;3ex &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedafterbreak&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Take advantage of the already applied Pygments mark-up to insert
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% potential linebreaks for TeX processing.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% {, &amp;lt;, #, %, $, &amp;#39; and &amp;#34;: go to next line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% _, }, ^, &amp;amp;, &amp;gt;, - and ~: stay at end of broken line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Use of \textquotesingle for straight quote.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedbreaksatspecials&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZus&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\_&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\_&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZob&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\{&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\{&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZcb&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\}&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\}&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZca&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\^&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\^&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZam&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;amp;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;amp;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZlt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZgt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;gt;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;gt;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZsh&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\#&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\#&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZpc&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\%&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\%&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZdl&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\$&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\$&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZhy&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\-&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\-&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZsq&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\textquotesingle&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\textquotesingle&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZdq&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;#34;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;#34;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZti&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Some characters . , ; ? ! / are not pygmentized.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% This macro makes them &amp;#34;active&amp;#34; and they will insert potential linebreaks
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedbreaksatpunct&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\.\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\.&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\.&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\,\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\,&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\,&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\;\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\;&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\;&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\:\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\:&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\:&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\?\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\?&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\?&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\!\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\!&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\!&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\/\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\/&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\/&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\.\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\,\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\;\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\:\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\?\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\!\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\/\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\let\OriginalVerbatim&lt;/span&gt;=&lt;span class="k"&gt;\Verbatim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\Verbatim&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;[1][1]&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%\parskip\z@skip
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\sbox\Wrappedcontinuationbox&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedcontinuationsymbol&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\sbox\Wrappedvisiblespacebox&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\FV&lt;/span&gt;@SetupFont&lt;span class="k"&gt;\Wrappedvisiblespace&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\FancyVerbFormatLine&lt;/span&gt; ##1&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hsize\linewidth&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\vtop&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\raggedright\hyphenpenalty\z&lt;/span&gt;@&lt;span class="k"&gt;\exhyphenpenalty\z&lt;/span&gt;@
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\doublehyphendemerits\z&lt;/span&gt;@&lt;span class="k"&gt;\finalhyphendemerits\z&lt;/span&gt;@
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\strut&lt;/span&gt; ##1&lt;span class="k"&gt;\strut&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% If the linebreak is at a space, the latter will be displayed as visible
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% space at end of first line, and a continuation symbol starts next line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Stretch/shrink are however usually zero for typewriter font.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\FV&lt;/span&gt;@Space &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\nobreak\hskip\z&lt;/span&gt;@ plus&lt;span class="k"&gt;\fontdimen&lt;/span&gt;3&lt;span class="k"&gt;\font&lt;/span&gt; minus&lt;span class="k"&gt;\fontdimen&lt;/span&gt;4&lt;span class="k"&gt;\font&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\copy\Wrappedvisiblespacebox&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\kern\fontdimen&lt;/span&gt;2&lt;span class="k"&gt;\font&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Allow breaks at special characters using \PYG... macros.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\Wrappedbreaksatspecials&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\OriginalVerbatim&lt;/span&gt;&lt;span class="na"&gt;[#1,codes*=\Wrappedbreaksatpunct]&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Exact colors from NB
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- block style&lt;span class="nb"&gt;_&lt;/span&gt;colors *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;incolor&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;303F9F&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;outcolor&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;D84315&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;cellborder&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;CFCFCF&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;cellbackground&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;F7F7F7&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endblock style&lt;span class="nb"&gt;_&lt;/span&gt;colors *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\boxspacing&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\kern\kvtcb&lt;/span&gt;@left@rule&lt;span class="k"&gt;\kern\kvtcb&lt;/span&gt;@boxsep&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- block style&lt;span class="nb"&gt;_&lt;/span&gt;prompt *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;[4]&lt;span class="nb"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* endblock style&lt;span class="nb"&gt;_&lt;/span&gt;prompt *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endblock definitions -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Input
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block input scoped *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( draw&lt;span class="nb"&gt;_&lt;/span&gt;cell(cell.source | highlight&lt;span class="nb"&gt;_&lt;/span&gt;code(strip&lt;span class="nb"&gt;_&lt;/span&gt;verbatim=True), cell, &amp;#39;In&amp;#39;, &amp;#39;incolor&amp;#39;, &amp;#39;&lt;span class="k"&gt;\\&lt;/span&gt;boxspacing&amp;#39;) )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock input *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Output
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- if charlim is not defined -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* set charlim = 80 *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block execute&lt;span class="nb"&gt;_&lt;/span&gt;result scoped *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- for type in output.data | filter&lt;span class="nb"&gt;_&lt;/span&gt;data&lt;span class="nb"&gt;_&lt;/span&gt;type -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- if type in [&amp;#39;text/plain&amp;#39;]*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( draw&lt;span class="nb"&gt;_&lt;/span&gt;cell(output.data[&amp;#39;text/plain&amp;#39;] | wrap&lt;span class="nb"&gt;_&lt;/span&gt;text(charlim) | escape&lt;span class="nb"&gt;_&lt;/span&gt;latex | ansi2latex, cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;, &amp;#39;&lt;span class="k"&gt;\\&lt;/span&gt;boxspacing&amp;#39;) )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* else -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( &amp;#34; &amp;#34; )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( draw&lt;span class="nb"&gt;_&lt;/span&gt;prompt(cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;,&amp;#39;&amp;#39;) )))((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endfor -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock execute&lt;span class="nb"&gt;_&lt;/span&gt;result *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block stream *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;[commandchars=&lt;span class="k"&gt;\\\{\}&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( output.text | wrap&lt;span class="nb"&gt;_&lt;/span&gt;text(charlim) | escape&lt;span class="nb"&gt;_&lt;/span&gt;latex | strip&lt;span class="nb"&gt;_&lt;/span&gt;trailing&lt;span class="nb"&gt;_&lt;/span&gt;newline | ansi2latex )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock stream *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%==============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Support Macros
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%==============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Name: draw_cell
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Purpose: Renders an output/input prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- if draw&lt;span class="nb"&gt;_&lt;/span&gt;cell is not defined -*)) &lt;span class="c"&gt;% Required to allow overriding.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* macro draw&lt;span class="nb"&gt;_&lt;/span&gt;cell(text, cell, prompt, prompt&lt;span class="nb"&gt;_&lt;/span&gt;color, extra&lt;span class="nb"&gt;_&lt;/span&gt;space) -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- if prompt == &amp;#39;In&amp;#39; -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- set style = &amp;#34;breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder&amp;#34;-*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- else -*))((*- set style = &amp;#34;breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0&amp;#34;-*))((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;[((( style )))]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;(((- draw&lt;span class="nb"&gt;_&lt;/span&gt;prompt(cell, prompt, prompt&lt;span class="nb"&gt;_&lt;/span&gt;color, extra&lt;span class="nb"&gt;_&lt;/span&gt;space) )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;[commandchars=&lt;span class="k"&gt;\\\{\}&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( text )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Name: draw_prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Purpose: Renders an output/input prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* macro draw&lt;span class="nb"&gt;_&lt;/span&gt;prompt(cell, prompt, prompt&lt;span class="nb"&gt;_&lt;/span&gt;color, extra&lt;span class="nb"&gt;_&lt;/span&gt;space) -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- if cell.execution&lt;span class="nb"&gt;_&lt;/span&gt;count is defined -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- set execution&lt;span class="nb"&gt;_&lt;/span&gt;count = &amp;#34;&amp;#34; ~ (cell.execution&lt;span class="nb"&gt;_&lt;/span&gt;count | replace(None, &amp;#34; &amp;#34;)) -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- else -*))((*- set execution&lt;span class="nb"&gt;_&lt;/span&gt;count = &amp;#34; &amp;#34; -*))((*- endif *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- if (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;output&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;Out&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+&lt;summary&gt;
+&lt;div class="code-summary-wrapper"&gt;
+&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+&lt;/div&gt;
+&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt; 10
+&lt;/span&gt;&lt;span class="lnt"&gt; 11
+&lt;/span&gt;&lt;span class="lnt"&gt; 12
+&lt;/span&gt;&lt;span class="lnt"&gt; 13
+&lt;/span&gt;&lt;span class="lnt"&gt; 14
+&lt;/span&gt;&lt;span class="lnt"&gt; 15
+&lt;/span&gt;&lt;span class="lnt"&gt; 16
+&lt;/span&gt;&lt;span class="lnt"&gt; 17
+&lt;/span&gt;&lt;span class="lnt"&gt; 18
+&lt;/span&gt;&lt;span class="lnt"&gt; 19
+&lt;/span&gt;&lt;span class="lnt"&gt; 20
+&lt;/span&gt;&lt;span class="lnt"&gt; 21
+&lt;/span&gt;&lt;span class="lnt"&gt; 22
+&lt;/span&gt;&lt;span class="lnt"&gt; 23
+&lt;/span&gt;&lt;span class="lnt"&gt; 24
+&lt;/span&gt;&lt;span class="lnt"&gt; 25
+&lt;/span&gt;&lt;span class="lnt"&gt; 26
+&lt;/span&gt;&lt;span class="lnt"&gt; 27
+&lt;/span&gt;&lt;span class="lnt"&gt; 28
+&lt;/span&gt;&lt;span class="lnt"&gt; 29
+&lt;/span&gt;&lt;span class="lnt"&gt; 30
+&lt;/span&gt;&lt;span class="lnt"&gt; 31
+&lt;/span&gt;&lt;span class="lnt"&gt; 32
+&lt;/span&gt;&lt;span class="lnt"&gt; 33
+&lt;/span&gt;&lt;span class="lnt"&gt; 34
+&lt;/span&gt;&lt;span class="lnt"&gt; 35
+&lt;/span&gt;&lt;span class="lnt"&gt; 36
+&lt;/span&gt;&lt;span class="lnt"&gt; 37
+&lt;/span&gt;&lt;span class="lnt"&gt; 38
+&lt;/span&gt;&lt;span class="lnt"&gt; 39
+&lt;/span&gt;&lt;span class="lnt"&gt; 40
+&lt;/span&gt;&lt;span class="lnt"&gt; 41
+&lt;/span&gt;&lt;span class="lnt"&gt; 42
+&lt;/span&gt;&lt;span class="lnt"&gt; 43
+&lt;/span&gt;&lt;span class="lnt"&gt; 44
+&lt;/span&gt;&lt;span class="lnt"&gt; 45
+&lt;/span&gt;&lt;span class="lnt"&gt; 46
+&lt;/span&gt;&lt;span class="lnt"&gt; 47
+&lt;/span&gt;&lt;span class="lnt"&gt; 48
+&lt;/span&gt;&lt;span class="lnt"&gt; 49
+&lt;/span&gt;&lt;span class="lnt"&gt; 50
+&lt;/span&gt;&lt;span class="lnt"&gt; 51
+&lt;/span&gt;&lt;span class="lnt"&gt; 52
+&lt;/span&gt;&lt;span class="lnt"&gt; 53
+&lt;/span&gt;&lt;span class="lnt"&gt; 54
+&lt;/span&gt;&lt;span class="lnt"&gt; 55
+&lt;/span&gt;&lt;span class="lnt"&gt; 56
+&lt;/span&gt;&lt;span class="lnt"&gt; 57
+&lt;/span&gt;&lt;span class="lnt"&gt; 58
+&lt;/span&gt;&lt;span class="lnt"&gt; 59
+&lt;/span&gt;&lt;span class="lnt"&gt; 60
+&lt;/span&gt;&lt;span class="lnt"&gt; 61
+&lt;/span&gt;&lt;span class="lnt"&gt; 62
+&lt;/span&gt;&lt;span class="lnt"&gt; 63
+&lt;/span&gt;&lt;span class="lnt"&gt; 64
+&lt;/span&gt;&lt;span class="lnt"&gt; 65
+&lt;/span&gt;&lt;span class="lnt"&gt; 66
+&lt;/span&gt;&lt;span class="lnt"&gt; 67
+&lt;/span&gt;&lt;span class="lnt"&gt; 68
+&lt;/span&gt;&lt;span class="lnt"&gt; 69
+&lt;/span&gt;&lt;span class="lnt"&gt; 70
+&lt;/span&gt;&lt;span class="lnt"&gt; 71
+&lt;/span&gt;&lt;span class="lnt"&gt; 72
+&lt;/span&gt;&lt;span class="lnt"&gt; 73
+&lt;/span&gt;&lt;span class="lnt"&gt; 74
+&lt;/span&gt;&lt;span class="lnt"&gt; 75
+&lt;/span&gt;&lt;span class="lnt"&gt; 76
+&lt;/span&gt;&lt;span class="lnt"&gt; 77
+&lt;/span&gt;&lt;span class="lnt"&gt; 78
+&lt;/span&gt;&lt;span class="lnt"&gt; 79
+&lt;/span&gt;&lt;span class="lnt"&gt; 80
+&lt;/span&gt;&lt;span class="lnt"&gt; 81
+&lt;/span&gt;&lt;span class="lnt"&gt; 82
+&lt;/span&gt;&lt;span class="lnt"&gt; 83
+&lt;/span&gt;&lt;span class="lnt"&gt; 84
+&lt;/span&gt;&lt;span class="lnt"&gt; 85
+&lt;/span&gt;&lt;span class="lnt"&gt; 86
+&lt;/span&gt;&lt;span class="lnt"&gt; 87
+&lt;/span&gt;&lt;span class="lnt"&gt; 88
+&lt;/span&gt;&lt;span class="lnt"&gt; 89
+&lt;/span&gt;&lt;span class="lnt"&gt; 90
+&lt;/span&gt;&lt;span class="lnt"&gt; 91
+&lt;/span&gt;&lt;span class="lnt"&gt; 92
+&lt;/span&gt;&lt;span class="lnt"&gt; 93
+&lt;/span&gt;&lt;span class="lnt"&gt; 94
+&lt;/span&gt;&lt;span class="lnt"&gt; 95
+&lt;/span&gt;&lt;span class="lnt"&gt; 96
+&lt;/span&gt;&lt;span class="lnt"&gt; 97
+&lt;/span&gt;&lt;span class="lnt"&gt; 98
+&lt;/span&gt;&lt;span class="lnt"&gt; 99
+&lt;/span&gt;&lt;span class="lnt"&gt;100
+&lt;/span&gt;&lt;span class="lnt"&gt;101
+&lt;/span&gt;&lt;span class="lnt"&gt;102
+&lt;/span&gt;&lt;span class="lnt"&gt;103
+&lt;/span&gt;&lt;span class="lnt"&gt;104
+&lt;/span&gt;&lt;span class="lnt"&gt;105
+&lt;/span&gt;&lt;span class="lnt"&gt;106
+&lt;/span&gt;&lt;span class="lnt"&gt;107
+&lt;/span&gt;&lt;span class="lnt"&gt;108
+&lt;/span&gt;&lt;span class="lnt"&gt;109
+&lt;/span&gt;&lt;span class="lnt"&gt;110
+&lt;/span&gt;&lt;span class="lnt"&gt;111
+&lt;/span&gt;&lt;span class="lnt"&gt;112
+&lt;/span&gt;&lt;span class="lnt"&gt;113
+&lt;/span&gt;&lt;span class="lnt"&gt;114
+&lt;/span&gt;&lt;span class="lnt"&gt;115
+&lt;/span&gt;&lt;span class="lnt"&gt;116
+&lt;/span&gt;&lt;span class="lnt"&gt;117
+&lt;/span&gt;&lt;span class="lnt"&gt;118
+&lt;/span&gt;&lt;span class="lnt"&gt;119
+&lt;/span&gt;&lt;span class="lnt"&gt;120
+&lt;/span&gt;&lt;span class="lnt"&gt;121
+&lt;/span&gt;&lt;span class="lnt"&gt;122
+&lt;/span&gt;&lt;span class="lnt"&gt;123
+&lt;/span&gt;&lt;span class="lnt"&gt;124
+&lt;/span&gt;&lt;span class="lnt"&gt;125
+&lt;/span&gt;&lt;span class="lnt"&gt;126
+&lt;/span&gt;&lt;span class="lnt"&gt;127
+&lt;/span&gt;&lt;span class="lnt"&gt;128
+&lt;/span&gt;&lt;span class="lnt"&gt;129
+&lt;/span&gt;&lt;span class="lnt"&gt;130
+&lt;/span&gt;&lt;span class="lnt"&gt;131
+&lt;/span&gt;&lt;span class="lnt"&gt;132
+&lt;/span&gt;&lt;span class="lnt"&gt;133
+&lt;/span&gt;&lt;span class="lnt"&gt;134
+&lt;/span&gt;&lt;span class="lnt"&gt;135
+&lt;/span&gt;&lt;span class="lnt"&gt;136
+&lt;/span&gt;&lt;span class="lnt"&gt;137
+&lt;/span&gt;&lt;span class="lnt"&gt;138
+&lt;/span&gt;&lt;span class="lnt"&gt;139
+&lt;/span&gt;&lt;span class="lnt"&gt;140
+&lt;/span&gt;&lt;span class="lnt"&gt;141
+&lt;/span&gt;&lt;span class="lnt"&gt;142
+&lt;/span&gt;&lt;span class="lnt"&gt;143
+&lt;/span&gt;&lt;span class="lnt"&gt;144
+&lt;/span&gt;&lt;span class="lnt"&gt;145
+&lt;/span&gt;&lt;span class="lnt"&gt;146
+&lt;/span&gt;&lt;span class="lnt"&gt;147
+&lt;/span&gt;&lt;span class="lnt"&gt;148
+&lt;/span&gt;&lt;span class="lnt"&gt;149
+&lt;/span&gt;&lt;span class="lnt"&gt;150
+&lt;/span&gt;&lt;span class="lnt"&gt;151
+&lt;/span&gt;&lt;span class="lnt"&gt;152
+&lt;/span&gt;&lt;span class="lnt"&gt;153
+&lt;/span&gt;&lt;span class="lnt"&gt;154
+&lt;/span&gt;&lt;span class="lnt"&gt;155
+&lt;/span&gt;&lt;span class="lnt"&gt;156
+&lt;/span&gt;&lt;span class="lnt"&gt;157
+&lt;/span&gt;&lt;span class="lnt"&gt;158
+&lt;/span&gt;&lt;span class="lnt"&gt;159
+&lt;/span&gt;&lt;span class="lnt"&gt;160
+&lt;/span&gt;&lt;span class="lnt"&gt;161
+&lt;/span&gt;&lt;span class="lnt"&gt;162
+&lt;/span&gt;&lt;span class="lnt"&gt;163
+&lt;/span&gt;&lt;span class="lnt"&gt;164
+&lt;/span&gt;&lt;span class="lnt"&gt;165
+&lt;/span&gt;&lt;span class="lnt"&gt;166
+&lt;/span&gt;&lt;span class="lnt"&gt;167
+&lt;/span&gt;&lt;span class="lnt"&gt;168
+&lt;/span&gt;&lt;span class="lnt"&gt;169
+&lt;/span&gt;&lt;span class="lnt"&gt;170
+&lt;/span&gt;&lt;span class="lnt"&gt;171
+&lt;/span&gt;&lt;span class="lnt"&gt;172
+&lt;/span&gt;&lt;span class="lnt"&gt;173
+&lt;/span&gt;&lt;span class="lnt"&gt;174
+&lt;/span&gt;&lt;span class="lnt"&gt;175
+&lt;/span&gt;&lt;span class="lnt"&gt;176
+&lt;/span&gt;&lt;span class="lnt"&gt;177
+&lt;/span&gt;&lt;span class="lnt"&gt;178
+&lt;/span&gt;&lt;span class="lnt"&gt;179
+&lt;/span&gt;&lt;span class="lnt"&gt;180
+&lt;/span&gt;&lt;span class="lnt"&gt;181
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((=- IPython input/output style -=))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block packages -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="na"&gt;[breakable]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;parskip&lt;span class="nb"&gt;}&lt;/span&gt; &lt;span class="c"&gt;% Stop auto-indenting (to mimic markdown behaviour)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endblock packages -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block definitions -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Pygments definitions
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (((- resources.latex.pygments&lt;span class="nb"&gt;_&lt;/span&gt;definitions )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% For linebreaks inside Verbatim environment from package fancyvrb.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newbox\Wrappedcontinuationbox&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newbox\Wrappedvisiblespacebox&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedvisiblespace&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\textcolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;red&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\textvisiblespace&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedcontinuationsymbol&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\textcolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;red&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\llap&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\tiny&lt;/span&gt;&lt;span class="s"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;\m&lt;/span&gt;&lt;span class="nb"&gt;@th&lt;/span&gt;&lt;span class="nv"&gt;\hookrightarrow&lt;/span&gt;&lt;span class="s"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedcontinuationindent&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;3ex &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedafterbreak&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Take advantage of the already applied Pygments mark-up to insert
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% potential linebreaks for TeX processing.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% {, &amp;lt;, #, %, $, &amp;#39; and &amp;#34;: go to next line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% _, }, ^, &amp;amp;, &amp;gt;, - and ~: stay at end of broken line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Use of \textquotesingle for straight quote.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedbreaksatspecials&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZus&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\_&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\_&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZob&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\{&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\{&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZcb&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\}&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\}&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZca&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\^&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\^&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZam&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;amp;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;amp;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZlt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZgt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;gt;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;gt;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZsh&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\#&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\#&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZpc&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\%&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\%&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZdl&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\$&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\$&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZhy&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\-&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\-&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZsq&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\textquotesingle&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\textquotesingle&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZdq&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;#34;&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\&amp;#34;&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\PYGZti&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Some characters . , ; ? ! / are not pygmentized.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% This macro makes them &amp;#34;active&amp;#34; and they will insert potential linebreaks
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand*\Wrappedbreaksatpunct&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\.\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\.&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\.&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\,\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\,&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\,&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\;\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\;&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\;&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\:\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\:&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\:&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\?\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\?&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\?&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\!\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\!&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\!&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\/\lowercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def&lt;/span&gt;~&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\/&lt;/span&gt;&lt;span class="nb"&gt;}}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\hbox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\char&lt;/span&gt;`&lt;span class="k"&gt;\/&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\.\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\,\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\;\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\:\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\?\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\!\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\catcode&lt;/span&gt;`&lt;span class="k"&gt;\/\active&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\lccode&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;`&lt;span class="k"&gt;\~&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\let\OriginalVerbatim&lt;/span&gt;=&lt;span class="k"&gt;\Verbatim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\Verbatim&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;[1][1]&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%\parskip\z@skip
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\sbox\Wrappedcontinuationbox&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedcontinuationsymbol&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\sbox\Wrappedvisiblespacebox&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\FV&lt;/span&gt;@SetupFont&lt;span class="k"&gt;\Wrappedvisiblespace&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\FancyVerbFormatLine&lt;/span&gt; ##1&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\hsize\linewidth&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\vtop&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\raggedright\hyphenpenalty\z&lt;/span&gt;@&lt;span class="k"&gt;\exhyphenpenalty\z&lt;/span&gt;@
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\doublehyphendemerits\z&lt;/span&gt;@&lt;span class="k"&gt;\finalhyphendemerits\z&lt;/span&gt;@
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\strut&lt;/span&gt; ##1&lt;span class="k"&gt;\strut&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% If the linebreak is at a space, the latter will be displayed as visible
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% space at end of first line, and a continuation symbol starts next line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Stretch/shrink are however usually zero for typewriter font.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\def\FV&lt;/span&gt;@Space &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\nobreak\hskip\z&lt;/span&gt;@ plus&lt;span class="k"&gt;\fontdimen&lt;/span&gt;3&lt;span class="k"&gt;\font&lt;/span&gt; minus&lt;span class="k"&gt;\fontdimen&lt;/span&gt;4&lt;span class="k"&gt;\font&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\discretionary&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\copy\Wrappedvisiblespacebox&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Wrappedafterbreak&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\kern\fontdimen&lt;/span&gt;2&lt;span class="k"&gt;\font&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Allow breaks at special characters using \PYG... macros.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\Wrappedbreaksatspecials&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\OriginalVerbatim&lt;/span&gt;&lt;span class="na"&gt;[#1,codes*=\Wrappedbreaksatpunct]&lt;/span&gt;&lt;span class="c"&gt;%
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% Exact colors from NB
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- block style&lt;span class="nb"&gt;_&lt;/span&gt;colors *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;incolor&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;303F9F&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;outcolor&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;D84315&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;cellborder&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;CFCFCF&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\definecolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;cellbackground&lt;span class="nb"&gt;}{&lt;/span&gt;HTML&lt;span class="nb"&gt;}{&lt;/span&gt;F7F7F7&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endblock style&lt;span class="nb"&gt;_&lt;/span&gt;colors *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\boxspacing&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\kern\kvtcb&lt;/span&gt;@left@rule&lt;span class="k"&gt;\kern\kvtcb&lt;/span&gt;@boxsep&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- block style&lt;span class="nb"&gt;_&lt;/span&gt;prompt *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\newcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;[4]&lt;span class="nb"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* endblock style&lt;span class="nb"&gt;_&lt;/span&gt;prompt *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endblock definitions -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Input
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block input scoped *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;% input hidden
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock input *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Output
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%===============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- if charlim is not defined -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* set charlim = 80 *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block execute&lt;span class="nb"&gt;_&lt;/span&gt;result scoped *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- for type in output.data | filter&lt;span class="nb"&gt;_&lt;/span&gt;data&lt;span class="nb"&gt;_&lt;/span&gt;type -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- if type in [&amp;#39;text/plain&amp;#39;]*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( draw&lt;span class="nb"&gt;_&lt;/span&gt;cell(output.data[&amp;#39;text/plain&amp;#39;] | wrap&lt;span class="nb"&gt;_&lt;/span&gt;text(charlim) | escape&lt;span class="nb"&gt;_&lt;/span&gt;latex | ansi2latex, cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;, &amp;#39;&lt;span class="k"&gt;\\&lt;/span&gt;boxspacing&amp;#39;) )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((* else -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( &amp;#34; &amp;#34; )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( draw&lt;span class="nb"&gt;_&lt;/span&gt;prompt(cell, &amp;#39;Out&amp;#39;, &amp;#39;outcolor&amp;#39;,&amp;#39;&amp;#39;) )))((( super() )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endfor -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock execute&lt;span class="nb"&gt;_&lt;/span&gt;result *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block stream *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;[commandchars=&lt;span class="k"&gt;\\\{\}&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( output.text | wrap&lt;span class="nb"&gt;_&lt;/span&gt;text(charlim) | escape&lt;span class="nb"&gt;_&lt;/span&gt;latex | strip&lt;span class="nb"&gt;_&lt;/span&gt;trailing&lt;span class="nb"&gt;_&lt;/span&gt;newline | ansi2latex )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock stream *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%==============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Support Macros
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%==============================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Name: draw_cell
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Purpose: Renders an output/input prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- if draw&lt;span class="nb"&gt;_&lt;/span&gt;cell is not defined -*)) &lt;span class="c"&gt;% Required to allow overriding.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* macro draw&lt;span class="nb"&gt;_&lt;/span&gt;cell(text, cell, prompt, prompt&lt;span class="nb"&gt;_&lt;/span&gt;color, extra&lt;span class="nb"&gt;_&lt;/span&gt;space) -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- if prompt == &amp;#39;In&amp;#39; -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- set style = &amp;#34;breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder&amp;#34;-*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- else -*))((*- set style = &amp;#34;breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0&amp;#34;-*))((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;[((( style )))]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;(((- draw&lt;span class="nb"&gt;_&lt;/span&gt;prompt(cell, prompt, prompt&lt;span class="nb"&gt;_&lt;/span&gt;color, extra&lt;span class="nb"&gt;_&lt;/span&gt;space) )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;[commandchars=&lt;span class="k"&gt;\\\{\}&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( text )))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Verbatim&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Name: draw_prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;% Purpose: Renders an output/input prompt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* macro draw&lt;span class="nb"&gt;_&lt;/span&gt;prompt(cell, prompt, prompt&lt;span class="nb"&gt;_&lt;/span&gt;color, extra&lt;span class="nb"&gt;_&lt;/span&gt;space) -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- if cell.execution&lt;span class="nb"&gt;_&lt;/span&gt;count is defined -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- set execution&lt;span class="nb"&gt;_&lt;/span&gt;count = &amp;#34;&amp;#34; ~ (cell.execution&lt;span class="nb"&gt;_&lt;/span&gt;count | replace(None, &amp;#34; &amp;#34;)) -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- else -*))((*- set execution&lt;span class="nb"&gt;_&lt;/span&gt;count = &amp;#34; &amp;#34; -*))((*- endif *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- if (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;output&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;Out&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/details&gt;</description></item></channel></rss>
