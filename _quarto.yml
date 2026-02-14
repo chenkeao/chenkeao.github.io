@@ -1,0 +1,14 @@
+project:
+  type: hugo
+
+format:
+  hugo:
+    math: true
+    toc: false
+    standalone: false
+    filters:
+      - mathfx.lua
+
+jupyter: python3
+execute: 
+  warning: false

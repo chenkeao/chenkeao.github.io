@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /diaries/
+Allow: /
+
+Sitemap: {{ "sitemap.xml" | absURL }}

@@ -1,0 +1,465 @@
+---
+title: 'Deep Learning for Coder: Chapter 4'
+slug: deep-learning-for-coder-chapter-4
+date: '2025-09-11T14:56:41+10:00'
+draft: false
+toc: true
+categories:
+  - book notes
+tags:
+  - machine learning
+  - deep learning
+  - python
+sitemap:
+    changefreq: never
+    priority: 1.0
+jupyter: python3
+description: This article is a learning note based on the book "Deep Learning for Coders with fastai and PyTorch". It covers key concepts from Chapter 4, ranging from non-parametric methods, linear functions, SGD, optimizers, learners, nonlinearity to deeper networks.
+---
+
+## Environment Set-up
+
+
+```{python}
+import fastbook
+from fastai.vision.all import *
+from fastbook import *
+
+fastbook.setup_book()
+matplotlib.rc("image", cmap="Greys")
+```
+
+## Load The Two Classes of Data
+
+```{python}
+path = untar_data(URLs.MNIST_SAMPLE)
+Path.BASE_PATH = path
+path.ls()
+```
+
+```{python}
+threes = [tensor(Image.open(i)) for i in (path / "train" / "3").ls()]
+sevens = [tensor(Image.open(i)) for i in (path / "train" / "7").ls()]
+threes_valid = [tensor(Image.open(i)) for i in (path / "valid" / "3").ls()]
+sevens_valid = [tensor(Image.open(i)) for i in (path / "valid" / "7").ls()]
+len(threes), len(sevens)
+```
+
+```{python}
+threes = torch.stack(threes).float() / 255
+sevens = torch.stack(sevens).float() / 255
+threes_valid = torch.stack(threes_valid).float() / 255
+sevens_valid = torch.stack(sevens_valid).float() / 255
+threes.shape, sevens.shape
+```
+
+## Non-Parametric Method
+
+Calculate an "average three"
+
+```{python}
+mean3 = threes.mean(0)
+show_image(mean3)
+```
+
+Calculate an "average seven"
+
+```{python}
+mean7 = sevens.mean(0)
+show_image(mean7)
+```
+
+Define a function that computes distance between two images and a function that judges if an image is three.
+
+```{python}
+def distance(a, b):
+    return (a - b).abs().mean((-1, -2))
+
+
+def is_3(x):
+    return distance(x, mean3) < distance(x, mean7)
+```
+
+Compute how many threes are correctly classified into class three and how many seven are correctly classified into seven. (accuracy)
+
+```{python}
+is_3(threes_valid).float().mean(), (1 - is_3(sevens_valid).float()).float().mean()
+```
+
+Compute overall how many images are correctly classified.
+
+```{python}
+x = torch.cat([threes_valid, sevens_valid])
+y = tensor([1] * len(threes_valid) + [0] * len(sevens_valid))
+x.shape, y.shape
+
+# ((distance(x, mean3) < distance(x, mean7)).float() == y).float().mean()
+```
+
+## Linear Function and SGD
+
+```{python}
+train_x = torch.cat([threes, sevens]).view([-1, 28 * 28])
+train_y = tensor([1] * len(threes) + [0] * len(sevens)).unsqueeze(-1)
+valid_x = torch.cat([threes_valid, sevens_valid]).view([-1, 28 * 28])
+valid_y = tensor([1] * len(threes_valid) + [0] * len(sevens_valid)).unsqueeze(-1)
+train_x.shape, train_y.shape, valid_x.shape, valid_y.shape
+```
+
+```{python}
+dset = list(zip(train_x, train_y))
+dset_valid = list(zip(valid_x, valid_y))
+dset[0][0].shape, dset[0][1].shape
+
+dl = DataLoader(dset, batch_size=256, shuffle=true)
+valid_dl = DataLoader(dset_valid, batch_size=256, shuffle=true)
+```
+
+Differentiate `unsqueeze`, `cat` and `stack`:
+
+1. `cat` and `stack` operate on multiple tensors, combining them into a single tensor, whereas `unsqueeze` operates on a single tensor.
+2. `unsqueeze` and `stack` introduce a new dimension to the tensor(s), while `cat` does not create new dimensions.
+3. `stack` inserts a new dimension at the specified position, and its length equals the number of tensors being stacked.
+4. `cat` concatenates tensors along a specified dimension, and the resulting dimension's length is the sum of the lengths of all tensors along that dimension.
+5. `unsqueeze` always inserts a new dimension of length **1** at the specified position.
+
+For example:
+
+```{python}
+a, b = tensor([[1, 2, 3], [4, 5, 6]]), tensor([[7, 8, 9], [1, 2, 1]])
+a.shape, b.shape
+```
+
+```{python}
+a, b
+```
+
+`cat` these two tensors results in a tensor with a shape of either (4, 3) or (2, 6)
+
+```{python}
+torch.cat([a, b], 0).shape, torch.cat([a, b], 1).shape
+```
+
+`stack` these two tensors results in a tensor with a shape of either (2, 2, 3) or (2, 3, 2)
+
+```{python}
+torch.stack([a, b], 0).shape, torch.stack([a, b], 1).shape, torch.stack([a, b], 2).shape
+```
+
+Note: although `torch.stack([a, b], 0)` and `torch.stack([a, b], 1)` produce tensors with the same shape, they have different content.
+
+$$
+\begin{matrix}
+[1 & 2 & 3] \\
+[4 & 5 & 6]
+\end{matrix}
+\quad
+\begin{matrix}
+[7 & 8 & 9] \\
+[1 & 2 & 1]
+\end{matrix}
+$$
+
+`torch.stack([a, b], 0)` means stack whole matrices:
+
+$$
+\left[
+\begin{matrix}
+[1 & 2 & 3] \\
+[4 & 5 & 6]
+\end{matrix}
+\right]
+,
+\left[
+\begin{matrix}
+[7 & 8 & 9] \\
+[1 & 2 & 1]
+\end{matrix}
+\right]
+$$
+
+`torch.stack([a, b], 1)` means stack rows:
+
+$$
+\begin{matrix}
+\textbf{[}[1 & 2 & 3]\quad[7 & 8 & 9]\textbf{]},\\
+\\
+\textbf{[}[4 & 5 & 6]\quad[1 & 2 & 1]\textbf{]}
+\end{matrix}
+$$
+
+`torch.stack([a, b], 2)` means stack columns.
+
+```{python}
+torch.stack([a, b], 0), torch.stack([a, b], 1)
+```
+
+```{python}
+def sigmoid(logits):
+    return 1 / (1 + torch.exp(-logits))
+
+
+def mnist_loss(logits, targets):
+    probs = logits.sigmoid()
+    # return ((probs - targets) ** 2).mean().sqrt()
+    return torch.where(targets == 1, 1 - probs, probs).mean()
+
+
+def calc_grad(x, y, f):
+    preds = f(x)
+    loss = mnist_loss(preds, y)
+    loss.backward()
+
+
+def train_epoch(f, params, lr):
+    for xb, yb in dl:
+        calc_grad(xb, yb, f)
+        for p in params:
+            with torch.no_grad():
+                p -= lr * p.grad
+                p.grad.zero_()
+
+
+def batch_accuracy(logits, yb):
+    probs = logits.sigmoid()
+    return ((probs > 0.5) == yb).float().mean()
+
+
+def validation_epoch(f):
+    accs = [batch_accuracy(f(xb), yb) for xb, yb in valid_dl]
+    return round(torch.stack(accs).mean().item(), 4)
+```
+
+```{python}
+def init_params(size, std=1.0):
+    return (torch.randn(size) * std).requires_grad_()
+
+
+# column vector
+weights = init_params((28 * 28, 1))
+bias = init_params(1)
+
+
+def linear(x):
+    return x @ weights + bias
+
+
+for i in range(20):
+    train_epoch(linear, (weights, bias), 1e-1)
+    print(validation_epoch(linear))
+```
+
+## Optimizer
+
+```{python}
+linear_model = nn.Linear(28 * 28, 1)
+w, b = linear_model.parameters()
+w.shape, b.shape
+```
+
+```{python}
+class BasicOptimizer:
+    def __init__(self, params, lr):
+        self.params = list(params)
+        self.lr = lr
+
+    def step(self, *args, **kwargs):
+        for p in self.params:
+            with torch.no_grad():
+                p -= self.lr * p.grad
+
+    def zero_grad(self, *args, **kwargs):
+        for p in self.params:
+            p.grad = None
+
+
+opt = BasicOptimizer(linear_model.parameters(), 1e-2)
+
+
+def train_epoch(model):
+    for xb, yb in dl:
+        calc_grad(xb, yb, model)
+        opt.step()
+        opt.zero_grad()
+
+
+validation_epoch(linear_model)
+```
+
+```{python}
+for i in range(20):
+    print(validation_epoch(linear_model))
+    train_epoch(linear_model)
+```
+
+```{python}
+linear_model = nn.Linear(28 * 28, 1)
+opt = SGD(linear_model.parameters(), 1.0)
+for i in range(20):
+    train_epoch(linear_model)
+    print(validation_epoch(linear_model))
+```
+
+## Learner
+
+```{python}
+dls = DataLoaders(dl, valid_dl)
+learn = Learner(
+    dls,
+    nn.Linear(28 * 28, 1),
+    opt_func=SGD,
+    loss_func=mnist_loss,
+    metrics=batch_accuracy,
+)
+learn.fit(10, lr=1.0)
+```
+
+## Nonlinearity
+
+```{python}
+simple_net = nn.Sequential(nn.Linear(28 * 28, 30), nn.ReLU(), nn.Linear(30, 1))
+learn = Learner(dls, simple_net, mnist_loss, SGD, metrics=batch_accuracy)
+learn.fit(40, 0.1)
+```
+
+## Deeper
+
+```{python}
+dls = ImageDataLoaders.from_folder(path)
+learn = vision_learner(
+    dls, resnet18, pretrained=False, loss_func=F.cross_entropy, metrics=accuracy
+)
+learn.fit_one_cycle(1, 0.1)
+```
+
+## Questionnaire
+
+1.  How is a grayscale image represented on a computer? How about a color image?
+
+    each pixel is represented by a number from 0 to 255. 0 represents black and 255 represents white. pixels of color image are represented by three colors: red, green and blue (RGB).
+
+2.  How are the files and folders in the `MNIST_SAMPLE` dataset structured? Why?
+
+    tree structure
+
+3.  Explain how the "pixel similarity" approach to classifying digits works.
+
+    mean3 and mean7 can be considered as "standard shapes". if the average distance between an image's pixels and mean3's pixels is smaller, it is probably a three and vice versa.
+
+4.  What is a list comprehension? Create one now that selects odd numbers from a list and doubles them.
+
+    Create a python list within one line.
+
+    ```{python}
+    l = [1, 4, 3, 6, 8, 9, 10, 3, 4]
+    [i * 2 for i in l if i % 2 != 0]
+    ```
+
+5.  What is a "rank-3 tensor"?
+
+    a tensor that has three dimensions, for example:
+
+    ```{python}
+    [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]
+    ```
+
+6.  What is the difference between tensor rank and shape? How do you get the rank from the shape?
+
+    rank is the length of shape, `len(shape)`.
+
+7.  What are RMSE and L1 norm?
+
+    RMSE uses square power to avoid cancelling out while L1 norm uses absolute value to do so.
+
+8.  How can you apply a calculation on thousands of numbers at once, many thousands of times faster than a Python loop?
+
+    Using `np.array` or `tensor` and broadcasting
+
+9.  Create a 3×3 tensor or array containing the numbers from 1 to 9. Double it. Select the bottom-right four numbers.
+
+    ```{python}
+    import numpy as np
+
+    a = np.arange(1, 10).reshape(3, 3)
+    print(a)
+    a = a * 2
+    print(a[-2:, -2:])
+    ```
+
+10. What is broadcasting?
+
+
+11. Are metrics generally calculated using the training set, or the validation set? Why?
+
+    they are generally calculated using the validation set because it refects the generalization ability of a model
+
+12. What is SGD?
+
+    stochastic: stochastically sample batchs from the dataset
+    gradient: update parameters according to its gradient
+    descent: the loss function is convex thus finding minimum descenting
+
+13. Why does SGD use mini-batches?
+
+    Using the whole dataset is computationally expensive and using on data point results in unstable gradient. Using mini-batches is a compromise between them.
+
+14. What are the seven steps in SGD for machine learning?
+
+15. How do we initialize the weights in a model?
+
+    randomly
+
+16. What is "loss"?
+
+    loss funtions measure the difference between a model's predictions and the true target values. It provides a quantitative way to evaluate how well a model is performing. lower loss means better performance.
+
+17. Why can't we always use a high learning rate?
+
+    because it my cause the optimization process to overshoot the minimum. In extreme cases, the loss even increase or diverge instead of decreasing.
+
+18. What is a "gradient"?
+
+19. Do you need to know how to calculate gradients yourself?
+
+    No, I don't. Even though I know.
+
+20. Why can't we use accuracy as a loss function?
+
+    because accuracy is not a continuous function with respect to the model's parameters, which means when parameters' value shift a bit, the accuracy won't change, preventing calculating the gradient.
+
+21. Draw the sigmoid function. What is special about its shape?
+
+    ```{python}
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+
+    def sigmoid(x):
+        return 1 / (1 + np.exp(-x))
+
+
+    plt.plot(np.arange(-3, 3, 0.1), sigmoid(np.arange(-3, 3, 0.1)))
+    plt.show()
+    ```
+
+    Its domain is $(-\infty, +\infty)$, and its range is $(0, 1)$. This means it squashes any real value into the interval $(0, 1)$, which makes it suitable for representing probabilities.
+
+22. What is the difference between a loss function and a metric?
+
+    the loss function is used for the model while a metric should be meaingful for humans.
+
+23. What is the function to calculate new weights using a learning rate?
+24. What does the `DataLoader` class do?
+25. Write pseudocode showing the basic steps taken in each epoch for SGD.
+26. Create a function that, if passed two arguments `[1,2,3,4]` and `'abcd'`, returns `[(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]`. What is special about that output data structure?
+27. What does `view` do in PyTorch?
+28. What are the "bias" parameters in a neural network? Why do we need them?
+29. What does the `@` operator do in Python?
+30. What does the `backward` method do?
+31. Why do we have to zero the gradients?
+32. What information do we have to pass to `Learner`?
+33. Show Python or pseudocode for the basic steps of a training loop.
+34. What is "ReLU"? Draw a plot of it for values from `-2` to `+2`.
+35. What is an "activation function"?
+36. What's the difference between `F.relu` and `nn.ReLU`?
+37. The universal approximation theorem shows that any function can be approximated as closely as needed using just one nonlinearity. So why do we normally use more?
