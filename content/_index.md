@@ -1,10 +1,8 @@
 ---
-title: 首页
+title: Home
 menu:
   main:
     weight: 1
     params:
       icon: home
 ---
-
-# 

@@ -1,5 +1,5 @@
 ---
-title: 笔记
+title: Notes
 menu:
   main:
     weight: 3
