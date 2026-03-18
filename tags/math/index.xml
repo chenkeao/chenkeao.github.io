@@ -4,7 +4,7 @@
 &lt;p&gt;This report will first introduce the linear classification problem and the perceptron algorithm, which is background knowledge and motivation for SVM. Then, the hard margin maximum margin classifier will be introduced in detail, including its primal and lagrange dual form, and an implementation using a QP solver will be provided. The soft margin maximum margin classifier will be presented as an extension to handle noisy and non-linearly separable data. Two implementations of the soft margin classifier will be provided: one using SMO and the other using stochastic gradient descent. These implementations will be compared on both artificial and real-world datasets. Finally, multi-class classification will be discussed, along with a reflection and conclusion of the report.&lt;/p&gt;
 &lt;h3 id="links"&gt;Links
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="link" href="https://github.com/chenkeao/A-Study-On-SVMs" target="_blank" rel="noopener"
+&lt;li&gt;&lt;a class="link" href="https://github.com/chenkeao/SVM" target="_blank" rel="noopener"
 &gt;GitHub Repository&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://colab.research.google.com/drive/1OjK9RxJK0tJ5NS8ND3SRkLxcXDtOuQCi?usp=sharing" target="_blank" rel="noopener"
 &gt;Colab Notebook&lt;/a&gt;&lt;/li&gt;
