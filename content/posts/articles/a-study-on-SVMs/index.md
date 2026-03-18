@@ -34,7 +34,7 @@ This report will first introduce the linear classification problem and the perce
 
 ### Links
 
--   [GitHub Repository](https://github.com/chenkeao/A-Study-On-SVMs)
+-   [GitHub Repository](https://github.com/chenkeao/SVM)
 -   [Colab Notebook](https://colab.research.google.com/drive/1OjK9RxJK0tJ5NS8ND3SRkLxcXDtOuQCi?usp=sharing)
 
 ## Background
