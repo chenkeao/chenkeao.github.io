@@ -2,13 +2,15 @@
 
 [en]
 languageName = "English"
-languagedirection = "en"
+label = "English"
+languageDirection = "ltr"
 title = "Kyle's Blog"
 weight = 1
 
 [zh]
 languageName = "中文"
-languagedirection = "zh"
+label = "中文"
+languageDirection = "ltr"
 title = "陈默的博客"
 weight = 2
 

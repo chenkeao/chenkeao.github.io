@@ -5,6 +5,5 @@ menu:
     weight: 3
     params:
       icon: infinity
-layout: "feeds"
 image:
 ---
