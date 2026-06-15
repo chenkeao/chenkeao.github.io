@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dst on Kyle's Blog</title><link>https://keao.me/tags/dst/</link><description>Recent content in Dst on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 09 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://keao.me/tags/dst/index.xml" rel="self" type="application/rss+xml"/><item><title>饥荒联机版专用服务器和多层世界配置指南</title><link>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</link><pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</guid><description>&lt;img src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png" alt="Featured image of post 饥荒联机版专用服务器和多层世界配置指南" /&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dst on Kyle's Blog</title><link>https://keao.me/tags/dst/</link><description>Recent content in Dst on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 14 Feb 2026 12:11:54 +1100</lastBuildDate><atom:link href="https://keao.me/tags/dst/index.xml" rel="self" type="application/rss+xml"/><item><title>饥荒联机版专用服务器和多层世界配置指南</title><link>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</link><pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</guid><description>&lt;img src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png" alt="Featured image of post 饥荒联机版专用服务器和多层世界配置指南" /&gt;
  &lt;blockquote&gt;
  &lt;p&gt;此文全程处于&lt;code&gt;linux&lt;/code&gt;环境，阅读此文需具备一些&lt;code&gt;linux&lt;/code&gt;使用经验。&lt;/p&gt;
 
@@ -20,7 +20,13 @@
 &lt;p&gt;唯一的限制是，每个存档必须有且仅有一个主世界 (Master Shard)，所有其他的世界都需要绑定到主世界。为了区分，每个世界都有一个唯一的&lt;code&gt;id&lt;/code&gt;，通过给洞穴入口或洞穴出口绑定不同的&lt;code&gt;id&lt;/code&gt;，玩家就可以通过他们在多个世界之间穿越。旺达的溯源表也绑定了世界的&lt;code&gt;id&lt;/code&gt;，因此可以穿越到不同的世界。如图 2 所示，这是一个拥有两个森林和两个洞穴的世界。其中一个森林是主世界，箭头代表可以通过洞穴入口或洞穴出口进出另一个世界。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图2" class="gallery-image" data-flex-basis="334px" data-flex-grow="139" height="3284" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1_hu_c1f0cfcde48371ff.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1_hu_d77b8a39fed17932.png 1600w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1_hu_c17b9fcfc8823d6c.png 2400w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png 4572w" width="4572"&gt;&lt;/p&gt;
 &lt;p&gt;这个世界对应的存档结构如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -37,14 +43,21 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x&lt;span class="o"&gt;]&lt;/span&gt; Cave2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x&lt;span class="o"&gt;]&lt;/span&gt; Forest1
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r--&lt;span class="o"&gt;]&lt;/span&gt; cluster.ini
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r--&lt;span class="o"&gt;]&lt;/span&gt; cluster_token.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r--&lt;span class="o"&gt;]&lt;/span&gt; cluster_token.txt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;可以看出，每个世界都对应一个文件夹。此外，&lt;code&gt;cluster.ini&lt;/code&gt;存放了世界的一些参数设置，&lt;code&gt;cluster_token.txt&lt;/code&gt;里存放了用户的身份令牌 (身份令牌的获取参见下一章)。这些就是一个 存档的完整内容。
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;可以看出，每个世界都对应一个文件夹。此外，&lt;code&gt;cluster.ini&lt;/code&gt;存放了世界的一些参数设置，&lt;code&gt;cluster_token.txt&lt;/code&gt;里存放了用户的身份令牌 (身份令牌的获取参见下一章)。这些就是一个 存档的完整内容。
 也可以去查看&lt;code&gt;~/.klei/DontStarveTogether/$SteamUserID/&lt;/code&gt;目录，如果你在本地创建了存档，那么这个目录下就会有以&lt;code&gt;Cluster_X&lt;/code&gt;格式命名的文件夹，其中&lt;code&gt;X&lt;/code&gt;是此存档在游戏中显示的位置。如图 3 所示，我创建了一个存档，那么此文件夹中就有一个&lt;code&gt;Cluster_1&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图3" class="gallery-image" data-flex-basis="549px" data-flex-grow="228" height="584" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/2.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/2_hu_6bf3d2bda905150d.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/2.png 1336w" width="1336"&gt;&lt;/p&gt;
 &lt;p&gt;查看目录结构，可以看出我只添加了一个主世界，没有添加洞穴。由于只有在专用服务器上运行的存档才需要&lt;code&gt;cluster_token.txt&lt;/code&gt;，因此这里没有。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -53,10 +66,11 @@
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Cluster_1
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Master
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── cluster.ini
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── cluster.ini&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="在本地运行专用服务器"&gt;在本地运行专用服务器
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h2 id="在本地运行专用服务器"&gt;在本地运行专用服务器
 &lt;/h2&gt;&lt;h3 id="准备存档文件"&gt;准备存档文件
 &lt;/h3&gt;&lt;p&gt;在游戏中创建存档，添加好要启用的模组并设置好世界的参数后生成世界。等待世界生成，进入选人物的步骤后，断开连接。&lt;/p&gt;
 
@@ -65,17 +79,24 @@
 
  &lt;/blockquote&gt;
 &lt;p&gt;进入&lt;code&gt;~/.klei/DontStarveTogether/$SteamUserID/&lt;/code&gt;目录，将刚刚创建的存档&lt;code&gt;Cluster_X&lt;/code&gt;(&lt;code&gt;X&lt;/code&gt;是此存档在游戏中显示的位置)移动到&lt;code&gt;~/.klei/DontStarveTogether/&lt;/code&gt;中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/.klei/DontStarveTogether/&lt;span class="nv"&gt;$SteamUserID&lt;/span&gt;/
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv Cluster_X ..
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv Cluster_X ..&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;使用浏览器打开&lt;a class="link" href="https://accounts.klei.com/login" target="_blank" rel="noopener"
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;使用浏览器打开&lt;a class="link" href="https://accounts.klei.com/login" target="_blank" rel="noopener"
  &gt;Klei Account&lt;/a&gt;，登录自己的&lt;code&gt;Klei&lt;/code&gt;账号，可以使用&lt;code&gt;Steam&lt;/code&gt;登录。登录成功后进入如下页面。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图4" class="gallery-image" data-flex-basis="474px" data-flex-grow="197" height="964" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4_hu_66a0e54210e1f277.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4_hu_cba0b262ca75bd92.png 1600w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4.png 1904w" width="1904"&gt;&lt;/p&gt;
 &lt;p&gt;点击导航栏中的&lt;code&gt;游戏&lt;/code&gt;，在游戏列表中点击&lt;code&gt;《饥荒：联机版》的游戏服务器&lt;/code&gt;，如下图所示。&lt;/p&gt;
@@ -83,19 +104,32 @@
 &lt;p&gt;随便起一个名字，点击&lt;code&gt;添加新服务器&lt;/code&gt;，然后复制生成的以&lt;code&gt;pds-g^&lt;/code&gt;开头的代码，如下图所示。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图6" class="gallery-image" data-flex-basis="560px" data-flex-grow="233" height="565" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/6.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/6_hu_72400e7b7790afd4.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/6.png 1320w" width="1320"&gt;&lt;/p&gt;
 &lt;p&gt;在&lt;code&gt;~/.klei/DontStarveTogether/Cluster_X&lt;/code&gt;中创建&lt;code&gt;cluster_token.txt&lt;/code&gt;文件，内容为刚刚复制的代码。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;pds-g^...&amp;#34;&lt;/span&gt; &amp;gt; cluster_token.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;pds-g^...&amp;#34;&lt;/span&gt; &amp;gt; cluster_token.txt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;至此，存档文件就准备好了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;至此，存档文件就准备好了。&lt;/p&gt;
 &lt;h3 id="准备专用服务器和模组"&gt;准备专用服务器和模组
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;Steam&lt;/code&gt;中安装&lt;code&gt;Don't Starve Together Dedicated Server&lt;/code&gt;，进入安装目录 (安装目录可以在&lt;code&gt;Steam&lt;/code&gt;的游戏设置中找到)。
 如果你的存档添加了模组，则需要修改&lt;code&gt;mods&lt;/code&gt;文件夹下的&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。专用服务器启动时，会根据这个文件的内容自动更新模组，如果你只在存档中添加了模组但是没有修改这个文件，则模组会添加失败。将需要添加的模组的&lt;code&gt;id&lt;/code&gt;以如下这种格式添加到此文件中即可。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -104,12 +138,19 @@
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;1438233888&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--多层世界选择器&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;1418746242&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--汉化增强 Chinese++&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;666155465&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--show me&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;666155465&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--show me&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;模组的&lt;code&gt;id&lt;/code&gt;可以通过&lt;code&gt;Steam&lt;/code&gt;创意工坊中的链接查看。在&lt;code&gt;Steam&lt;/code&gt;中模组的详情页面右击空白处，选择&lt;code&gt;Copy Page URL&lt;/code&gt;。链接末尾的&lt;code&gt;?id=&lt;/code&gt;后接的就是它的&lt;code&gt;id&lt;/code&gt;。例如&lt;code&gt;Show Me&lt;/code&gt;的创意工坊链接为&lt;code&gt;https://steamcommunity.com/sharedfiles/filedetails/?id=666155465&lt;/code&gt;，其&lt;code&gt;id&lt;/code&gt;为&lt;code&gt;666155465&lt;/code&gt;。
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;模组的&lt;code&gt;id&lt;/code&gt;可以通过&lt;code&gt;Steam&lt;/code&gt;创意工坊中的链接查看。在&lt;code&gt;Steam&lt;/code&gt;中模组的详情页面右击空白处，选择&lt;code&gt;Copy Page URL&lt;/code&gt;。链接末尾的&lt;code&gt;?id=&lt;/code&gt;后接的就是它的&lt;code&gt;id&lt;/code&gt;。例如&lt;code&gt;Show Me&lt;/code&gt;的创意工坊链接为&lt;code&gt;https://steamcommunity.com/sharedfiles/filedetails/?id=666155465&lt;/code&gt;，其&lt;code&gt;id&lt;/code&gt;为&lt;code&gt;666155465&lt;/code&gt;。
 除了这种方式，还可以查看此存档中主世界目录中的&lt;code&gt;modoverrides.lua&lt;/code&gt;文件，这个文件保存了当前世界启用的模组的设置。格式如下所示，其中&lt;code&gt;workshop-&lt;/code&gt;后接的数字就是模组的&lt;code&gt;id&lt;/code&gt;。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -130,31 +171,46 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;既然&lt;code&gt;modoverrides.lua&lt;/code&gt;文件已经保存了模组的&lt;code&gt;id&lt;/code&gt;，那么我们就可以使用脚本将所有添加的模组的&lt;code&gt;id&lt;/code&gt;提取出来。如下命令会根据&lt;code&gt;modoverrides.lua&lt;/code&gt;文件自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;code&gt;cd&lt;/code&gt;到&lt;code&gt;modoverrides.lua&lt;/code&gt;所在目录中执行如下命令，然后将生成的文件复制到&lt;code&gt;专用服务器安装目录/mods&lt;/code&gt;文件夹覆盖原有文件即可。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;既然&lt;code&gt;modoverrides.lua&lt;/code&gt;文件已经保存了模组的&lt;code&gt;id&lt;/code&gt;，那么我们就可以使用脚本将所有添加的模组的&lt;code&gt;id&lt;/code&gt;提取出来。如下命令会根据&lt;code&gt;modoverrides.lua&lt;/code&gt;文件自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;code&gt;cd&lt;/code&gt;到&lt;code&gt;modoverrides.lua&lt;/code&gt;所在目录中执行如下命令，然后将生成的文件复制到&lt;code&gt;专用服务器安装目录/mods&lt;/code&gt;文件夹覆盖原有文件即可。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ./modoverrides.lua &lt;span class="p"&gt;|&lt;/span&gt; grep -E &lt;span class="s1"&gt;&amp;#39;\[&amp;#34;workshop-[0-9]+&amp;#34;\].*&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed -r &lt;span class="s1"&gt;&amp;#39;s/\[&amp;#34;workshop-([0-9]+)&amp;#34;\].*/ServerModSetup(&amp;#34;\1&amp;#34;)/g&amp;#39;&lt;/span&gt; &amp;gt; dedicated_server_mods_setup.lua
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ./modoverrides.lua &lt;span class="p"&gt;|&lt;/span&gt; grep -E &lt;span class="s1"&gt;&amp;#39;\[&amp;#34;workshop-[0-9]+&amp;#34;\].*&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed -r &lt;span class="s1"&gt;&amp;#39;s/\[&amp;#34;workshop-([0-9]+)&amp;#34;\].*/ServerModSetup(&amp;#34;\1&amp;#34;)/g&amp;#39;&lt;/span&gt; &amp;gt; dedicated_server_mods_setup.lua&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id="启动专用服务器"&gt;启动专用服务器
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h3 id="启动专用服务器"&gt;启动专用服务器
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;cd&lt;/code&gt;到安装目录中的&lt;code&gt;bin64&lt;/code&gt;文件夹，执行&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2"&gt;&amp;#34;Cluster_X&amp;#34;&lt;/span&gt; -monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt; -shard Caves &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2"&gt;&amp;#34;Cluster_X&amp;#34;&lt;/span&gt; -monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt; -shard Master
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2"&gt;&amp;#34;Cluster_X&amp;#34;&lt;/span&gt; -monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt; -shard Master&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;-console&lt;/code&gt;指定在游戏中启用控制台。
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;&lt;code&gt;-console&lt;/code&gt;指定在游戏中启用控制台。
 &lt;code&gt;-cluster&lt;/code&gt;指定存档的名字，这个名字和要运行的存档文件夹名对应。
 &lt;code&gt;-shard&lt;/code&gt;指定世界碎片的名字。同样，这个名字也要和世界碎片的文件夹名对应。&lt;/p&gt;
 
@@ -164,7 +220,13 @@
  &lt;/blockquote&gt;
 &lt;h2 id="在云服务器运行专用服务器"&gt;在云服务器运行专用服务器
 &lt;/h2&gt;&lt;p&gt;购买阿里云或腾讯云提供的云服务器，配置选择&lt;code&gt;1核2G&lt;/code&gt;或者&lt;code&gt;2核4G&lt;/code&gt;即可。安装&lt;code&gt;Debian&lt;/code&gt;或&lt;code&gt;Ubuntu&lt;/code&gt;操作系统，在安全组中开放&lt;code&gt;10888-10999&lt;/code&gt;端口。此处以&lt;code&gt;Debian&lt;/code&gt;为例。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -201,37 +263,58 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; `&lt;/span&gt;&lt;span class="nv"&gt;$$&lt;/span&gt;&lt;span class="s2"&gt;b.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; `Y&lt;/span&gt;&lt;span class="nv"&gt;$$&lt;/span&gt;&lt;span class="s2"&gt;b.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; `&amp;#34;&lt;/span&gt;Y&lt;span class="nv"&gt;$b&lt;/span&gt;._
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;添加&lt;code&gt;32&lt;/code&gt;位支持&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo dpkg --add-architecture i386
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;安装依赖&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386 -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386 -y&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;安装&lt;code&gt;SteamCMD&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -244,14 +327,21 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir -p ~/steamcmd/
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/steamcmd/
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xvzf steamcmd_linux.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xvzf steamcmd_linux.tar.gz&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;准备存档文件
 这一步骤与上一章中的相同，可以在本地生成存档文件夹，然后上传到服务器。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -266,13 +356,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 在本地&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/.klei/DoNotStarveTogether
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;scp -r ./Cluster_X username@xxx.xxx.xxx.xxx:~/.klei/DoNotStarveTogether/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;scp -r ./Cluster_X username@xxx.xxx.xxx.xxx:~/.klei/DoNotStarveTogether/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;将以下内容写入&lt;code&gt;run_server.sh&lt;/code&gt;文件并赋予其执行权限。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -361,22 +458,30 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="o"&gt;+=(&lt;/span&gt;-monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -shard Caves &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/^/Caves: /&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -shard Master &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/^/Master: /&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -shard Master &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/^/Master: /&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这个脚本是我在&lt;code&gt;Klei&lt;/code&gt;官方提供的脚本的基础上优化修改而来。运行时需要提供存档文件夹的名称作为脚本的第一个参数。脚本将会检查存档文件是否完整，使用&lt;code&gt;SteamCMD&lt;/code&gt;更新专用服务器并根据存档的模组设置文件&lt;code&gt;modoverrides.lua&lt;/code&gt;自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;这个脚本是我在&lt;code&gt;Klei&lt;/code&gt;官方提供的脚本的基础上优化修改而来。运行时需要提供存档文件夹的名称作为脚本的第一个参数。脚本将会检查存档文件是否完整，使用&lt;code&gt;SteamCMD&lt;/code&gt;更新专用服务器并根据存档的模组设置文件&lt;code&gt;modoverrides.lua&lt;/code&gt;自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;运行脚本&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./run_server.sh Cluster_X
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./run_server.sh Cluster_X&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;由于第一次运行时要下载专用服务器，速度会比较慢。当终端输出&lt;code&gt;Sim paused&lt;/code&gt;时就说明启动完毕，可以在游戏中搜索加入了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;由于第一次运行时要下载专用服务器，速度会比较慢。当终端输出&lt;code&gt;Sim paused&lt;/code&gt;时就说明启动完毕，可以在游戏中搜索加入了。&lt;/p&gt;
 
  &lt;blockquote&gt;
  &lt;p&gt;可以使用&lt;code&gt;tmux&lt;/code&gt;或&lt;code&gt;screen&lt;/code&gt;等工具，这样脚本就可以在后台运行了。&lt;/p&gt;

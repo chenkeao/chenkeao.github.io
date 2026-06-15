@@ -1,11 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fontconfig on Kyle's Blog</title><link>https://keao.me/tags/fontconfig/</link><description>Recent content in Fontconfig on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 03 Nov 2025 16:35:29 +1100</lastBuildDate><atom:link href="https://keao.me/tags/fontconfig/index.xml" rel="self" type="application/rss+xml"/><item><title>Fontconfig in Flatpak</title><link>https://keao.me/posts/fontconfig-in-flatpak/</link><pubDate>Mon, 03 Nov 2025 16:35:29 +1100</pubDate><guid>https://keao.me/posts/fontconfig-in-flatpak/</guid><description>&lt;p&gt;Applications installed via Flatpak do not respect fontconfig settings stored in &lt;code&gt;~/.config/fontconfig/&lt;/code&gt; by default. The solution is to copy the &lt;code&gt;fontconfig&lt;/code&gt; directory to &lt;code&gt;.var/app/&amp;lt;APP_ID&amp;gt;/config/&lt;/code&gt;, where &lt;code&gt;&amp;lt;APP_ID&amp;gt;&lt;/code&gt; is the Flatpak application ID.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fontconfig on Kyle's Blog</title><link>https://keao.me/tags/fontconfig/</link><description>Recent content in Fontconfig on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 14 Feb 2026 12:11:54 +1100</lastBuildDate><atom:link href="https://keao.me/tags/fontconfig/index.xml" rel="self" type="application/rss+xml"/><item><title>Fontconfig in Flatpak</title><link>https://keao.me/posts/fontconfig-in-flatpak/</link><pubDate>Mon, 03 Nov 2025 16:35:29 +1100</pubDate><guid>https://keao.me/posts/fontconfig-in-flatpak/</guid><description>&lt;p&gt;Applications installed via Flatpak do not respect fontconfig settings stored in &lt;code&gt;~/.config/fontconfig/&lt;/code&gt; by default. The solution is to copy the &lt;code&gt;fontconfig&lt;/code&gt; directory to &lt;code&gt;.var/app/&amp;lt;APP_ID&amp;gt;/config/&lt;/code&gt;, where &lt;code&gt;&amp;lt;APP_ID&amp;gt;&lt;/code&gt; is the Flatpak application ID.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r ~/.config/fontconfig ~/.var/app/com.example.App/config/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r ~/.config/fontconfig ~/.var/app/com.example.App/config/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;/div&gt;
+&lt;/details&gt;</description></item></channel></rss>

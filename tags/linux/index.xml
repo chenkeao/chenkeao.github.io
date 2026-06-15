@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Kyle's Blog</title><link>https://keao.me/tags/linux/</link><description>Recent content in Linux on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 04 Nov 2025 15:39:12 +1100</lastBuildDate><atom:link href="https://keao.me/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Disable Network Discovery of Speakers on Fedora</title><link>https://keao.me/posts/disable-network-discovery-of-speakers-on-fedora/</link><pubDate>Tue, 04 Nov 2025 15:39:12 +1100</pubDate><guid>https://keao.me/posts/disable-network-discovery-of-speakers-on-fedora/</guid><description>&lt;p&gt;The network discovery of remote speakers is enabled by default on Fedora, leading to a very long list in the output device setting. To disable this feature:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Kyle's Blog</title><link>https://keao.me/tags/linux/</link><description>Recent content in Linux on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 14 Feb 2026 12:11:54 +1100</lastBuildDate><atom:link href="https://keao.me/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Disable Network Discovery of Speakers on Fedora</title><link>https://keao.me/posts/disable-network-discovery-of-speakers-on-fedora/</link><pubDate>Tue, 04 Nov 2025 15:39:12 +1100</pubDate><guid>https://keao.me/posts/disable-network-discovery-of-speakers-on-fedora/</guid><description>&lt;p&gt;The network discovery of remote speakers is enabled by default on Fedora, leading to a very long list in the output device setting. To disable this feature:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -12,47 +18,74 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;context.properties = {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; module.raop = false
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;}&amp;#34;&lt;/span&gt; &amp;gt; ~/.config/pipewire/pipewire.conf.d/noraop.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user restart pipewire
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user restart pipewire&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Source: &lt;a class="link" href="https://discussion.fedoraproject.org/t/airplay-audio-outputs-discovery-enabled-by-default/166328" target="_blank" rel="noopener"
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Source: &lt;a class="link" href="https://discussion.fedoraproject.org/t/airplay-audio-outputs-discovery-enabled-by-default/166328" target="_blank" rel="noopener"
  &gt;Fedora Discussion&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Fontconfig in Flatpak</title><link>https://keao.me/posts/fontconfig-in-flatpak/</link><pubDate>Mon, 03 Nov 2025 16:35:29 +1100</pubDate><guid>https://keao.me/posts/fontconfig-in-flatpak/</guid><description>&lt;p&gt;Applications installed via Flatpak do not respect fontconfig settings stored in &lt;code&gt;~/.config/fontconfig/&lt;/code&gt; by default. The solution is to copy the &lt;code&gt;fontconfig&lt;/code&gt; directory to &lt;code&gt;.var/app/&amp;lt;APP_ID&amp;gt;/config/&lt;/code&gt;, where &lt;code&gt;&amp;lt;APP_ID&amp;gt;&lt;/code&gt; is the Flatpak application ID.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r ~/.config/fontconfig ~/.var/app/com.example.App/config/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r ~/.config/fontconfig ~/.var/app/com.example.App/config/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Toggle Color Theme on Plasma</title><link>https://keao.me/posts/toggle-color-theme-on-plasma/</link><pubDate>Sun, 12 Oct 2025 12:07:36 +1100</pubDate><guid>https://keao.me/posts/toggle-color-theme-on-plasma/</guid><description>&lt;p&gt;Plasma introduced a quick settings panel in plasma 6, where you can toggle between &lt;code&gt;Breeze&lt;/code&gt; and &lt;code&gt;Breeze Dark&lt;/code&gt; themes. However, it will change the entire theme, ruining customizations like icons. You can toggle the color scheme manually by using the following command:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>Toggle Color Theme on Plasma</title><link>https://keao.me/posts/toggle-color-theme-on-plasma/</link><pubDate>Sun, 12 Oct 2025 12:07:36 +1100</pubDate><guid>https://keao.me/posts/toggle-color-theme-on-plasma/</guid><description>&lt;p&gt;Plasma introduced a quick settings panel in plasma 6, where you can toggle between &lt;code&gt;Breeze&lt;/code&gt; and &lt;code&gt;Breeze Dark&lt;/code&gt; themes. However, it will change the entire theme, ruining customizations like icons. You can toggle the color scheme manually by using the following command:&lt;/p&gt;
 &lt;p&gt;For dark theme:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze-dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme BreezeDark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Light.profile/DefaultProfile=Dark.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze-dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme BreezeDark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Light.profile/DefaultProfile=Dark.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;For light theme:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;For light theme:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme Breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Dark.profile/DefaultProfile=Light.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme Breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Dark.profile/DefaultProfile=Light.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Before running the commands, ensure you have the &lt;code&gt;Papirus&lt;/code&gt; icon theme installed and &lt;code&gt;Light&lt;/code&gt; and &lt;code&gt;Dark&lt;/code&gt; &lt;code&gt;konsole&lt;/code&gt; profiles created. It will change the desktop theme, color scheme, cursor theme, icon theme, and &lt;code&gt;konsole&lt;/code&gt; profile. Moreover, you can create two scripts and bind them to keyboard shortcuts for easy toggling.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Before running the commands, ensure you have the &lt;code&gt;Papirus&lt;/code&gt; icon theme installed and &lt;code&gt;Light&lt;/code&gt; and &lt;code&gt;Dark&lt;/code&gt; &lt;code&gt;konsole&lt;/code&gt; profiles created. It will change the desktop theme, color scheme, cursor theme, icon theme, and &lt;code&gt;konsole&lt;/code&gt; profile. Moreover, you can create two scripts and bind them to keyboard shortcuts for easy toggling.&lt;/p&gt;
 
  &lt;blockquote&gt;
  &lt;p&gt;24/10/25 Update&lt;/p&gt;
 
  &lt;/blockquote&gt;
 &lt;p&gt;Plasma 6.5 was released, introducing a new feature to automatically switch between light and dark themes based on the time of day. However, it does not support custom icon themes and &lt;code&gt;konsole&lt;/code&gt; profiles. A workaround is to run a script that monitors the theme change event and applies the necessary changes.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -157,11 +190,18 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;previous_theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$current_theme&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;A user-level systemd service can be created to run this script in the background:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;A user-level systemd service can be created to run this script in the background:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -186,32 +226,53 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Restart=on-failure
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[Install]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WantedBy=default.target
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WantedBy=default.target&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;And the commands to enable and start the service:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;And the commands to enable and start the service:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user &lt;span class="nb"&gt;enable&lt;/span&gt; theme-monitor.service
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user start theme-monitor.service
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user start theme-monitor.service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Even though this solution works, it&amp;rsquo;s quite hacky and heavy. Hoping for a better built-in feature in the future Plasma releases.&lt;/p&gt;</description></item><item><title>One Time Reboot to Win Shortcut</title><link>https://keao.me/posts/one-time-reboot-to-win-shortcut/</link><pubDate>Tue, 16 Sep 2025 23:00:17 +1000</pubDate><guid>https://keao.me/posts/one-time-reboot-to-win-shortcut/</guid><description>&lt;h2 id="reboot-to-windows-once-from-linux"&gt;Reboot to Windows Once from Linux
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Even though this solution works, it&amp;rsquo;s quite hacky and heavy. Hoping for a better built-in feature in the future Plasma releases.&lt;/p&gt;</description></item><item><title>One Time Reboot to Win Shortcut</title><link>https://keao.me/posts/one-time-reboot-to-win-shortcut/</link><pubDate>Tue, 16 Sep 2025 23:00:17 +1000</pubDate><guid>https://keao.me/posts/one-time-reboot-to-win-shortcut/</guid><description>&lt;h2 id="reboot-to-windows-once-from-linux"&gt;Reboot to Windows Once from Linux
 &lt;/h2&gt;&lt;p&gt;On a dual-boot machine, you may occasionally want to reboot into Windows from Linux for a specific task—such as using a Windows-only application—and then return to Linux afterward. While GRUB allows you to choose which OS to boot, it is more convenient to have a one-time reboot option that boots directly into Windows, then automatically returns to Linux as the default on subsequent boots. This can be accomplished using &lt;code&gt;efibootmgr&lt;/code&gt; to set the next boot entry to Windows.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo efibootmgr -n &amp;lt;WindowsBootEntryNumber&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo efibootmgr -n &amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Here, &lt;code&gt;&amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/code&gt; is the boot entry number for Windows, which you can find by running &lt;code&gt;efibootmgr&lt;/code&gt; without any arguments. The output will list all boot entries and their numbers. For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Here, &lt;code&gt;&amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/code&gt; is the boot entry number for Windows, which you can find by running &lt;code&gt;efibootmgr&lt;/code&gt; without any arguments. The output will list all boot entries and their numbers. For example:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -228,22 +289,36 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0001* EFI PXE &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; IPv4
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0002* EFI PXE &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; IPv6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0004* Windows Boot Manager
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0005* GRUB
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0005* GRUB&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;To set the next boot to Windows, run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;To set the next boot to Windows, run:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;After executing this command, reboot your machine. It will boot into Windows for that session. On the next reboot, it will default back to Linux.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;After executing this command, reboot your machine. It will boot into Windows for that session. On the next reboot, it will default back to Linux.&lt;/p&gt;
 &lt;h2 id="creating-a-shortcut-script"&gt;Creating a Shortcut Script
 &lt;/h2&gt;&lt;p&gt;To streamline this process, create a simple script at &lt;code&gt;/usr/local/bin/reboot2win&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -256,22 +331,36 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# reboot2win: A script to reboot into Windows once&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;logger -t reboot2win &lt;span class="s2"&gt;&amp;#34;reboot2win executed by &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SUDO_USER&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;$USER&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# privileged command(s) below:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/bin/efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/systemctl reboot
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/bin/efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/systemctl reboot&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Make it executable and set ownership to root for security:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Make it executable and set ownership to root for security:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod +x /usr/local/bin/reboot2win &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo chown root:root /usr/local/bin/reboot2win
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod +x /usr/local/bin/reboot2win &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo chown root:root /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Now you can run &lt;code&gt;sudo reboot2win&lt;/code&gt; to reboot into Windows once.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Now you can run &lt;code&gt;sudo reboot2win&lt;/code&gt; to reboot into Windows once.&lt;/p&gt;
 &lt;h2 id="make-it-even-easier-with-polkit"&gt;Make It Even Easier with Polkit
 &lt;/h2&gt;&lt;p&gt;To avoid typing &lt;code&gt;sudo&lt;/code&gt; every time, you can create a polkit rule to allow your user to run the script without a password prompt. Create a file at &lt;code&gt;/etc/polkit-1/rules.d/50-reboot2win.rules&lt;/code&gt; with the following content:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -302,72 +391,113 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;polkit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Result&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;NOT_HANDLED&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This rule allows users in the &lt;code&gt;wheel&lt;/code&gt; group to execute the &lt;code&gt;reboot2win&lt;/code&gt; script without a password prompt. Adjust the group name if your user belongs to a different group.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;This rule allows users in the &lt;code&gt;wheel&lt;/code&gt; group to execute the &lt;code&gt;reboot2win&lt;/code&gt; script without a password prompt. Adjust the group name if your user belongs to a different group.&lt;/p&gt;
 &lt;p&gt;To apply the rule, restart the polkit service:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart polkit
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart polkit&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Now you can simply run the following command without &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Now you can simply run the following command without &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkexec /usr/local/bin/reboot2win
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkexec /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Finally, you can add an &lt;code&gt;alias&lt;/code&gt; or a desktop shortcut for easier access. Also, to avoid accidentally running the command, you can use a confirmation prompt dialog such as &lt;code&gt;kdialog&lt;/code&gt; or &lt;code&gt;zenity&lt;/code&gt;. For example, using &lt;code&gt;kdialog&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Finally, you can add an &lt;code&gt;alias&lt;/code&gt; or a desktop shortcut for easier access. Also, to avoid accidentally running the command, you can use a confirmation prompt dialog such as &lt;code&gt;kdialog&lt;/code&gt; or &lt;code&gt;zenity&lt;/code&gt;. For example, using &lt;code&gt;kdialog&lt;/code&gt;:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -lc &lt;span class="s1"&gt;&amp;#39;kdialog --yesno &amp;#34;Are you sure you want to reboot the system?&amp;#34;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkexec /usr/local/bin/reboot2win
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -lc &lt;span class="s1"&gt;&amp;#39;kdialog --yesno &amp;#34;Are you sure you want to reboot the system?&amp;#34;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkexec /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This will show a confirmation dialog before executing the reboot command.&lt;/p&gt;</description></item><item><title>Handle Missing Shared Library Error</title><link>https://keao.me/posts/handle-missing-shared-library-error/</link><pubDate>Fri, 13 Jun 2025 12:40:05 +0800</pubDate><guid>https://keao.me/posts/handle-missing-shared-library-error/</guid><description>&lt;p&gt;Using &lt;code&gt;pkgfile&lt;/code&gt; to find out the package of such files&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;This will show a confirmation dialog before executing the reboot command.&lt;/p&gt;</description></item><item><title>Handle Missing Shared Library Error</title><link>https://keao.me/posts/handle-missing-shared-library-error/</link><pubDate>Fri, 13 Jun 2025 12:40:05 +0800</pubDate><guid>https://keao.me/posts/handle-missing-shared-library-error/</guid><description>&lt;p&gt;Using &lt;code&gt;pkgfile&lt;/code&gt; to find out the package of such files&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo pkgfile -u
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkgfile xxx.so.1
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkgfile xxx.so.1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Gnome 中 .desktop 文件的奇怪问题</title><link>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;众所周知，gnome 目前默认使用 wayland，但某些程序在 wayland 下表现不佳。例如 telegram 有时边框外会显示奇怪的阴影，解决方法是开启选项：使用系统边框。然而在 wayland 下没有此选项，取而代之的是：使用 qt 边框，但 qt 边框与 gtk 应用的风格很不统一，导致看起来很丑。解决方法是在其 .desktop 文件中添加环境变量使 telegram 强制使用 x11，事实上，我已经使用&lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;这个环境变量为另一个程序 anki 解决了这个问题。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>Gnome 中 .desktop 文件的奇怪问题</title><link>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;众所周知，gnome 目前默认使用 wayland，但某些程序在 wayland 下表现不佳。例如 telegram 有时边框外会显示奇怪的阴影，解决方法是开启选项：使用系统边框。然而在 wayland 下没有此选项，取而代之的是：使用 qt 边框，但 qt 边框与 gtk 应用的风格很不统一，导致看起来很丑。解决方法是在其 .desktop 文件中添加环境变量使 telegram 强制使用 x11，事实上，我已经使用&lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;这个环境变量为另一个程序 anki 解决了这个问题。&lt;/p&gt;
 &lt;p&gt;然而，同样的方法对 telegram 却失效了。经过一番摸索我发现，直接运行 .desktop 文件，在命令行运行指令或使用&lt;code&gt;dex&lt;/code&gt;命令运行都生效，可一旦从 gnome 的应用抽屉里启动或使用&lt;code&gt;gtk-launch&lt;/code&gt;命令运行启动就不生效。这说明文件本身并没有问题，问题出在 gtk 和 gnome 上。问题到这里就陷入了僵局，但是我灵光一现，想到问题或许是 telegram 的 .desktop 文件奇怪的名字导致的：由于 telegram 的全名为 telegram-desktop，因此其 .desktop 文件名为 org.telegram.desktop.desktop。我怀疑是这两个重复的 .desktop 后缀在作祟， 于是我将其改名为 telegram.desktop，随后&lt;code&gt;update-desktop-datebase ~/.local/share/applications/&lt;/code&gt;，问题果然解决。&lt;/p&gt;</description></item><item><title>KDE 窗口装饰元素</title><link>https://keao.me/posts/kde-%E7%AA%97%E5%8F%A3%E8%A3%85%E9%A5%B0%E5%85%83%E7%B4%A0/</link><pubDate>Thu, 08 Feb 2024 15:23:00 +0800</pubDate><guid>https://keao.me/posts/kde-%E7%AA%97%E5%8F%A3%E8%A3%85%E9%A5%B0%E5%85%83%E7%B4%A0/</guid><description>&lt;p&gt;在 KDE 上使用 aurorae 主题(除 Breeze 外的所有主题)时，如果字体 DPI 大于 96，应用程序的边框会变得巨大无比，十分丑陋。偏偏在高分屏幕上增加字体 DPI 是放大界面而不损失清晰度的唯一方法，这一问题几乎动摇了我使用 KDE 的决心转而尝试了几天 Gnome (颜值即生产力)。虽然最后还是回到了 KDE，但是这个问题还是亟待解决的。一开始使用的方法是，修改主题时不修改窗口装饰元素，还是用 Breeze 的窗口装饰元素，但是这样导致风格很割裂，不统一。网络上也没有什么好的解决方案，在 github 上看到主题 sweet 的作者声称解决了这个问题，但是当有人询问解决方案时他又不再回答。而另一款主题 materia 的作者提出可以修改主题的 css 文件，虽然这个方法还是不太优雅，但好歹是奏效了。&lt;br&gt;
 具体为修改 &lt;code&gt;/usr/share/aurorae/themes/Materia/Materiarc&lt;/code&gt;文件中的&lt;code&gt;PaddingTop&lt;/code&gt;，&lt;code&gt;PaddingRight&lt;/code&gt;，&lt;code&gt;PaddingBottom&lt;/code&gt;，&lt;code&gt;PaddingLeft&lt;/code&gt;参数，在 DPI 为 120 时，分别为&lt;code&gt;8&lt;/code&gt;，&lt;code&gt;24&lt;/code&gt;，&lt;code&gt;48&lt;/code&gt;，&lt;code&gt;24&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Flatpak 与 KDE Global Menu 的兼容性问题</title><link>https://keao.me/posts/flatpak-%E4%B8%8E-kde-global-menu-%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 04 Jan 2024 17:42:11 +0800</pubDate><guid>https://keao.me/posts/flatpak-%E4%B8%8E-kde-global-menu-%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;从 Flatpak 安装的 Obsidian 不显示全局菜单。执行下列命令后解决：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo flatpak override --talk-name&lt;span class="o"&gt;=&lt;/span&gt;com.canonical.AppMenu.Regist
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rar md.obsidian.Obsidian
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rar md.obsidian.Obsidian&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Linux Zen 与 Nvidia</title><link>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</link><pubDate>Mon, 01 Jan 2024 20:17:04 +0800</pubDate><guid>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</guid><description>&lt;p&gt;&lt;code&gt;prime-run steam&lt;/code&gt;命令报错&lt;code&gt;X Error of failed request: BadValue (integer parameter out of range for operation)&lt;/code&gt;，原因是内核与 nvidia 驱动不匹配。按照 archwiki 的说明，安装&lt;code&gt;linux-zen-headers&lt;/code&gt;和&lt;code&gt;nvidia-dkms&lt;/code&gt;并添加内核参数&lt;code&gt;CONFIG_DRM_SIMPLEDRM=y&lt;/code&gt;后解决。&lt;/p&gt;</description></item><item><title>Anki 与 Wayland 的兼容性问题</title><link>https://keao.me/posts/anki-compatibility-with-wayland/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/anki-compatibility-with-wayland/</guid><description>&lt;p&gt;为了使用 waydroid 不得已换 X11 为 Wayland，随之问题就来了。基于 Qt6 的 Anki 似乎与 Wayland 兼容的不太好，无法在 KDE 中使用全局菜单，并且 Goldendict 的&lt;code&gt;Ctrl+c+c&lt;/code&gt;粘贴板查词功能在 Anki 里也无法使用了。
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>Linux Zen 与 Nvidia</title><link>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</link><pubDate>Mon, 01 Jan 2024 20:17:04 +0800</pubDate><guid>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</guid><description>&lt;p&gt;&lt;code&gt;prime-run steam&lt;/code&gt;命令报错&lt;code&gt;X Error of failed request: BadValue (integer parameter out of range for operation)&lt;/code&gt;，原因是内核与 nvidia 驱动不匹配。按照 archwiki 的说明，安装&lt;code&gt;linux-zen-headers&lt;/code&gt;和&lt;code&gt;nvidia-dkms&lt;/code&gt;并添加内核参数&lt;code&gt;CONFIG_DRM_SIMPLEDRM=y&lt;/code&gt;后解决。&lt;/p&gt;</description></item><item><title>Anki 与 Wayland 的兼容性问题</title><link>https://keao.me/posts/anki-compatibility-with-wayland/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/anki-compatibility-with-wayland/</guid><description>&lt;p&gt;为了使用 waydroid 不得已换 X11 为 Wayland，随之问题就来了。基于 Qt6 的 Anki 似乎与 Wayland 兼容的不太好，无法在 KDE 中使用全局菜单，并且 Goldendict 的&lt;code&gt;Ctrl+c+c&lt;/code&gt;粘贴板查词功能在 Anki 里也无法使用了。
 Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot;&amp;quot;&lt;/code&gt;环境变量强制 Anki 使用 X11 解决。使用后果然没有上述问题了，但是出现了新的问题： fcitx 无法在 Anki 里使用了。略微思考后，我想起来我遵从 Wayland 的建议删掉了在&lt;code&gt;/etc/environment&lt;/code&gt;全局设置的&lt;code&gt;QT_IM_MODULE=fcitx&lt;/code&gt;。这个问题官方的建议也提及了，可以单独为 Anki 设置环境变量，设置后问题果然解决。启动命令：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;WAYLAND_DISPLAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx Anki
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;WAYLAND_DISPLAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx Anki&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;实际上还有另一种方式，可以为某些 Qt 应用设置 &lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;环境变量以解决其在 Wayland 中表现不正常的问题。&lt;/p&gt;</description></item><item><title>饥荒联机版专用服务器和多层世界配置指南</title><link>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</link><pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</guid><description>&lt;img src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png" alt="Featured image of post 饥荒联机版专用服务器和多层世界配置指南" /&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;实际上还有另一种方式，可以为某些 Qt 应用设置 &lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;环境变量以解决其在 Wayland 中表现不正常的问题。&lt;/p&gt;</description></item><item><title>饥荒联机版专用服务器和多层世界配置指南</title><link>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</link><pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/</guid><description>&lt;img src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png" alt="Featured image of post 饥荒联机版专用服务器和多层世界配置指南" /&gt;
  &lt;blockquote&gt;
  &lt;p&gt;此文全程处于&lt;code&gt;linux&lt;/code&gt;环境，阅读此文需具备一些&lt;code&gt;linux&lt;/code&gt;使用经验。&lt;/p&gt;
 
@@ -389,7 +519,13 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;p&gt;唯一的限制是，每个存档必须有且仅有一个主世界 (Master Shard)，所有其他的世界都需要绑定到主世界。为了区分，每个世界都有一个唯一的&lt;code&gt;id&lt;/code&gt;，通过给洞穴入口或洞穴出口绑定不同的&lt;code&gt;id&lt;/code&gt;，玩家就可以通过他们在多个世界之间穿越。旺达的溯源表也绑定了世界的&lt;code&gt;id&lt;/code&gt;，因此可以穿越到不同的世界。如图 2 所示，这是一个拥有两个森林和两个洞穴的世界。其中一个森林是主世界，箭头代表可以通过洞穴入口或洞穴出口进出另一个世界。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图2" class="gallery-image" data-flex-basis="334px" data-flex-grow="139" height="3284" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1_hu_c1f0cfcde48371ff.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1_hu_d77b8a39fed17932.png 1600w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1_hu_c17b9fcfc8823d6c.png 2400w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/1.png 4572w" width="4572"&gt;&lt;/p&gt;
 &lt;p&gt;这个世界对应的存档结构如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -406,14 +542,21 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x&lt;span class="o"&gt;]&lt;/span&gt; Cave2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x&lt;span class="o"&gt;]&lt;/span&gt; Forest1
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r--&lt;span class="o"&gt;]&lt;/span&gt; cluster.ini
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r--&lt;span class="o"&gt;]&lt;/span&gt; cluster_token.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r--&lt;span class="o"&gt;]&lt;/span&gt; cluster_token.txt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;可以看出，每个世界都对应一个文件夹。此外，&lt;code&gt;cluster.ini&lt;/code&gt;存放了世界的一些参数设置，&lt;code&gt;cluster_token.txt&lt;/code&gt;里存放了用户的身份令牌 (身份令牌的获取参见下一章)。这些就是一个 存档的完整内容。
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;可以看出，每个世界都对应一个文件夹。此外，&lt;code&gt;cluster.ini&lt;/code&gt;存放了世界的一些参数设置，&lt;code&gt;cluster_token.txt&lt;/code&gt;里存放了用户的身份令牌 (身份令牌的获取参见下一章)。这些就是一个 存档的完整内容。
 也可以去查看&lt;code&gt;~/.klei/DontStarveTogether/$SteamUserID/&lt;/code&gt;目录，如果你在本地创建了存档，那么这个目录下就会有以&lt;code&gt;Cluster_X&lt;/code&gt;格式命名的文件夹，其中&lt;code&gt;X&lt;/code&gt;是此存档在游戏中显示的位置。如图 3 所示，我创建了一个存档，那么此文件夹中就有一个&lt;code&gt;Cluster_1&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图3" class="gallery-image" data-flex-basis="549px" data-flex-grow="228" height="584" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/2.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/2_hu_6bf3d2bda905150d.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/2.png 1336w" width="1336"&gt;&lt;/p&gt;
 &lt;p&gt;查看目录结构，可以看出我只添加了一个主世界，没有添加洞穴。由于只有在专用服务器上运行的存档才需要&lt;code&gt;cluster_token.txt&lt;/code&gt;，因此这里没有。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -422,10 +565,11 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Cluster_1
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Master
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── cluster.ini
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── cluster.ini&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="在本地运行专用服务器"&gt;在本地运行专用服务器
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h2 id="在本地运行专用服务器"&gt;在本地运行专用服务器
 &lt;/h2&gt;&lt;h3 id="准备存档文件"&gt;准备存档文件
 &lt;/h3&gt;&lt;p&gt;在游戏中创建存档，添加好要启用的模组并设置好世界的参数后生成世界。等待世界生成，进入选人物的步骤后，断开连接。&lt;/p&gt;
 
@@ -434,17 +578,24 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 
  &lt;/blockquote&gt;
 &lt;p&gt;进入&lt;code&gt;~/.klei/DontStarveTogether/$SteamUserID/&lt;/code&gt;目录，将刚刚创建的存档&lt;code&gt;Cluster_X&lt;/code&gt;(&lt;code&gt;X&lt;/code&gt;是此存档在游戏中显示的位置)移动到&lt;code&gt;~/.klei/DontStarveTogether/&lt;/code&gt;中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/.klei/DontStarveTogether/&lt;span class="nv"&gt;$SteamUserID&lt;/span&gt;/
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv Cluster_X ..
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv Cluster_X ..&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;使用浏览器打开&lt;a class="link" href="https://accounts.klei.com/login" target="_blank" rel="noopener"
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;使用浏览器打开&lt;a class="link" href="https://accounts.klei.com/login" target="_blank" rel="noopener"
  &gt;Klei Account&lt;/a&gt;，登录自己的&lt;code&gt;Klei&lt;/code&gt;账号，可以使用&lt;code&gt;Steam&lt;/code&gt;登录。登录成功后进入如下页面。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图4" class="gallery-image" data-flex-basis="474px" data-flex-grow="197" height="964" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4_hu_66a0e54210e1f277.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4_hu_cba0b262ca75bd92.png 1600w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/4.png 1904w" width="1904"&gt;&lt;/p&gt;
 &lt;p&gt;点击导航栏中的&lt;code&gt;游戏&lt;/code&gt;，在游戏列表中点击&lt;code&gt;《饥荒：联机版》的游戏服务器&lt;/code&gt;，如下图所示。&lt;/p&gt;
@@ -452,19 +603,32 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;p&gt;随便起一个名字，点击&lt;code&gt;添加新服务器&lt;/code&gt;，然后复制生成的以&lt;code&gt;pds-g^&lt;/code&gt;开头的代码，如下图所示。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图6" class="gallery-image" data-flex-basis="560px" data-flex-grow="233" height="565" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/6.png" srcset="https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/6_hu_72400e7b7790afd4.png 800w, https://keao.me/posts/dst-dedicated-server-multilevel-world-setup-guide/6.png 1320w" width="1320"&gt;&lt;/p&gt;
 &lt;p&gt;在&lt;code&gt;~/.klei/DontStarveTogether/Cluster_X&lt;/code&gt;中创建&lt;code&gt;cluster_token.txt&lt;/code&gt;文件，内容为刚刚复制的代码。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;pds-g^...&amp;#34;&lt;/span&gt; &amp;gt; cluster_token.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;pds-g^...&amp;#34;&lt;/span&gt; &amp;gt; cluster_token.txt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;至此，存档文件就准备好了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;至此，存档文件就准备好了。&lt;/p&gt;
 &lt;h3 id="准备专用服务器和模组"&gt;准备专用服务器和模组
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;Steam&lt;/code&gt;中安装&lt;code&gt;Don't Starve Together Dedicated Server&lt;/code&gt;，进入安装目录 (安装目录可以在&lt;code&gt;Steam&lt;/code&gt;的游戏设置中找到)。
 如果你的存档添加了模组，则需要修改&lt;code&gt;mods&lt;/code&gt;文件夹下的&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。专用服务器启动时，会根据这个文件的内容自动更新模组，如果你只在存档中添加了模组但是没有修改这个文件，则模组会添加失败。将需要添加的模组的&lt;code&gt;id&lt;/code&gt;以如下这种格式添加到此文件中即可。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -473,12 +637,19 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-lua" data-lang="lua"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;1438233888&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--多层世界选择器&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;1418746242&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--汉化增强 Chinese++&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;666155465&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--show me&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ServerModSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;666155465&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;--show me&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;模组的&lt;code&gt;id&lt;/code&gt;可以通过&lt;code&gt;Steam&lt;/code&gt;创意工坊中的链接查看。在&lt;code&gt;Steam&lt;/code&gt;中模组的详情页面右击空白处，选择&lt;code&gt;Copy Page URL&lt;/code&gt;。链接末尾的&lt;code&gt;?id=&lt;/code&gt;后接的就是它的&lt;code&gt;id&lt;/code&gt;。例如&lt;code&gt;Show Me&lt;/code&gt;的创意工坊链接为&lt;code&gt;https://steamcommunity.com/sharedfiles/filedetails/?id=666155465&lt;/code&gt;，其&lt;code&gt;id&lt;/code&gt;为&lt;code&gt;666155465&lt;/code&gt;。
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;模组的&lt;code&gt;id&lt;/code&gt;可以通过&lt;code&gt;Steam&lt;/code&gt;创意工坊中的链接查看。在&lt;code&gt;Steam&lt;/code&gt;中模组的详情页面右击空白处，选择&lt;code&gt;Copy Page URL&lt;/code&gt;。链接末尾的&lt;code&gt;?id=&lt;/code&gt;后接的就是它的&lt;code&gt;id&lt;/code&gt;。例如&lt;code&gt;Show Me&lt;/code&gt;的创意工坊链接为&lt;code&gt;https://steamcommunity.com/sharedfiles/filedetails/?id=666155465&lt;/code&gt;，其&lt;code&gt;id&lt;/code&gt;为&lt;code&gt;666155465&lt;/code&gt;。
 除了这种方式，还可以查看此存档中主世界目录中的&lt;code&gt;modoverrides.lua&lt;/code&gt;文件，这个文件保存了当前世界启用的模组的设置。格式如下所示，其中&lt;code&gt;workshop-&lt;/code&gt;后接的数字就是模组的&lt;code&gt;id&lt;/code&gt;。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -499,31 +670,46 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;既然&lt;code&gt;modoverrides.lua&lt;/code&gt;文件已经保存了模组的&lt;code&gt;id&lt;/code&gt;，那么我们就可以使用脚本将所有添加的模组的&lt;code&gt;id&lt;/code&gt;提取出来。如下命令会根据&lt;code&gt;modoverrides.lua&lt;/code&gt;文件自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;code&gt;cd&lt;/code&gt;到&lt;code&gt;modoverrides.lua&lt;/code&gt;所在目录中执行如下命令，然后将生成的文件复制到&lt;code&gt;专用服务器安装目录/mods&lt;/code&gt;文件夹覆盖原有文件即可。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;既然&lt;code&gt;modoverrides.lua&lt;/code&gt;文件已经保存了模组的&lt;code&gt;id&lt;/code&gt;，那么我们就可以使用脚本将所有添加的模组的&lt;code&gt;id&lt;/code&gt;提取出来。如下命令会根据&lt;code&gt;modoverrides.lua&lt;/code&gt;文件自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;code&gt;cd&lt;/code&gt;到&lt;code&gt;modoverrides.lua&lt;/code&gt;所在目录中执行如下命令，然后将生成的文件复制到&lt;code&gt;专用服务器安装目录/mods&lt;/code&gt;文件夹覆盖原有文件即可。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ./modoverrides.lua &lt;span class="p"&gt;|&lt;/span&gt; grep -E &lt;span class="s1"&gt;&amp;#39;\[&amp;#34;workshop-[0-9]+&amp;#34;\].*&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed -r &lt;span class="s1"&gt;&amp;#39;s/\[&amp;#34;workshop-([0-9]+)&amp;#34;\].*/ServerModSetup(&amp;#34;\1&amp;#34;)/g&amp;#39;&lt;/span&gt; &amp;gt; dedicated_server_mods_setup.lua
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ./modoverrides.lua &lt;span class="p"&gt;|&lt;/span&gt; grep -E &lt;span class="s1"&gt;&amp;#39;\[&amp;#34;workshop-[0-9]+&amp;#34;\].*&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed -r &lt;span class="s1"&gt;&amp;#39;s/\[&amp;#34;workshop-([0-9]+)&amp;#34;\].*/ServerModSetup(&amp;#34;\1&amp;#34;)/g&amp;#39;&lt;/span&gt; &amp;gt; dedicated_server_mods_setup.lua&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id="启动专用服务器"&gt;启动专用服务器
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h3 id="启动专用服务器"&gt;启动专用服务器
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;cd&lt;/code&gt;到安装目录中的&lt;code&gt;bin64&lt;/code&gt;文件夹，执行&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2"&gt;&amp;#34;Cluster_X&amp;#34;&lt;/span&gt; -monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt; -shard Caves &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2"&gt;&amp;#34;Cluster_X&amp;#34;&lt;/span&gt; -monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt; -shard Master
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster &lt;span class="s2"&gt;&amp;#34;Cluster_X&amp;#34;&lt;/span&gt; -monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt; -shard Master&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;-console&lt;/code&gt;指定在游戏中启用控制台。
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;&lt;code&gt;-console&lt;/code&gt;指定在游戏中启用控制台。
 &lt;code&gt;-cluster&lt;/code&gt;指定存档的名字，这个名字和要运行的存档文件夹名对应。
 &lt;code&gt;-shard&lt;/code&gt;指定世界碎片的名字。同样，这个名字也要和世界碎片的文件夹名对应。&lt;/p&gt;
 
@@ -533,7 +719,13 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
  &lt;/blockquote&gt;
 &lt;h2 id="在云服务器运行专用服务器"&gt;在云服务器运行专用服务器
 &lt;/h2&gt;&lt;p&gt;购买阿里云或腾讯云提供的云服务器，配置选择&lt;code&gt;1核2G&lt;/code&gt;或者&lt;code&gt;2核4G&lt;/code&gt;即可。安装&lt;code&gt;Debian&lt;/code&gt;或&lt;code&gt;Ubuntu&lt;/code&gt;操作系统，在安全组中开放&lt;code&gt;10888-10999&lt;/code&gt;端口。此处以&lt;code&gt;Debian&lt;/code&gt;为例。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -570,37 +762,58 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; `&lt;/span&gt;&lt;span class="nv"&gt;$$&lt;/span&gt;&lt;span class="s2"&gt;b.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; `Y&lt;/span&gt;&lt;span class="nv"&gt;$$&lt;/span&gt;&lt;span class="s2"&gt;b.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; `&amp;#34;&lt;/span&gt;Y&lt;span class="nv"&gt;$b&lt;/span&gt;._
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;添加&lt;code&gt;32&lt;/code&gt;位支持&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo dpkg --add-architecture i386
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;安装依赖&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386 -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386 -y&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;安装&lt;code&gt;SteamCMD&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -613,14 +826,21 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir -p ~/steamcmd/
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/steamcmd/
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xvzf steamcmd_linux.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xvzf steamcmd_linux.tar.gz&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;准备存档文件
 这一步骤与上一章中的相同，可以在本地生成存档文件夹，然后上传到服务器。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -635,13 +855,20 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 在本地&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/.klei/DoNotStarveTogether
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;scp -r ./Cluster_X username@xxx.xxx.xxx.xxx:~/.klei/DoNotStarveTogether/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;scp -r ./Cluster_X username@xxx.xxx.xxx.xxx:~/.klei/DoNotStarveTogether/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ul&gt;
 &lt;li&gt;将以下内容写入&lt;code&gt;run_server.sh&lt;/code&gt;文件并赋予其执行权限。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -730,22 +957,30 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="o"&gt;+=(&lt;/span&gt;-monitor_parent_process &lt;span class="nv"&gt;$$&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -shard Caves &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/^/Caves: /&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -shard Master &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/^/Master: /&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;run_shared&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -shard Master &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/^/Master: /&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这个脚本是我在&lt;code&gt;Klei&lt;/code&gt;官方提供的脚本的基础上优化修改而来。运行时需要提供存档文件夹的名称作为脚本的第一个参数。脚本将会检查存档文件是否完整，使用&lt;code&gt;SteamCMD&lt;/code&gt;更新专用服务器并根据存档的模组设置文件&lt;code&gt;modoverrides.lua&lt;/code&gt;自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;这个脚本是我在&lt;code&gt;Klei&lt;/code&gt;官方提供的脚本的基础上优化修改而来。运行时需要提供存档文件夹的名称作为脚本的第一个参数。脚本将会检查存档文件是否完整，使用&lt;code&gt;SteamCMD&lt;/code&gt;更新专用服务器并根据存档的模组设置文件&lt;code&gt;modoverrides.lua&lt;/code&gt;自动生成&lt;code&gt;dedicated_server_mods_setup.lua&lt;/code&gt;文件。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;运行脚本&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./run_server.sh Cluster_X
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./run_server.sh Cluster_X&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;由于第一次运行时要下载专用服务器，速度会比较慢。当终端输出&lt;code&gt;Sim paused&lt;/code&gt;时就说明启动完毕，可以在游戏中搜索加入了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;由于第一次运行时要下载专用服务器，速度会比较慢。当终端输出&lt;code&gt;Sim paused&lt;/code&gt;时就说明启动完毕，可以在游戏中搜索加入了。&lt;/p&gt;
 
  &lt;blockquote&gt;
  &lt;p&gt;可以使用&lt;code&gt;tmux&lt;/code&gt;或&lt;code&gt;screen&lt;/code&gt;等工具，这样脚本就可以在后台运行了。&lt;/p&gt;
@@ -769,7 +1004,13 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/h3&gt;&lt;p&gt;因为网络原因，有时专用服务器会在下载某些模组时失败。如果运行后发现只有一部分模组，一般重新运行专用服务器即可。&lt;/p&gt;
 &lt;h3 id="游戏大厅内无法搜索到世界"&gt;游戏大厅内无法搜索到世界
 &lt;/h3&gt;&lt;p&gt;可以通过控制台指令&lt;code&gt;c_connect(&amp;quot;xxx.xxx.xxx.xxx&amp;quot;，10999，&amp;quot;password&amp;quot;)&lt;/code&gt;加入世界，其中第一个参数是服务器的&lt;code&gt;IP&lt;/code&gt;地址，第二个参数是主世界碎片的端口号，第三个参数是世界的密码。&lt;/p&gt;</description></item><item><title>GNU Parallel 的妙用</title><link>https://keao.me/posts/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnu-parallel-tips/</guid><description>&lt;p&gt;Android QQ 的图片文件是以下面这种结构保存的，以&lt;code&gt;Cache_&lt;/code&gt;开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -790,11 +1031,18 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   ├── Cache_-489f6e9c62ea10a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   └── Cache_57776dc1e17110a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── 0a7
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -811,95 +1059,158 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_373e35b7b8a290a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-489f6e9c62ea10a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-4dfb57e9a7cec0a0
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;命令如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;命令如下:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/details&gt;
+
  &lt;blockquote&gt;
  &lt;p&gt;参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
  &gt;https://www.myfreax.com/gnu-parallel/&lt;/a&gt;&lt;/p&gt;
 
  &lt;/blockquote&gt;</description></item><item><title>使用 Shell 批量修改文件后缀和批量格式转换</title><link>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</guid><description>&lt;img src="https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/image.png" alt="Featured image of post 使用 Shell 批量修改文件后缀和批量格式转换" /&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 脚本是处理这类工作最为简单，快捷的方式。&lt;/p&gt;
 &lt;h2 id="修改后缀"&gt;修改后缀
-&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/h2&gt;&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="格式转换"&gt;格式转换
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h2 id="格式转换"&gt;格式转换
 &lt;/h2&gt;&lt;h3 id="heic-转-jpg"&gt;heic 转 jpg
 &lt;/h3&gt;&lt;p&gt;首先，安装转换工具。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
 &lt;h3 id="flac-转-mp3"&gt;flac 转 mp3
 &lt;/h3&gt;&lt;p&gt;首先，安装转换工具：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;原理同上。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;原理同上。&lt;/p&gt;
 &lt;h3 id="速度优化"&gt;速度优化
 &lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;for&lt;/code&gt; 循环的方式，所有文件排着队一个一个的被 &lt;code&gt;ffmpeg&lt;/code&gt; 处理。 这种方式固然可以，但效率太低了。 我的运行环境如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -940,31 +1251,46 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/ossssso+/:- -:/+osssso+- GPU: Intel HD Graphics &lt;span class="m"&gt;630&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;+sso+:-&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;.-/+oso: Memory: 7216MiB / 19554MiB
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;++:. &lt;span class="sb"&gt;`&lt;/span&gt;-/+/
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
 &lt;p&gt;使用终端工具&lt;a class="link" href="%22https://www.gnu.org/software/parallel/sphinx.html%22" &gt;GNU Parallel&lt;/a&gt;，命令如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
 &lt;p&gt;经过测试，在同样环境下处理同样的 &lt;code&gt;.flac&lt;/code&gt; 文件仅需 &lt;code&gt;17&lt;/code&gt; 秒。&lt;/p&gt;</description></item><item><title>为 Gwenview 添加 HEIC 支持</title><link>https://keao.me/posts/%E4%B8%BA-gwenview-%E6%B7%BB%E5%8A%A0-heic-%E6%94%AF%E6%8C%81/</link><pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/%E4%B8%BA-gwenview-%E6%B7%BB%E5%8A%A0-heic-%E6%94%AF%E6%8C%81/</guid><description>&lt;p&gt;Dolphin 中无法加载缩略图，也无法打开图片。&lt;/p&gt;
 &lt;p&gt;安装&lt;code&gt;kimageformats&lt;/code&gt;后解决。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S kimageformats
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S kimageformats&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/details&gt;
+
  &lt;blockquote&gt;
  &lt;p&gt;参考 &lt;a class="link" href="https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/" target="_blank" rel="noopener"
  &gt;https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/&lt;/a&gt;&lt;/p&gt;

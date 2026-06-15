@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on Kyle's Blog</title><link>https://keao.me/tags/programming/</link><description>Recent content in Programming on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://keao.me/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>The Theory of Generalization: From Break Points To The Vc Inequality</title><link>https://keao.me/posts/the-theory-of-generalization-from-break-points-to-the-vc-inequality/</link><pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/the-theory-of-generalization-from-break-points-to-the-vc-inequality/</guid><description>&lt;img src="https://keao.me/posts/the-theory-of-generalization-from-break-points-to-the-vc-inequality/image.png" alt="Featured image of post The Theory of Generalization: From Break Points To The Vc Inequality" /&gt;&lt;h2 id="the-explanation-of-function-b"&gt;The Explanation of Function B
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on Kyle's Blog</title><link>https://keao.me/tags/programming/</link><description>Recent content in Programming on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 14 Feb 2026 12:11:54 +1100</lastBuildDate><atom:link href="https://keao.me/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>The Theory of Generalization: From Break Points To The Vc Inequality</title><link>https://keao.me/posts/the-theory-of-generalization-from-break-points-to-the-vc-inequality/</link><pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/the-theory-of-generalization-from-break-points-to-the-vc-inequality/</guid><description>&lt;img src="https://keao.me/posts/the-theory-of-generalization-from-break-points-to-the-vc-inequality/image.png" alt="Featured image of post The Theory of Generalization: From Break Points To The Vc Inequality" /&gt;&lt;h2 id="the-explanation-of-function-b"&gt;The Explanation of Function B
 &lt;/h2&gt;&lt;p&gt;\(B(N, k)\) denotes the maximum number of dichotomies on \(N\) points, with break point \(k\). For example, \(B(1000, 4)\) denotes the number of dichotomies that a 2-dimensional perceptron can make on 1000 data points.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: A 2-dimensional perceptron has a break point of 4, which means a 2-dimensional perceptron cannot offer all dichotomies on 4 points.&lt;/p&gt;
 &lt;h2 id="the-recursive-function-b"&gt;The Recursive Function B
@@ -57,7 +57,13 @@ $$&lt;p&gt;Combining the above, we obtain:&lt;/p&gt;
 $$
 B(N,k) = \alpha + 2\beta \le B(N-1,k) + B(N-1, k-1)
 $$&lt;h2 id="the-implementation-of-recursive-function-b"&gt;The Implementation of Recursive Function B
-&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/h2&gt;&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -78,11 +84,18 @@ $$&lt;h2 id="the-implementation-of-recursive-function-b"&gt;The Implementation o
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="the-table-of-function-b"&gt;The Table of Function B
-&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h2 id="the-table-of-function-b"&gt;The Table of Function B
+&lt;/h2&gt;&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -103,10 +116,11 @@ $$&lt;h2 id="the-implementation-of-recursive-function-b"&gt;The Implementation o
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;N=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;pre&gt;&lt;code&gt; k=1 k=2 k=3 k=4 k=5 k=6 k=7 k=8 k=9 k=10 
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;pre&gt;&lt;code&gt; k=1 k=2 k=3 k=4 k=5 k=6 k=7 k=8 k=9 k=10 
 
 N=1 1 2 2 2 2 2 2 2 2 2 
 
@@ -131,7 +145,13 @@ N=10 1 11 56 176 386 638 848 968 1013 1023
 &lt;h2 id="a-theorem"&gt;A Theorem
 &lt;/h2&gt;$$
 B(N,k) \le \sum_{i=0}^{k-1}{\binom{N}{i}}
-$$&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+$$&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -158,10 +178,11 @@ $$&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;B&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;binomial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;binomial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Goal:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Goal:&lt;/p&gt;
 $$
 \sum_{i=0}^{k-1}{\binom{N}{i}}=\sum_{i=0}^{k-1}{\binom{N-1}{i}}+\sum_{i=0}^{k-2}{\binom{N-1}{i}}
 $$&lt;p&gt;Steps:&lt;/p&gt;
@@ -178,7 +199,13 @@ An intuitive way to understand how (1) becomes to (2) is to consider the essence
 &lt;p&gt;If the person is not chosen, then we need to select all \(i\) people from the remaining \(N-1\), giving \(\binom{N-1}{i}\) combinations. If the person is chosen, we have already selected one, so we only need to choose the remaining \(i-1\) people from the other \(N-1\), resulting in \(\binom{N-1}{i-1}\) combinations. Together, these two cases account for all possible selections.&lt;/p&gt;</description></item><item><title>自动切换 SumatraPDF 主题</title><link>https://keao.me/posts/auto-toggle-sumatrapdf-themes/</link><pubDate>Tue, 15 Jul 2025 17:01:11 +0800</pubDate><guid>https://keao.me/posts/auto-toggle-sumatrapdf-themes/</guid><description>&lt;p&gt;SumatraPDF 小巧，快速，对于浏览 PDF 来说再合适不过。唯一的缺点就是功能有些许缺失，例如：虽然有更换主题功能，但是不能跟随 Windows 主题一起变化，并且界面颜色改变时，文档的颜色不改变。于是乎每当在夜晚打开一份 PDF 都仿佛打开了太阳&amp;hellip;&amp;hellip;&lt;/p&gt;
 &lt;p&gt;微软的应用商店 Microsoft Store 中有一款软件 Auto Dark Mode 可以自动切换 Windows 的暗色模式，并且支持在切换时运行脚本。正巧 SumatraPDF 可以通过配置文件配置，实际上对于一些高级设置（例如字体颜色和背景颜色）只支持使用配置文件设置。因此一个简单的方案就是：编写一个脚本根据参数不同自动修改 SumatraPDF 的配置文件，并且设置 Auto Dark Mode 使其在切换 Windows 主题时自动运行此脚本。&lt;/p&gt;
 &lt;p&gt;Auto Dark Mode 配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -199,11 +226,18 @@ An intuitive way to understand how (1) becomes to (2) is to consider the essence
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; WorkingDirectory: C:\Users\kyle\AppData\Local\SumatraPDF
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ArgsLight: [toggle_theme.py, light]
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ArgsDark: [toggle_theme.py, dark]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; AllowedSources: [Any]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; AllowedSources: [Any]&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Python 脚本：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Python 脚本：&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -274,11 +308,17 @@ An intuitive way to understand how (1) becomes to (2) is to consider the essence
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;BackgroundColor\s*=\s*#[0-9a-fA-F]+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;BackgroundColor = &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;background_color&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Convert All Mp4 to Mp3 in One Command</title><link>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</link><pubDate>Fri, 13 Jun 2025 12:37:35 +0800</pubDate><guid>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</guid><description>&lt;p&gt;I get a directory like following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>Convert All Mp4 to Mp3 in One Command</title><link>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</link><pubDate>Fri, 13 Jun 2025 12:37:35 +0800</pubDate><guid>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</guid><description>&lt;p&gt;I get a directory like following:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -345,99 +385,169 @@ An intuitive way to understand how (1) becomes to (2) is to consider the essence
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ├── TBBTS06E01.mp4
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ├── TBBTS06E02.mp4
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ├── TBBTS06E03.mp4
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ...
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;I want to transform all mp4 files to mp3 and move them to a new directory called mp3 in current directory.
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;I want to transform all mp4 files to mp3 and move them to a new directory called mp3 in current directory.
 here is the command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; find . -name &lt;span class="s2"&gt;&amp;#34;*.mp4&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel -j20 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} ./mp3/{/.}.mp3&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; find . -name &lt;span class="s2"&gt;&amp;#34;*.mp4&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel -j20 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} ./mp3/{/.}.mp3&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;where &lt;code&gt;{/.}&lt;/code&gt; represents a clear file name that stripped extension name and path&lt;/p&gt;</description></item><item><title>Convert Jupyter Notebook to PDF With Reporting Format</title><link>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</guid><description>&lt;img src="https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/image.png" alt="Featured image of post Convert Jupyter Notebook to PDF With Reporting Format" /&gt;&lt;p&gt;Install &lt;code&gt;nbconvert&lt;/code&gt; via &lt;code&gt;pip&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;where &lt;code&gt;{/.}&lt;/code&gt; represents a clear file name that stripped extension name and path&lt;/p&gt;</description></item><item><title>Convert Jupyter Notebook to PDF With Reporting Format</title><link>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</guid><description>&lt;img src="https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/image.png" alt="Featured image of post Convert Jupyter Notebook to PDF With Reporting Format" /&gt;&lt;p&gt;Install &lt;code&gt;nbconvert&lt;/code&gt; via &lt;code&gt;pip&lt;/code&gt;&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Now, the command&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Now, the command&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
 &lt;p&gt;The template consists of two files: &lt;code&gt;assignment.tex.j2&lt;/code&gt; and &lt;code&gt;style_assignment.tex.j2&lt;/code&gt;, which are modified duplicates of existing files. Template files are located in &lt;code&gt;share\jupyter\nbconvert\templates\latex&lt;/code&gt;. Duplicate &lt;code&gt;report.tex.j2&lt;/code&gt; and modify the second line to&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;replaced by&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;replaced by&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;assignment.tex.j2&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -490,13 +600,20 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block markdowncell scoped *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( cell.source | citation2latex | strip&lt;span class="nb"&gt;_&lt;/span&gt;files&lt;span class="nb"&gt;_&lt;/span&gt;prefix | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;markdown+tex&lt;span class="nb"&gt;_&lt;/span&gt;math&lt;span class="nb"&gt;_&lt;/span&gt;double&lt;span class="nb"&gt;_&lt;/span&gt;backslash&amp;#39;, &amp;#39;json&amp;#39;,extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[]) | resolve&lt;span class="nb"&gt;_&lt;/span&gt;references | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;json&amp;#39;,&amp;#39;latex&amp;#39;, extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[&amp;#34;--top-level-division=chapter&amp;#34;]) )))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;ol start="2"&gt;
 &lt;li&gt;style_assignment.tex.j2&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -859,11 +976,18 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1228,10 +1352,10 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Merge Anki Audios</title><link>https://keao.me/posts/merge-anki-audios/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/merge-anki-audios/</guid><description>&lt;ol&gt;
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>Merge Anki Audios</title><link>https://keao.me/posts/merge-anki-audios/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/merge-anki-audios/</guid><description>&lt;ol&gt;
 &lt;li&gt;exporting all selected notes with media references&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img class="gallery-image" data-flex-basis="440px" data-flex-grow="183" height="602" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/merge-anki-audios/1.png" srcset="https://keao.me/posts/merge-anki-audios/1_hu_8a2281064d606483.png 800w, https://keao.me/posts/merge-anki-audios/1.png 1104w" width="1104"&gt;&lt;/p&gt;
@@ -1239,7 +1363,13 @@ here is the command:&lt;/p&gt;
 &lt;li&gt;extract media paths from the exported file&lt;/li&gt;
 &lt;li&gt;write a python script merging all selected audios into one&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1400,10 +1530,10 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;ffmpeg&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-y&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-f&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;concat&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-safe&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-i&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;file_list.txt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-c&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;copy&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;output.mp3&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Prune a Dictionary File(.mdx)</title><link>https://keao.me/posts/prune-a-dictionary-file.mdx/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/prune-a-dictionary-file.mdx/</guid><description>&lt;h2 id="introduction"&gt;Introduction
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>Prune a Dictionary File(.mdx)</title><link>https://keao.me/posts/prune-a-dictionary-file.mdx/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/prune-a-dictionary-file.mdx/</guid><description>&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;Dictionaries such as &amp;ldquo;Oxford&amp;rdquo; and &amp;ldquo;Longman&amp;rdquo; are used as the sources for the definitions in my flashcards. However, they sometimes contain too much unnecessary information, therefore making it unwieldy and grandiose, leading to a low loading speed and distractions.&lt;/p&gt;
 &lt;p&gt;Since an MDX file utilizes the HTML format to save entries, which closely resembles the tree structure, I use the term &amp;ldquo;prune&amp;rdquo; to describe the course of removing branches, i.e. html nodes that contain superfluous elements.&lt;/p&gt;
 &lt;p&gt;Each group of three lines in a mdx file constitutes an entry of a word where the first and the third lines are delimiters while the middle line is html content. Since typically MDX files are quite large, a division step is required for parallel processing. Thus, the breakdown procedures are as follows:&lt;/p&gt;
@@ -1413,7 +1543,13 @@ here is the command:&lt;/p&gt;
 &lt;li&gt;merge files into one mdx file.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="code"&gt;Code
-&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/h2&gt;&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1534,11 +1670,18 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shutil&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;./divided_files&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;./divided_files&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;detailed pruning code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;detailed pruning code:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1611,11 +1754,17 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;outfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;input_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;output_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;process_html_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;process_html_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>GNU Parallel 的妙用</title><link>https://keao.me/posts/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnu-parallel-tips/</guid><description>&lt;p&gt;Android QQ 的图片文件是以下面这种结构保存的，以&lt;code&gt;Cache_&lt;/code&gt;开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;</description></item><item><title>GNU Parallel 的妙用</title><link>https://keao.me/posts/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnu-parallel-tips/</guid><description>&lt;p&gt;Android QQ 的图片文件是以下面这种结构保存的，以&lt;code&gt;Cache_&lt;/code&gt;开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -1636,11 +1785,18 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   ├── Cache_-489f6e9c62ea10a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   └── Cache_57776dc1e17110a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── 0a7
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -1657,95 +1813,158 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_373e35b7b8a290a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-489f6e9c62ea10a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-4dfb57e9a7cec0a0
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;命令如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;命令如下:&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/details&gt;
+
  &lt;blockquote&gt;
  &lt;p&gt;参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
  &gt;https://www.myfreax.com/gnu-parallel/&lt;/a&gt;&lt;/p&gt;
 
  &lt;/blockquote&gt;</description></item><item><title>使用 Shell 批量修改文件后缀和批量格式转换</title><link>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</guid><description>&lt;img src="https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/image.png" alt="Featured image of post 使用 Shell 批量修改文件后缀和批量格式转换" /&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 脚本是处理这类工作最为简单，快捷的方式。&lt;/p&gt;
 &lt;h2 id="修改后缀"&gt;修改后缀
-&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/h2&gt;&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="格式转换"&gt;格式转换
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;h2 id="格式转换"&gt;格式转换
 &lt;/h2&gt;&lt;h3 id="heic-转-jpg"&gt;heic 转 jpg
 &lt;/h3&gt;&lt;p&gt;首先，安装转换工具。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
 &lt;h3 id="flac-转-mp3"&gt;flac 转 mp3
 &lt;/h3&gt;&lt;p&gt;首先，安装转换工具：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;原理同上。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;原理同上。&lt;/p&gt;
 &lt;h3 id="速度优化"&gt;速度优化
 &lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;for&lt;/code&gt; 循环的方式，所有文件排着队一个一个的被 &lt;code&gt;ffmpeg&lt;/code&gt; 处理。 这种方式固然可以，但效率太低了。 我的运行环境如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1786,18 +2005,26 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/ossssso+/:- -:/+osssso+- GPU: Intel HD Graphics &lt;span class="m"&gt;630&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;+sso+:-&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;.-/+oso: Memory: 7216MiB / 19554MiB
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;++:. &lt;span class="sb"&gt;`&lt;/span&gt;-/+/
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
 &lt;p&gt;使用终端工具&lt;a class="link" href="%22https://www.gnu.org/software/parallel/sphinx.html%22" &gt;GNU Parallel&lt;/a&gt;，命令如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;details class="code-fold" open&gt;
+ &lt;summary&gt;
+ &lt;div class="code-summary-wrapper"&gt;
+ &lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/summary&gt;
+ &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
 &lt;p&gt;经过测试，在同样环境下处理同样的 &lt;code&gt;.flac&lt;/code&gt; 文件仅需 &lt;code&gt;17&lt;/code&gt; 秒。&lt;/p&gt;</description></item></channel></rss>
