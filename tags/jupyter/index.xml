@@ -1,86 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jupyter on Kyle's Blog</title><link>https://keao.me/tags/jupyter/</link><description>Recent content in Jupyter on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 13 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://keao.me/tags/jupyter/index.xml" rel="self" type="application/rss+xml"/><item><title>Convert Jupyter Notebook to PDF With Reporting Format</title><link>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</guid><description>&lt;img src="https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/image.png" alt="Featured image of post Convert Jupyter Notebook to PDF With Reporting Format" /&gt;&lt;p&gt;Install &lt;code&gt;nbconvert&lt;/code&gt; via &lt;code&gt;pip&lt;/code&gt;&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Now, the command&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Now, the command&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
 &lt;p&gt;The template consists of two files: &lt;code&gt;assignment.tex.j2&lt;/code&gt; and &lt;code&gt;style_assignment.tex.j2&lt;/code&gt;, which are modified duplicates of existing files. Template files are located in &lt;code&gt;share\jupyter\nbconvert\templates\latex&lt;/code&gt;. Duplicate &lt;code&gt;report.tex.j2&lt;/code&gt; and modify the second line to&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;replaced by&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;replaced by&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -88,49 +52,31 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;assignment.tex.j2&lt;/li&gt;
 &lt;/ol&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -184,18 +130,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block markdowncell scoped *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( cell.source | citation2latex | strip&lt;span class="nb"&gt;_&lt;/span&gt;files&lt;span class="nb"&gt;_&lt;/span&gt;prefix | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;markdown+tex&lt;span class="nb"&gt;_&lt;/span&gt;math&lt;span class="nb"&gt;_&lt;/span&gt;double&lt;span class="nb"&gt;_&lt;/span&gt;backslash&amp;#39;, &amp;#39;json&amp;#39;,extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[]) | resolve&lt;span class="nb"&gt;_&lt;/span&gt;references | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;json&amp;#39;,&amp;#39;latex&amp;#39;, extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[&amp;#34;--top-level-division=chapter&amp;#34;]) )))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;ol start="2"&gt;
+&lt;/div&gt;&lt;ol start="2"&gt;
 &lt;li&gt;style_assignment.tex.j2&lt;/li&gt;
 &lt;/ol&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -384,8 +324,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block packages -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="na"&gt;[breakable]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;parskip&lt;span class="nb"&gt;}&lt;/span&gt; &lt;span class="c"&gt;% Stop auto-indenting (to mimic markdown behaviour)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
@@ -559,16 +499,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -758,8 +692,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block packages -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="na"&gt;[breakable]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;parskip&lt;span class="nb"&gt;}&lt;/span&gt; &lt;span class="c"&gt;% Stop auto-indenting (to mimic markdown behaviour)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
@@ -934,7 +868,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item></channel></rss>
+&lt;/div&gt;</description></item></channel></rss>

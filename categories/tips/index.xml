@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Kyle's Blog</title><link>https://keao.me/categories/tips/</link><description>Recent content in Tips on Kyle's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 04 Nov 2025 15:39:12 +1100</lastBuildDate><atom:link href="https://keao.me/categories/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>Disable Network Discovery of Speakers on Fedora</title><link>https://keao.me/posts/disable-network-discovery-of-speakers-on-fedora/</link><pubDate>Tue, 04 Nov 2025 15:39:12 +1100</pubDate><guid>https://keao.me/posts/disable-network-discovery-of-speakers-on-fedora/</guid><description>&lt;p&gt;The network discovery of remote speakers is enabled by default on Fedora, leading to a very long list in the output device setting. To disable this feature:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -18,68 +12,46 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;context.properties = {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt; module.raop = false
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;}&amp;#34;&lt;/span&gt; &amp;gt; ~/.config/pipewire/pipewire.conf.d/noraop.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user restart pipewire&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user restart pipewire
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Source: &lt;a class="link" href="https://discussion.fedoraproject.org/t/airplay-audio-outputs-discovery-enabled-by-default/166328" target="_blank" rel="noopener"
-&gt;Fedora Discussion&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Fontconfig in Flatpak</title><link>https://keao.me/posts/fontconfig-in-flatpak/</link><pubDate>Mon, 03 Nov 2025 16:35:29 +1100</pubDate><guid>https://keao.me/posts/fontconfig-in-flatpak/</guid><description>&lt;p&gt;Applications installed via Flatpak do not respect fontconfig settings stored in &lt;code&gt;~/.config/fontconfig/&lt;/code&gt; by default. The solution is to copy the &lt;code&gt;fontconfig&lt;/code&gt; directory to &lt;code&gt;.var/app/&amp;lt;APP_ID&amp;gt;/config/&lt;/code&gt;, where &lt;code&gt;&amp;lt;APP_ID&amp;gt;&lt;/code&gt; is the Flatpak application ID.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;Source: &lt;a class="link" href="https://discussion.fedoraproject.org/t/airplay-audio-outputs-discovery-enabled-by-default/166328" target="_blank" rel="noopener"
+ &gt;Fedora Discussion&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Fontconfig in Flatpak</title><link>https://keao.me/posts/fontconfig-in-flatpak/</link><pubDate>Mon, 03 Nov 2025 16:35:29 +1100</pubDate><guid>https://keao.me/posts/fontconfig-in-flatpak/</guid><description>&lt;p&gt;Applications installed via Flatpak do not respect fontconfig settings stored in &lt;code&gt;~/.config/fontconfig/&lt;/code&gt; by default. The solution is to copy the &lt;code&gt;fontconfig&lt;/code&gt; directory to &lt;code&gt;.var/app/&amp;lt;APP_ID&amp;gt;/config/&lt;/code&gt;, where &lt;code&gt;&amp;lt;APP_ID&amp;gt;&lt;/code&gt; is the Flatpak application ID.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r ~/.config/fontconfig ~/.var/app/com.example.App/config/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp -r ~/.config/fontconfig ~/.var/app/com.example.App/config/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Toggle Color Theme on Plasma</title><link>https://keao.me/posts/toggle-color-theme-on-plasma/</link><pubDate>Sun, 12 Oct 2025 12:07:36 +1100</pubDate><guid>https://keao.me/posts/toggle-color-theme-on-plasma/</guid><description>&lt;p&gt;Plasma introduced a quick settings panel in plasma 6, where you can toggle between &lt;code&gt;Breeze&lt;/code&gt; and &lt;code&gt;Breeze Dark&lt;/code&gt; themes. However, it will change the entire theme, ruining customizations like icons. You can toggle the color scheme manually by using the following command:&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>Toggle Color Theme on Plasma</title><link>https://keao.me/posts/toggle-color-theme-on-plasma/</link><pubDate>Sun, 12 Oct 2025 12:07:36 +1100</pubDate><guid>https://keao.me/posts/toggle-color-theme-on-plasma/</guid><description>&lt;p&gt;Plasma introduced a quick settings panel in plasma 6, where you can toggle between &lt;code&gt;Breeze&lt;/code&gt; and &lt;code&gt;Breeze Dark&lt;/code&gt; themes. However, it will change the entire theme, ruining customizations like icons. You can toggle the color scheme manually by using the following command:&lt;/p&gt;
 &lt;p&gt;For dark theme:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze-dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme BreezeDark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Light.profile/DefaultProfile=Dark.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze-dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme BreezeDark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Light.profile/DefaultProfile=Dark.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;For light theme:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;For light theme:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme Breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Dark.profile/DefaultProfile=Light.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;plasma-apply-desktoptheme breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-colorscheme Breeze &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; plasma-apply-cursortheme Breeze_Dark &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/lib/plasma-changeicons Papirus-Light &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/sed -i &lt;span class="s1"&gt;&amp;#39;s/DefaultProfile=Dark.profile/DefaultProfile=Light.profile/&amp;#39;&lt;/span&gt; ~/.config/konsolerc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Before running the commands, ensure you have the &lt;code&gt;Papirus&lt;/code&gt; icon theme installed and &lt;code&gt;Light&lt;/code&gt; and &lt;code&gt;Dark&lt;/code&gt; &lt;code&gt;konsole&lt;/code&gt; profiles created. It will change the desktop theme, color scheme, cursor theme, icon theme, and &lt;code&gt;konsole&lt;/code&gt; profile. Moreover, you can create two scripts and bind them to keyboard shortcuts for easy toggling.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;24/10/25 Update&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;&lt;p&gt;Before running the commands, ensure you have the &lt;code&gt;Papirus&lt;/code&gt; icon theme installed and &lt;code&gt;Light&lt;/code&gt; and &lt;code&gt;Dark&lt;/code&gt; &lt;code&gt;konsole&lt;/code&gt; profiles created. It will change the desktop theme, color scheme, cursor theme, icon theme, and &lt;code&gt;konsole&lt;/code&gt; profile. Moreover, you can create two scripts and bind them to keyboard shortcuts for easy toggling.&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;24/10/25 Update&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;Plasma 6.5 was released, introducing a new feature to automatically switch between light and dark themes based on the time of day. However, it does not support custom icon themes and &lt;code&gt;konsole&lt;/code&gt; profiles. A workaround is to run a script that monitors the theme change event and applies the necessary changes.&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -185,16 +157,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;previous_theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$current_theme&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;A user-level systemd service can be created to run this script in the background:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;A user-level systemd service can be created to run this script in the background:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -220,16 +186,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Restart=on-failure
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[Install]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WantedBy=default.target&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WantedBy=default.target
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;And the commands to enable and start the service:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;And the commands to enable and start the service:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -237,32 +197,20 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user &lt;span class="nb"&gt;enable&lt;/span&gt; theme-monitor.service
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user start theme-monitor.service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl --user start theme-monitor.service
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Even though this solution works, it&amp;rsquo;s quite hacky and heavy. Hoping for a better built-in feature in the future Plasma releases.&lt;/p&gt;</description></item><item><title>One Time Reboot to Win Shortcut</title><link>https://keao.me/posts/one-time-reboot-to-win-shortcut/</link><pubDate>Tue, 16 Sep 2025 23:00:17 +1000</pubDate><guid>https://keao.me/posts/one-time-reboot-to-win-shortcut/</guid><description>&lt;h2 id="reboot-to-windows-once-from-linux"&gt;Reboot to Windows Once from Linux
+&lt;/div&gt;&lt;p&gt;Even though this solution works, it&amp;rsquo;s quite hacky and heavy. Hoping for a better built-in feature in the future Plasma releases.&lt;/p&gt;</description></item><item><title>One Time Reboot to Win Shortcut</title><link>https://keao.me/posts/one-time-reboot-to-win-shortcut/</link><pubDate>Tue, 16 Sep 2025 23:00:17 +1000</pubDate><guid>https://keao.me/posts/one-time-reboot-to-win-shortcut/</guid><description>&lt;h2 id="reboot-to-windows-once-from-linux"&gt;Reboot to Windows Once from Linux
 &lt;/h2&gt;&lt;p&gt;On a dual-boot machine, you may occasionally want to reboot into Windows from Linux for a specific task—such as using a Windows-only application—and then return to Linux afterward. While GRUB allows you to choose which OS to boot, it is more convenient to have a one-time reboot option that boots directly into Windows, then automatically returns to Linux as the default on subsequent boots. This can be accomplished using &lt;code&gt;efibootmgr&lt;/code&gt; to set the next boot entry to Windows.&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo efibootmgr -n &amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo efibootmgr -n &amp;lt;WindowsBootEntryNumber&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Here, &lt;code&gt;&amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/code&gt; is the boot entry number for Windows, which you can find by running &lt;code&gt;efibootmgr&lt;/code&gt; without any arguments. The output will list all boot entries and their numbers. For example:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Here, &lt;code&gt;&amp;lt;WindowsBootEntryNumber&amp;gt;&lt;/code&gt; is the boot entry number for Windows, which you can find by running &lt;code&gt;efibootmgr&lt;/code&gt; without any arguments. The output will list all boot entries and their numbers. For example:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -280,33 +228,21 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0001* EFI PXE &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; IPv4
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0002* EFI PXE &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; IPv6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0004* Windows Boot Manager
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0005* GRUB&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Boot0005* GRUB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;To set the next boot to Windows, run:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;To set the next boot to Windows, run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;After executing this command, reboot your machine. It will boot into Windows for that session. On the next reboot, it will default back to Linux.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;After executing this command, reboot your machine. It will boot into Windows for that session. On the next reboot, it will default back to Linux.&lt;/p&gt;
 &lt;h2 id="creating-a-shortcut-script"&gt;Creating a Shortcut Script
 &lt;/h2&gt;&lt;p&gt;To streamline this process, create a simple script at &lt;code&gt;/usr/local/bin/reboot2win&lt;/code&gt;:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -320,33 +256,21 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# reboot2win: A script to reboot into Windows once&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;logger -t reboot2win &lt;span class="s2"&gt;&amp;#34;reboot2win executed by &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SUDO_USER&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;$USER&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# privileged command(s) below:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/bin/efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/systemctl reboot&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/bin/efibootmgr -n &lt;span class="m"&gt;0004&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/bin/systemctl reboot
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Make it executable and set ownership to root for security:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Make it executable and set ownership to root for security:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod +x /usr/local/bin/reboot2win &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo chown root:root /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod +x /usr/local/bin/reboot2win &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo chown root:root /usr/local/bin/reboot2win
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Now you can run &lt;code&gt;sudo reboot2win&lt;/code&gt; to reboot into Windows once.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;Now you can run &lt;code&gt;sudo reboot2win&lt;/code&gt; to reboot into Windows once.&lt;/p&gt;
 &lt;h2 id="make-it-even-easier-with-polkit"&gt;Make It Even Easier with Polkit
 &lt;/h2&gt;&lt;p&gt;To avoid typing &lt;code&gt;sudo&lt;/code&gt; every time, you can create a polkit rule to allow your user to run the script without a password prompt. Create a file at &lt;code&gt;/etc/polkit-1/rules.d/50-reboot2win.rules&lt;/code&gt; with the following content:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -378,80 +302,50 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;polkit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Result&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;NOT_HANDLED&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;This rule allows users in the &lt;code&gt;wheel&lt;/code&gt; group to execute the &lt;code&gt;reboot2win&lt;/code&gt; script without a password prompt. Adjust the group name if your user belongs to a different group.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;This rule allows users in the &lt;code&gt;wheel&lt;/code&gt; group to execute the &lt;code&gt;reboot2win&lt;/code&gt; script without a password prompt. Adjust the group name if your user belongs to a different group.&lt;/p&gt;
 &lt;p&gt;To apply the rule, restart the polkit service:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart polkit&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart polkit
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Now you can simply run the following command without &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Now you can simply run the following command without &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkexec /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkexec /usr/local/bin/reboot2win
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Finally, you can add an &lt;code&gt;alias&lt;/code&gt; or a desktop shortcut for easier access. Also, to avoid accidentally running the command, you can use a confirmation prompt dialog such as &lt;code&gt;kdialog&lt;/code&gt; or &lt;code&gt;zenity&lt;/code&gt;. For example, using &lt;code&gt;kdialog&lt;/code&gt;:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Finally, you can add an &lt;code&gt;alias&lt;/code&gt; or a desktop shortcut for easier access. Also, to avoid accidentally running the command, you can use a confirmation prompt dialog such as &lt;code&gt;kdialog&lt;/code&gt; or &lt;code&gt;zenity&lt;/code&gt;. For example, using &lt;code&gt;kdialog&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -lc &lt;span class="s1"&gt;&amp;#39;kdialog --yesno &amp;#34;Are you sure you want to reboot the system?&amp;#34;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkexec /usr/local/bin/reboot2win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -lc &lt;span class="s1"&gt;&amp;#39;kdialog --yesno &amp;#34;Are you sure you want to reboot the system?&amp;#34;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; pkexec /usr/local/bin/reboot2win
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;This will show a confirmation dialog before executing the reboot command.&lt;/p&gt;</description></item><item><title>Goldendict Ng on Wayland</title><link>https://keao.me/posts/goldendict-ng-on-wayland/</link><pubDate>Tue, 16 Sep 2025 19:09:25 +1000</pubDate><guid>https://keao.me/posts/goldendict-ng-on-wayland/</guid><description>&lt;p&gt;The shortcut Ctrl+C+C is used to look up the selected word in Goldendict and Goldendict-NG. However, this shortcut does not work properly on Wayland, because Wayland does not support the underlying function it relies on, as explained in the &lt;a class="link" href="https://xiaoyifang.github.io/goldendict-ng/topic_wayland/" target="_blank" rel="noopener"
-&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;This will show a confirmation dialog before executing the reboot command.&lt;/p&gt;</description></item><item><title>Goldendict Ng on Wayland</title><link>https://keao.me/posts/goldendict-ng-on-wayland/</link><pubDate>Tue, 16 Sep 2025 19:09:25 +1000</pubDate><guid>https://keao.me/posts/goldendict-ng-on-wayland/</guid><description>&lt;p&gt;The shortcut Ctrl+C+C is used to look up the selected word in Goldendict and Goldendict-NG. However, this shortcut does not work properly on Wayland, because Wayland does not support the underlying function it relies on, as explained in the &lt;a class="link" href="https://xiaoyifang.github.io/goldendict-ng/topic_wayland/" target="_blank" rel="noopener"
+ &gt;official documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Fortunately, there is a simple workaround that is even more convenient than the original method: use &lt;code&gt;wl-paste&lt;/code&gt; together with global shortcuts provided by desktop environments (such as KDE, GNOME, etc.).&lt;/p&gt;
 &lt;p&gt;Create a new shortcut in the system settings and set the shortcut to run the following command:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -c &lt;span class="s1"&gt;&amp;#39;goldendict &amp;#34;$(wl-paste -n -p)&amp;#34;&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash -c &lt;span class="s1"&gt;&amp;#39;goldendict &amp;#34;$(wl-paste -n -p)&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Code Chunks Within Lists in Quarto</title><link>https://keao.me/posts/code-chunks-within-lists-in-quarto/</link><pubDate>Sun, 14 Sep 2025 14:41:04 +1000</pubDate><guid>https://keao.me/posts/code-chunks-within-lists-in-quarto/</guid><description>&lt;p&gt;When writing code within lists like the following structure, quarto cannot render the list properly.&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;</description></item><item><title>Code Chunks Within Lists in Quarto</title><link>https://keao.me/posts/code-chunks-within-lists-in-quarto/</link><pubDate>Sun, 14 Sep 2025 14:41:04 +1000</pubDate><guid>https://keao.me/posts/code-chunks-within-lists-in-quarto/</guid><description>&lt;p&gt;When writing code within lists like the following structure, quarto cannot render the list properly.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -469,18 +363,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ``&lt;span class="sb"&gt;`{python}
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sb"&gt; print()
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sb"&gt; `&lt;/span&gt;``&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sb"&gt; `&lt;/span&gt;``
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;The trick is to add an extra space after single-digit list indexes. This is because indentation is significant in Quarto, and both the list itself and any nested code blocks must start in the same column (note that the index itself, e.g., &lt;code&gt;1.&lt;/code&gt;, &lt;code&gt;2.&lt;/code&gt;, etc., does not count toward the list indentation).&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;The trick is to add an extra space after single-digit list indexes. This is because indentation is significant in Quarto, and both the list itself and any nested code blocks must start in the same column (note that the index itself, e.g., &lt;code&gt;1.&lt;/code&gt;, &lt;code&gt;2.&lt;/code&gt;, etc., does not count toward the list indentation).&lt;/p&gt;
 &lt;p&gt;For example, in my VSCode setup, pressing Tab inserts four spaces, but there are only use three characters before a list with single-digit indexes (e.g., &lt;code&gt;1. &lt;/code&gt;). As a result, when I try to indent a code block under such a list, it doesn’t align correctly with the list column. Adding an extra space after the index ensures proper alignment.&lt;/p&gt;
 &lt;p&gt;In addition, unlike code blocks, which must be strictly aligned with the list, other lines (non-code content) should be indented at least as much as the list and code blocks.&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -502,36 +390,25 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ``&lt;span class="sb"&gt;`{python}
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sb"&gt; # some code
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sb"&gt; `&lt;/span&gt;``&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sb"&gt; `&lt;/span&gt;``
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/details&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;a class="link" href="https://forum.posit.co/t/code-chunks-within-lists-in-quarto/159866" target="_blank" rel="noopener"
-&gt;https://forum.posit.co/t/code-chunks-within-lists-in-quarto/159866&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item><item><title>Correct Cursor Color on Vscode</title><link>https://keao.me/posts/correct-cursor-color-on-vscode/</link><pubDate>Sat, 30 Aug 2025 09:38:32 +1000</pubDate><guid>https://keao.me/posts/correct-cursor-color-on-vscode/</guid><description>&lt;p&gt;It is really painful and annoying that the cursor color is white when the vscode using a light theme. Using &lt;code&gt;mpo_disable.reg&lt;/code&gt; provided by Nvidia can correct this behavior. It also works for computers with AMD GPUs.&lt;/p&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;a class="link" href="https://forum.posit.co/t/code-chunks-within-lists-in-quarto/159866" target="_blank" rel="noopener"
+ &gt;https://forum.posit.co/t/code-chunks-within-lists-in-quarto/159866&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;</description></item><item><title>Correct Cursor Color on Vscode</title><link>https://keao.me/posts/correct-cursor-color-on-vscode/</link><pubDate>Sat, 30 Aug 2025 09:38:32 +1000</pubDate><guid>https://keao.me/posts/correct-cursor-color-on-vscode/</guid><description>&lt;p&gt;It is really painful and annoying that the cursor color is white when the vscode using a light theme. Using &lt;code&gt;mpo_disable.reg&lt;/code&gt; provided by Nvidia can correct this behavior. It also works for computers with AMD GPUs.&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://nvidia.custhelp.com/app/answers/detail/a_id/5157/~/after-updating-to-nvidia-game-ready-driver-461.09-or-newer%2C-some-desktop-apps" target="_blank" rel="noopener"
-&gt;mpo_disable.reg&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Skip Microsoft Account Login</title><link>https://keao.me/posts/skip-microsoft-account-login/</link><pubDate>Fri, 22 Aug 2025 17:41:15 +1000</pubDate><guid>https://keao.me/posts/skip-microsoft-account-login/</guid><description>
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+ &gt;mpo_disable.reg&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Skip Microsoft Account Login</title><link>https://keao.me/posts/skip-microsoft-account-login/</link><pubDate>Fri, 22 Aug 2025 17:41:15 +1000</pubDate><guid>https://keao.me/posts/skip-microsoft-account-login/</guid><description>&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;start ms-cxh:localonly&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;start ms-cxh:localonly
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Windows Partition Guide</title><link>https://keao.me/posts/windows-partition-guide/</link><pubDate>Tue, 12 Aug 2025 16:35:30 +1000</pubDate><guid>https://keao.me/posts/windows-partition-guide/</guid><description>&lt;p&gt;The Windows installer assigns too little space to the EFI and Recovery partitions by default, which is not ideal for future updates. To resolve this issue, we need to manually partition using &lt;code&gt;Diskpart&lt;/code&gt; during the installation phase. The following script is from Microsoft and serves as an example of a partitioning script.&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;</description></item><item><title>Windows Partition Guide</title><link>https://keao.me/posts/windows-partition-guide/</link><pubDate>Tue, 12 Aug 2025 16:35:30 +1000</pubDate><guid>https://keao.me/posts/windows-partition-guide/</guid><description>&lt;p&gt;The Windows installer assigns too little space to the EFI and Recovery partitions by default, which is not ideal for future updates. To resolve this issue, we need to manually partition using &lt;code&gt;Diskpart&lt;/code&gt; during the installation phase. The following script is from Microsoft and serves as an example of a partitioning script.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -617,16 +494,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;de94bba4-06d1-4d40-a16a-bfd50179d6ac&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;gpt attributes=0x8000000000000001
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;list volume
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;exit&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;The following is a modified version of the above script, with all comments removed and the partition size changed.&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;The following is a modified version of the above script, with all comments removed and the partition size changed.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -684,35 +555,22 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;assign letter=&lt;span class="s2"&gt;&amp;#34;R&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;id&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;de94bba4-06d1-4d40-a16a-bfd50179d6ac&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;gpt attributes=0x8000000000000001
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;exit&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;h2 id="references"&gt;References
+&lt;/div&gt;&lt;h2 id="references"&gt;References
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh825686%28v=win.10%29" target="_blank" rel="noopener"
-&gt;https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh825686(v=win.10)&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Command Line of Nbconvert</title><link>https://keao.me/posts/command-line-of-nbconvert/</link><pubDate>Mon, 04 Aug 2025 22:13:21 +1000</pubDate><guid>https://keao.me/posts/command-line-of-nbconvert/</guid><description>
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+ &gt;https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh825686(v=win.10)&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Command Line of Nbconvert</title><link>https://keao.me/posts/command-line-of-nbconvert/</link><pubDate>Mon, 04 Aug 2025 22:13:21 +1000</pubDate><guid>https://keao.me/posts/command-line-of-nbconvert/</guid><description>&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf .\week1.ipynb --template-file assignment --LatexPreprocessor.author_names=&amp;#39;Keao Chen&amp;#39; --LatexPreprocessor.title=&amp;#39;Week 1 Journal&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf .\week1.ipynb --template-file assignment --LatexPreprocessor.author_names=&amp;#39;Keao Chen&amp;#39; --LatexPreprocessor.title=&amp;#39;Week 1 Journal&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>自动切换 SumatraPDF 主题</title><link>https://keao.me/posts/auto-toggle-sumatrapdf-themes/</link><pubDate>Tue, 15 Jul 2025 17:01:11 +0800</pubDate><guid>https://keao.me/posts/auto-toggle-sumatrapdf-themes/</guid><description>&lt;p&gt;SumatraPDF 小巧，快速，对于浏览 PDF 来说再合适不过。唯一的缺点就是功能有些许缺失，例如：虽然有更换主题功能，但是不能跟随 Windows 主题一起变化，并且界面颜色改变时，文档的颜色不改变。于是乎每当在夜晚打开一份 PDF 都仿佛打开了太阳&amp;hellip;&amp;hellip;&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>自动切换 SumatraPDF 主题</title><link>https://keao.me/posts/auto-toggle-sumatrapdf-themes/</link><pubDate>Tue, 15 Jul 2025 17:01:11 +0800</pubDate><guid>https://keao.me/posts/auto-toggle-sumatrapdf-themes/</guid><description>&lt;p&gt;SumatraPDF 小巧，快速，对于浏览 PDF 来说再合适不过。唯一的缺点就是功能有些许缺失，例如：虽然有更换主题功能，但是不能跟随 Windows 主题一起变化，并且界面颜色改变时，文档的颜色不改变。于是乎每当在夜晚打开一份 PDF 都仿佛打开了太阳&amp;hellip;&amp;hellip;&lt;/p&gt;
 &lt;p&gt;微软的应用商店 Microsoft Store 中有一款软件 Auto Dark Mode 可以自动切换 Windows 的暗色模式，并且支持在切换时运行脚本。正巧 SumatraPDF 可以通过配置文件配置，实际上对于一些高级设置（例如字体颜色和背景颜色）只支持使用配置文件设置。因此一个简单的方案就是：编写一个脚本根据参数不同自动修改 SumatraPDF 的配置文件，并且设置 Auto Dark Mode 使其在切换 Windows 主题时自动运行此脚本。&lt;/p&gt;
 &lt;p&gt;Auto Dark Mode 配置：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -734,16 +592,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; WorkingDirectory: C:\Users\kyle\AppData\Local\SumatraPDF
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ArgsLight: [toggle_theme.py, light]
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ArgsDark: [toggle_theme.py, dark]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; AllowedSources: [Any]&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; AllowedSources: [Any]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Python 脚本：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Python 脚本：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -815,11 +667,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;BackgroundColor\s*=\s*#[0-9a-fA-F]+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;BackgroundColor = &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;background_color&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>An Alternative to Filelight on Windows</title><link>https://keao.me/posts/an-alternative-to-filelight-on-windows/</link><pubDate>Fri, 27 Jun 2025 18:10:28 +0800</pubDate><guid>https://keao.me/posts/an-alternative-to-filelight-on-windows/</guid><description>&lt;p&gt;&lt;a class="link" href="https://windirstat.net/" target="_blank" rel="noopener"
-&gt;WinDirStat&lt;/a&gt;&lt;/p&gt;</description></item><item><title>彻底关闭 Windows 11 的虚拟化</title><link>https://keao.me/posts/disable-windows11-virtualization/</link><pubDate>Thu, 26 Jun 2025 14:31:50 +0800</pubDate><guid>https://keao.me/posts/disable-windows11-virtualization/</guid><description>&lt;h2 id="disabling-hyper-v"&gt;Disabling-Hyper-V
+&lt;/div&gt;</description></item><item><title>An Alternative to Filelight on Windows</title><link>https://keao.me/posts/an-alternative-to-filelight-on-windows/</link><pubDate>Fri, 27 Jun 2025 18:10:28 +0800</pubDate><guid>https://keao.me/posts/an-alternative-to-filelight-on-windows/</guid><description>&lt;p&gt;&lt;a class="link" href="https://windirstat.net/" target="_blank" rel="noopener"
+ &gt;WinDirStat&lt;/a&gt;&lt;/p&gt;</description></item><item><title>彻底关闭 Windows 11 的虚拟化</title><link>https://keao.me/posts/disable-windows11-virtualization/</link><pubDate>Thu, 26 Jun 2025 14:31:50 +0800</pubDate><guid>https://keao.me/posts/disable-windows11-virtualization/</guid><description>&lt;h2 id="disabling-hyper-v"&gt;Disabling-Hyper-V
 &lt;/h2&gt;&lt;p&gt;Certain advanced Windows 10 features, such as &lt;em&gt;Device Guard&lt;/em&gt; (in particular,
 &lt;em&gt;Hypervisor-protected code integrity&lt;/em&gt; or HVCI) and &lt;em&gt;Credential Guard&lt;/em&gt;, can
 prevent Hyper-V from being completely disabled. In other words, when any of
@@ -829,7 +681,7 @@ otherwise.&lt;/p&gt;
 Microsoft can disable the said Windows 10 features along with Hyper-V:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Download the latest version of the tool from &lt;a class="link" href="https://www.microsoft.com/en-us/download/details.aspx?id=53337" target="_blank" rel="noopener"
-&gt;here&lt;/a&gt; dgreadiness-tool. The
+ &gt;here&lt;/a&gt; dgreadiness-tool. The
 following steps assume version 3.6.&lt;/li&gt;
 &lt;li&gt;Unzip.&lt;/li&gt;
 &lt;li&gt;Open an &lt;strong&gt;elevated&lt;/strong&gt; (i.e. &lt;em&gt;Run as administrator&lt;/em&gt;) Command Prompt.&lt;/li&gt;
@@ -837,17 +689,13 @@ following steps assume version 3.6.&lt;/li&gt;
 &lt;li&gt;Reboot.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;如上所述，由于 &lt;em&gt;Device Guard&lt;/em&gt; 和 &lt;em&gt;Credential Guard hardware readiness tool&lt;/em&gt; 功能，Hyper-V 无法被彻底关闭。使用微软提供的此脚本：&lt;a class="link" href="https://www.microsoft.com/en-us/download/details.aspx?id=53337" target="_blank" rel="noopener"
-&gt;here&lt;/a&gt; 可以将这些功能彻底关闭，从而彻底关闭 Hyper-V。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a class="link" href="https://github.com/gmh5225/Disabling-Hyper-V" target="_blank" rel="noopener"
-&gt;https://github.com/gmh5225/Disabling-Hyper-V&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item><item><title>Handle Missing Shared Library Error</title><link>https://keao.me/posts/handle-missing-shared-library-error/</link><pubDate>Fri, 13 Jun 2025 12:40:05 +0800</pubDate><guid>https://keao.me/posts/handle-missing-shared-library-error/</guid><description>&lt;p&gt;Using &lt;code&gt;pkgfile&lt;/code&gt; to find out the package of such files&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+ &gt;here&lt;/a&gt; 可以将这些功能彻底关闭，从而彻底关闭 Hyper-V。&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;a class="link" href="https://github.com/gmh5225/Disabling-Hyper-V" target="_blank" rel="noopener"
+ &gt;https://github.com/gmh5225/Disabling-Hyper-V&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;</description></item><item><title>Handle Missing Shared Library Error</title><link>https://keao.me/posts/handle-missing-shared-library-error/</link><pubDate>Fri, 13 Jun 2025 12:40:05 +0800</pubDate><guid>https://keao.me/posts/handle-missing-shared-library-error/</guid><description>&lt;p&gt;Using &lt;code&gt;pkgfile&lt;/code&gt; to find out the package of such files&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -855,17 +703,10 @@ following steps assume version 3.6.&lt;/li&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo pkgfile -u
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkgfile xxx.so.1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pkgfile xxx.so.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Rename Files by Deleting or Replacing Substring</title><link>https://keao.me/posts/rename-files-by-deleting-or-replacing-substring/</link><pubDate>Fri, 13 Jun 2025 12:38:57 +0800</pubDate><guid>https://keao.me/posts/rename-files-by-deleting-or-replacing-substring/</guid><description>
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;</description></item><item><title>Rename Files by Deleting or Replacing Substring</title><link>https://keao.me/posts/rename-files-by-deleting-or-replacing-substring/</link><pubDate>Fri, 13 Jun 2025 12:38:57 +0800</pubDate><guid>https://keao.me/posts/rename-files-by-deleting-or-replacing-substring/</guid><description>&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
@@ -874,16 +715,10 @@ following steps assume version 3.6.&lt;/li&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; f in &lt;span class="sb"&gt;`&lt;/span&gt;ls *.mp3&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/生活大爆炸/TBBT/g&amp;#39;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Convert All Mp4 to Mp3 in One Command</title><link>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</link><pubDate>Fri, 13 Jun 2025 12:37:35 +0800</pubDate><guid>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</guid><description>&lt;p&gt;I get a directory like following:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;</description></item><item><title>Convert All Mp4 to Mp3 in One Command</title><link>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</link><pubDate>Fri, 13 Jun 2025 12:37:35 +0800</pubDate><guid>https://keao.me/posts/convert-all-mp4-to-mp3-in-one-command/</guid><description>&lt;p&gt;I get a directory like following:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -948,37 +783,24 @@ following steps assume version 3.6.&lt;/li&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │   ├── TBBTS05E04.mp4
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │  ...
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── S06
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├── TBBTS06E01.mp4
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├── TBBTS06E02.mp4
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├── TBBTS06E03.mp4
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ├── TBBTS06E01.mp4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ├── TBBTS06E02.mp4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ├── TBBTS06E03.mp4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;I want to transform all mp4 files to mp3 and move them to a new directory called mp3 in current directory.
+&lt;/div&gt;&lt;p&gt;I want to transform all mp4 files to mp3 and move them to a new directory called mp3 in current directory.
 here is the command:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; find . -name &lt;span class="s2"&gt;&amp;#34;*.mp4&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel -j20 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} ./mp3/{/.}.mp3&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; find . -name &lt;span class="s2"&gt;&amp;#34;*.mp4&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel -j20 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} ./mp3/{/.}.mp3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;where &lt;code&gt;{/.}&lt;/code&gt; represents a clear file name that stripped extension name and path&lt;/p&gt;</description></item><item><title>Download TBBT Transcript From Website</title><link>https://keao.me/posts/download-tbbt-transcript-from-website/</link><pubDate>Fri, 13 Jun 2025 12:17:40 +0800</pubDate><guid>https://keao.me/posts/download-tbbt-transcript-from-website/</guid><description>&lt;h2 id="urls-of-transcripts"&gt;URLs of transcripts
-&lt;/h2&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;&lt;p&gt;where &lt;code&gt;{/.}&lt;/code&gt; represents a clear file name that stripped extension name and path&lt;/p&gt;</description></item><item><title>Download TBBT Transcript From Website</title><link>https://keao.me/posts/download-tbbt-transcript-from-website/</link><pubDate>Fri, 13 Jun 2025 12:17:40 +0800</pubDate><guid>https://keao.me/posts/download-tbbt-transcript-from-website/</guid><description>&lt;h2 id="urls-of-transcripts"&gt;URLs of transcripts
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1447,18 +1269,11 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-22-the-cognition-regeneration/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-23-the-gyroscopic-collapse/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;https://bigbangtrans.wordpress.com/series-10-episode-24-the-long-distance-dissonance/&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;h2 id="script"&gt;Script
-&lt;/h2&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/div&gt;&lt;h2 id="script"&gt;Script
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -1512,105 +1327,69 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;p_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;p&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;p_tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_text&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;:&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;**&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;**&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;: &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_text&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		 &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;:&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		 &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;**&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;**&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;: &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		 &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;script_text&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;script_text&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;TBBT.md&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;url_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;download_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;download_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Convert Jupyter Notebook to PDF With Reporting Format</title><link>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</guid><description>&lt;img src="https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/image.png" alt="Featured image of post Convert Jupyter Notebook to PDF With Reporting Format" /&gt;&lt;p&gt;Install &lt;code&gt;nbconvert&lt;/code&gt; via &lt;code&gt;pip&lt;/code&gt;&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;</description></item><item><title>Convert Jupyter Notebook to PDF With Reporting Format</title><link>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/</guid><description>&lt;img src="https://keao.me/posts/convert-jupyter-notebook-to-pdf-with-reporting-format/image.png" alt="Featured image of post Convert Jupyter Notebook to PDF With Reporting Format" /&gt;&lt;p&gt;Install &lt;code&gt;nbconvert&lt;/code&gt; via &lt;code&gt;pip&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install nbconvert
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Now, the command&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Now, the command&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file report filename.ipynb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;should work well, producing a document with a table of contents and properly formatted code blocks. However, an unnecessary counter appears before each code block, wasting space and serving no purpose. To remove it, a custom template is required.&lt;/p&gt;
 &lt;p&gt;The template consists of two files: &lt;code&gt;assignment.tex.j2&lt;/code&gt; and &lt;code&gt;style_assignment.tex.j2&lt;/code&gt;, which are modified duplicates of existing files. Template files are located in &lt;code&gt;share\jupyter\nbconvert\templates\latex&lt;/code&gt;. Duplicate &lt;code&gt;report.tex.j2&lt;/code&gt; and modify the second line to&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* set cell&lt;span class="nb"&gt;_&lt;/span&gt;style = &amp;#39;style&lt;span class="nb"&gt;_&lt;/span&gt;assignment.tex.j2&amp;#39; *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;The file &lt;code&gt;style_assignment.tex.j2&lt;/code&gt; is a duplicate of &lt;code&gt;style_jupyter.tex.j2&lt;/code&gt; with the line&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;[#3]:&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;-&lt;span class="k"&gt;\baselineskip&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;replaced by&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;replaced by&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\ttfamily\llap&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\color&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#2&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;3pt&lt;span class="nb"&gt;}&lt;/span&gt;#4&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Moreover, in order to support Chinese, the code below should be added&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -1618,49 +1397,31 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-latex" data-lang="latex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Now that custom files are used, the command is&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment filename.ipynb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;or dictate author names and the document title as converting:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jupyter nbconvert --to pdf --template-file assignment ./Journal.ipynb --LatexPreprocessor.author_names&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Name&amp;#34;&lt;/span&gt; --LatexPreprocessor.title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;The complete file is shown as follows:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;assignment.tex.j2&lt;/li&gt;
 &lt;/ol&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -1714,18 +1475,12 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* block markdowncell scoped *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((( cell.source | citation2latex | strip&lt;span class="nb"&gt;_&lt;/span&gt;files&lt;span class="nb"&gt;_&lt;/span&gt;prefix | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;markdown+tex&lt;span class="nb"&gt;_&lt;/span&gt;math&lt;span class="nb"&gt;_&lt;/span&gt;double&lt;span class="nb"&gt;_&lt;/span&gt;backslash&amp;#39;, &amp;#39;json&amp;#39;,extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[]) | resolve&lt;span class="nb"&gt;_&lt;/span&gt;references | convert&lt;span class="nb"&gt;_&lt;/span&gt;pandoc(&amp;#39;json&amp;#39;,&amp;#39;latex&amp;#39;, extra&lt;span class="nb"&gt;_&lt;/span&gt;args=[&amp;#34;--top-level-division=chapter&amp;#34;]) )))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((* endblock markdowncell *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;ol start="2"&gt;
+&lt;/div&gt;&lt;ol start="2"&gt;
 &lt;li&gt;style_assignment.tex.j2&lt;/li&gt;
 &lt;/ol&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -1914,8 +1669,8 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block packages -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="na"&gt;[breakable]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;parskip&lt;span class="nb"&gt;}&lt;/span&gt; &lt;span class="c"&gt;% Stop auto-indenting (to mimic markdown behaviour)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
@@ -2089,16 +1844,10 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;Furthermore, if you want to hide code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -2288,8 +2037,8 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- extends &amp;#39;base.tex.j2&amp;#39; -*))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- block packages -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;xeCJK&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="k"&gt;\setCJKmainfont&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;SimSun&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="na"&gt;[breakable]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tcolorbox&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;parskip&lt;span class="nb"&gt;}&lt;/span&gt; &lt;span class="c"&gt;% Stop auto-indenting (to mimic markdown behaviour)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((( super() )))
@@ -2464,31 +2213,17 @@ here is the command:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; or (resources.global&lt;span class="nb"&gt;_&lt;/span&gt;content&lt;span class="nb"&gt;_&lt;/span&gt;filter.include&lt;span class="nb"&gt;_&lt;/span&gt;input&lt;span class="nb"&gt;_&lt;/span&gt;prompt and prompt == &amp;#39;In&amp;#39; ) *))
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;\prompt&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;(((prompt)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((prompt&lt;span class="nb"&gt;_&lt;/span&gt;color)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((execution&lt;span class="nb"&gt;_&lt;/span&gt;count)))&lt;span class="nb"&gt;}{&lt;/span&gt;(((extra&lt;span class="nb"&gt;_&lt;/span&gt;space)))&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ((*- endif -*))
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;((*- endmacro *))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Merge Anki Audios</title><link>https://keao.me/posts/merge-anki-audios/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/merge-anki-audios/</guid><description>&lt;ol&gt;
+&lt;/div&gt;</description></item><item><title>Merge Anki Audios</title><link>https://keao.me/posts/merge-anki-audios/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/merge-anki-audios/</guid><description>&lt;ol&gt;
 &lt;li&gt;exporting all selected notes with media references&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://keao.me/posts/merge-anki-audios/1.png"
-width="1104"
-height="602"
-srcset="https://keao.me/posts/merge-anki-audios/1_hu_4a2d8d09c89c35e3.png 480w, https://keao.me/posts/merge-anki-audios/1_hu_d6473b8e96882546.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="183"
-data-flex-basis="440px"
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="440px" data-flex-grow="183" height="602" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://keao.me/posts/merge-anki-audios/1.png" srcset="https://keao.me/posts/merge-anki-audios/1_hu_8a2281064d606483.png 800w, https://keao.me/posts/merge-anki-audios/1.png 1104w" width="1104"&gt;&lt;/p&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;extract media paths from the exported file&lt;/li&gt;
 &lt;li&gt;write a python script merging all selected audios into one&lt;/li&gt;
 &lt;/ol&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -2650,10 +2385,10 @@ data-flex-basis="440px"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;ffmpeg&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-y&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-f&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;concat&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-safe&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-i&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;file_list.txt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;-c&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;copy&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;output.mp3&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Prune a Dictionary File(.mdx)</title><link>https://keao.me/posts/prune-a-dictionary-file.mdx/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/prune-a-dictionary-file.mdx/</guid><description>&lt;h2 id="introduction"&gt;Introduction
+&lt;/div&gt;</description></item><item><title>Prune a Dictionary File(.mdx)</title><link>https://keao.me/posts/prune-a-dictionary-file.mdx/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://keao.me/posts/prune-a-dictionary-file.mdx/</guid><description>&lt;h2 id="introduction"&gt;Introduction
 &lt;/h2&gt;&lt;p&gt;Dictionaries such as &amp;ldquo;Oxford&amp;rdquo; and &amp;ldquo;Longman&amp;rdquo; are used as the sources for the definitions in my flashcards. However, they sometimes contain too much unnecessary information, therefore making it unwieldy and grandiose, leading to a low loading speed and distractions.&lt;/p&gt;
 &lt;p&gt;Since an MDX file utilizes the HTML format to save entries, which closely resembles the tree structure, I use the term &amp;ldquo;prune&amp;rdquo; to describe the course of removing branches, i.e. html nodes that contain superfluous elements.&lt;/p&gt;
 &lt;p&gt;Each group of three lines in a mdx file constitutes an entry of a word where the first and the third lines are delimiters while the middle line is html content. Since typically MDX files are quite large, a division step is required for parallel processing. Thus, the breakdown procedures are as follows:&lt;/p&gt;
@@ -2663,14 +2398,7 @@ data-flex-basis="440px"
 &lt;li&gt;merge files into one mdx file.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="code"&gt;Code
-&lt;/h2&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
 &lt;/span&gt;&lt;span class="lnt"&gt; 2
@@ -2791,16 +2519,10 @@ data-flex-basis="440px"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shutil&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;./divided_files&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;./divided_files&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;detailed pruning code:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;detailed pruning code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -2874,18 +2596,12 @@ data-flex-basis="440px"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;outfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;input_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;output_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;process_html_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;process_html_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Gnome 中 .desktop 文件的奇怪问题</title><link>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;众所周知，gnome 目前默认使用 wayland，但某些程序在 wayland 下表现不佳。例如 telegram 有时边框外会显示奇怪的阴影，解决方法是开启选项：使用系统边框。然而在 wayland 下没有此选项，取而代之的是：使用 qt 边框，但 qt 边框与 gtk 应用的风格很不统一，导致看起来很丑。解决方法是在其 .desktop 文件中添加环境变量使 telegram 强制使用 x11，事实上，我已经使用&lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;这个环境变量为另一个程序 anki 解决了这个问题。&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>Gnome 中 .desktop 文件的奇怪问题</title><link>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnome-%E4%B8%AD-.desktop-%E6%96%87%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;众所周知，gnome 目前默认使用 wayland，但某些程序在 wayland 下表现不佳。例如 telegram 有时边框外会显示奇怪的阴影，解决方法是开启选项：使用系统边框。然而在 wayland 下没有此选项，取而代之的是：使用 qt 边框，但 qt 边框与 gtk 应用的风格很不统一，导致看起来很丑。解决方法是在其 .desktop 文件中添加环境变量使 telegram 强制使用 x11，事实上，我已经使用&lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;这个环境变量为另一个程序 anki 解决了这个问题。&lt;/p&gt;
 &lt;p&gt;然而，同样的方法对 telegram 却失效了。经过一番摸索我发现，直接运行 .desktop 文件，在命令行运行指令或使用&lt;code&gt;dex&lt;/code&gt;命令运行都生效，可一旦从 gnome 的应用抽屉里启动或使用&lt;code&gt;gtk-launch&lt;/code&gt;命令运行启动就不生效。这说明文件本身并没有问题，问题出在 gtk 和 gnome 上。问题到这里就陷入了僵局，但是我灵光一现，想到问题或许是 telegram 的 .desktop 文件奇怪的名字导致的：由于 telegram 的全名为 telegram-desktop，因此其 .desktop 文件名为 org.telegram.desktop.desktop。我怀疑是这两个重复的 .desktop 后缀在作祟， 于是我将其改名为 telegram.desktop，随后&lt;code&gt;update-desktop-datebase ~/.local/share/applications/&lt;/code&gt;，问题果然解决。&lt;/p&gt;</description></item><item><title>KDE 窗口装饰元素</title><link>https://keao.me/posts/kde-%E7%AA%97%E5%8F%A3%E8%A3%85%E9%A5%B0%E5%85%83%E7%B4%A0/</link><pubDate>Thu, 08 Feb 2024 15:23:00 +0800</pubDate><guid>https://keao.me/posts/kde-%E7%AA%97%E5%8F%A3%E8%A3%85%E9%A5%B0%E5%85%83%E7%B4%A0/</guid><description>&lt;p&gt;在 KDE 上使用 aurorae 主题(除 Breeze 外的所有主题)时，如果字体 DPI 大于 96，应用程序的边框会变得巨大无比，十分丑陋。偏偏在高分屏幕上增加字体 DPI 是放大界面而不损失清晰度的唯一方法，这一问题几乎动摇了我使用 KDE 的决心转而尝试了几天 Gnome (颜值即生产力)。虽然最后还是回到了 KDE，但是这个问题还是亟待解决的。一开始使用的方法是，修改主题时不修改窗口装饰元素，还是用 Breeze 的窗口装饰元素，但是这样导致风格很割裂，不统一。网络上也没有什么好的解决方案，在 github 上看到主题 sweet 的作者声称解决了这个问题，但是当有人询问解决方案时他又不再回答。而另一款主题 materia 的作者提出可以修改主题的 css 文件，虽然这个方法还是不太优雅，但好歹是奏效了。&lt;br&gt;
 具体为修改 &lt;code&gt;/usr/share/aurorae/themes/Materia/Materiarc&lt;/code&gt;文件中的&lt;code&gt;PaddingTop&lt;/code&gt;，&lt;code&gt;PaddingRight&lt;/code&gt;，&lt;code&gt;PaddingBottom&lt;/code&gt;，&lt;code&gt;PaddingLeft&lt;/code&gt;参数，在 DPI 为 120 时，分别为&lt;code&gt;8&lt;/code&gt;，&lt;code&gt;24&lt;/code&gt;，&lt;code&gt;48&lt;/code&gt;，&lt;code&gt;24&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Flatpak 与 KDE Global Menu 的兼容性问题</title><link>https://keao.me/posts/flatpak-%E4%B8%8E-kde-global-menu-%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 04 Jan 2024 17:42:11 +0800</pubDate><guid>https://keao.me/posts/flatpak-%E4%B8%8E-kde-global-menu-%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;从 Flatpak 安装的 Obsidian 不显示全局菜单。执行下列命令后解决：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2893,32 +2609,20 @@ data-flex-basis="440px"
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo flatpak override --talk-name&lt;span class="o"&gt;=&lt;/span&gt;com.canonical.AppMenu.Regist
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rar md.obsidian.Obsidian&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rar md.obsidian.Obsidian
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;</description></item><item><title>Linux Zen 与 Nvidia</title><link>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</link><pubDate>Mon, 01 Jan 2024 20:17:04 +0800</pubDate><guid>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</guid><description>&lt;p&gt;&lt;code&gt;prime-run steam&lt;/code&gt;命令报错&lt;code&gt;X Error of failed request: BadValue (integer parameter out of range for operation)&lt;/code&gt;，原因是内核与 nvidia 驱动不匹配。按照 archwiki 的说明，安装&lt;code&gt;linux-zen-headers&lt;/code&gt;和&lt;code&gt;nvidia-dkms&lt;/code&gt;并添加内核参数&lt;code&gt;CONFIG_DRM_SIMPLEDRM=y&lt;/code&gt;后解决。&lt;/p&gt;</description></item><item><title>Anki 与 Wayland 的兼容性问题</title><link>https://keao.me/posts/anki-compatibility-with-wayland/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/anki-compatibility-with-wayland/</guid><description>&lt;p&gt;为了使用 waydroid 不得已换 X11 为 Wayland，随之问题就来了。基于 Qt6 的 Anki 似乎与 Wayland 兼容的不太好，无法在 KDE 中使用全局菜单，并且 Goldendict 的&lt;code&gt;Ctrl+c+c&lt;/code&gt;粘贴板查词功能在 Anki 里也无法使用了。
+&lt;/div&gt;</description></item><item><title>Linux Zen 与 Nvidia</title><link>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</link><pubDate>Mon, 01 Jan 2024 20:17:04 +0800</pubDate><guid>https://keao.me/posts/linux-zen-%E4%B8%8E-nvidia/</guid><description>&lt;p&gt;&lt;code&gt;prime-run steam&lt;/code&gt;命令报错&lt;code&gt;X Error of failed request: BadValue (integer parameter out of range for operation)&lt;/code&gt;，原因是内核与 nvidia 驱动不匹配。按照 archwiki 的说明，安装&lt;code&gt;linux-zen-headers&lt;/code&gt;和&lt;code&gt;nvidia-dkms&lt;/code&gt;并添加内核参数&lt;code&gt;CONFIG_DRM_SIMPLEDRM=y&lt;/code&gt;后解决。&lt;/p&gt;</description></item><item><title>Anki 与 Wayland 的兼容性问题</title><link>https://keao.me/posts/anki-compatibility-with-wayland/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/anki-compatibility-with-wayland/</guid><description>&lt;p&gt;为了使用 waydroid 不得已换 X11 为 Wayland，随之问题就来了。基于 Qt6 的 Anki 似乎与 Wayland 兼容的不太好，无法在 KDE 中使用全局菜单，并且 Goldendict 的&lt;code&gt;Ctrl+c+c&lt;/code&gt;粘贴板查词功能在 Anki 里也无法使用了。
 Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot;&amp;quot;&lt;/code&gt;环境变量强制 Anki 使用 X11 解决。使用后果然没有上述问题了，但是出现了新的问题： fcitx 无法在 Anki 里使用了。略微思考后，我想起来我遵从 Wayland 的建议删掉了在&lt;code&gt;/etc/environment&lt;/code&gt;全局设置的&lt;code&gt;QT_IM_MODULE=fcitx&lt;/code&gt;。这个问题官方的建议也提及了，可以单独为 Anki 设置环境变量，设置后问题果然解决。启动命令：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;WAYLAND_DISPLAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx Anki&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;WAYLAND_DISPLAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx Anki
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;实际上还有另一种方式，可以为某些 Qt 应用设置 &lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;环境变量以解决其在 Wayland 中表现不正常的问题。&lt;/p&gt;</description></item><item><title>GNU Parallel 的妙用</title><link>https://keao.me/posts/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnu-parallel-tips/</guid><description>&lt;p&gt;Android QQ 的图片文件是以下面这种结构保存的，以&lt;code&gt;Cache_&lt;/code&gt;开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;实际上还有另一种方式，可以为某些 Qt 应用设置 &lt;code&gt;QT_QPA_PLATFORM=xcb&lt;/code&gt;环境变量以解决其在 Wayland 中表现不正常的问题。&lt;/p&gt;</description></item><item><title>GNU Parallel 的妙用</title><link>https://keao.me/posts/gnu-parallel-tips/</link><pubDate>Thu, 08 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/gnu-parallel-tips/</guid><description>&lt;p&gt;Android QQ 的图片文件是以下面这种结构保存的，以&lt;code&gt;Cache_&lt;/code&gt;开头的文件就是图片。这种结构在浏览时要分别点进每个文件夹才能看到图片，很不方便。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2940,16 +2644,10 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   ├── Cache_-489f6e9c62ea10a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│   └── Cache_57776dc1e17110a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── 0a7
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── Cache_25d732f84bd7d0a7
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;使用 GNU Parallel 配合&lt;code&gt;mv&lt;/code&gt;可以快速的 “解散” 每个二级文件夹，变成以下这种结构。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2967,147 +2665,94 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_373e35b7b8a290a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-489f6e9c62ea10a6
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Cache_-4dfb57e9a7cec0a0
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Cache_57776dc1e17110a6
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;命令如下:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;命令如下:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;find . -name &lt;span class="s2"&gt;&amp;#34;*&amp;#34;&lt;/span&gt; -type f -print &lt;span class="p"&gt;|&lt;/span&gt; parallel mv &lt;span class="o"&gt;{}&lt;/span&gt; ./&lt;span class="o"&gt;{&lt;/span&gt;/&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/details&gt;&lt;blockquote&gt;
-&lt;p&gt;参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
-&gt;https://www.myfreax.com/gnu-parallel/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item><item><title>使用 Shell 批量修改文件后缀和批量格式转换</title><link>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</guid><description>&lt;img src="https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/image.png" alt="Featured image of post 使用 Shell 批量修改文件后缀和批量格式转换" /&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 脚本是处理这类工作最为简单，快捷的方式。&lt;/p&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;参考: &lt;a class="link" href="https://www.myfreax.com/gnu-parallel/" target="_blank" rel="noopener"
+ &gt;https://www.myfreax.com/gnu-parallel/&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;</description></item><item><title>使用 Shell 批量修改文件后缀和批量格式转换</title><link>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</link><pubDate>Tue, 06 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/</guid><description>&lt;img src="https://keao.me/posts/batch-rename-file-extensions-and-format-conversion-in-linux/image.png" alt="Featured image of post 使用 Shell 批量修改文件后缀和批量格式转换" /&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 脚本是处理这类工作最为简单，快捷的方式。&lt;/p&gt;
 &lt;h2 id="修改后缀"&gt;修改后缀
-&lt;/h2&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.原后缀&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;`echo &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; | sed s/.原后缀/.新后缀/`&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;h2 id="格式转换"&gt;格式转换
+&lt;/div&gt;&lt;h2 id="格式转换"&gt;格式转换
 &lt;/h2&gt;&lt;h3 id="heic-转-jpg"&gt;heic 转 jpg
 &lt;/h3&gt;&lt;p&gt;首先，安装转换工具。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S libheif
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;然后可以使用 &lt;code&gt;heif-convert&lt;/code&gt; 命令转换。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;heif-convert input.heic output.jpg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;批量转换，命令如下。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.heic&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; heif-convert &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.heic/.jpg&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;这条命令的原理是：根据当前文件夹下的 &lt;code&gt;.heic&lt;/code&gt; 文件生成 &lt;code&gt;.jpg&lt;/code&gt; 文件，如果成功生成则删除原 &lt;code&gt;.heic&lt;/code&gt; 文件，如果未成功则不会删除原文件。 此外，如果未能生成 &lt;code&gt;.jpg&lt;/code&gt; 文件的原因是 &lt;code&gt;Input file 'filename.heic' is a JPEG image&lt;/code&gt; ，那么可以使用批量修改后缀的方法直接将文件的后缀改为 &lt;code&gt;.jpg&lt;/code&gt;。&lt;/p&gt;
 &lt;h3 id="flac-转-mp3"&gt;flac 转 mp3
 &lt;/h3&gt;&lt;p&gt;首先，安装转换工具：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S ffmpeg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;然后可以使用 &lt;code&gt;ffmpeg&lt;/code&gt; 命令转换，除了格式转换，&lt;code&gt;ffmpeg&lt;/code&gt; 还支持很多功能，具体可以查阅&lt;a class="link" href="%22https://ffmpeg.org/documentation.html%22" &gt;文档&lt;/a&gt;。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ffmpeg -i &lt;span class="s1"&gt;&amp;#39;input.flac&amp;#39;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;output.mp3&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
+&lt;/div&gt;&lt;p&gt;批量转换，命令如下：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.flac&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; ffmpeg -i &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; -ab 320k -map_metadata &lt;span class="m"&gt;0&lt;/span&gt; -id3v2_version &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;/%.flac/.mp3&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;原理同上。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;原理同上。&lt;/p&gt;
 &lt;h3 id="速度优化"&gt;速度优化
 &lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;for&lt;/code&gt; 循环的方式，所有文件排着队一个一个的被 &lt;code&gt;ffmpeg&lt;/code&gt; 处理。 这种方式固然可以，但效率太低了。 我的运行环境如下:&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -3149,43 +2794,33 @@ Google 上搜索了一番后发现可以用&lt;code&gt;WAYLAND_DISPLAY=&amp;quot
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/ossssso+/:- -:/+osssso+- GPU: Intel HD Graphics &lt;span class="m"&gt;630&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;+sso+:-&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;.-/+oso: Memory: 7216MiB / 19554MiB
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="sb"&gt;`&lt;/span&gt;++:. &lt;span class="sb"&gt;`&lt;/span&gt;-/+/
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;经过测试，处理 10 个 &lt;code&gt;.flac&lt;/code&gt; 文件所需时间为 59 秒。 速度慢的原因是目前使用的是单进程串行的处理方式，为了提高速度，可以同时启动多个进程并行处理。&lt;/p&gt;
 &lt;p&gt;使用终端工具&lt;a class="link" href="%22https://www.gnu.org/software/parallel/sphinx.html%22" &gt;GNU Parallel&lt;/a&gt;，命令如下：&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls *.flac &lt;span class="p"&gt;|&lt;/span&gt; parallel -j4 &lt;span class="s2"&gt;&amp;#34;ffmpeg -i {} -ab 320k -map_metadata 0 -id3v2_version 3 {.}.mp3 &amp;amp;&amp;amp; rm {}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/details&gt;&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;parallel&lt;/code&gt; 将从标准输入中读取文件列表，&lt;code&gt;-j&lt;/code&gt; 指定了并行进程数，&lt;code&gt;{}&lt;/code&gt; 代表输入文件名，&lt;code&gt;{.}&lt;/code&gt; 代表没有后缀的输入文件名，其他用法可以 &lt;code&gt;man parallel&lt;/code&gt; 查看。&lt;/p&gt;
 &lt;p&gt;经过测试，在同样环境下处理同样的 &lt;code&gt;.flac&lt;/code&gt; 文件仅需 &lt;code&gt;17&lt;/code&gt; 秒。&lt;/p&gt;</description></item><item><title>为 Gwenview 添加 HEIC 支持</title><link>https://keao.me/posts/%E4%B8%BA-gwenview-%E6%B7%BB%E5%8A%A0-heic-%E6%94%AF%E6%8C%81/</link><pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate><guid>https://keao.me/posts/%E4%B8%BA-gwenview-%E6%B7%BB%E5%8A%A0-heic-%E6%94%AF%E6%8C%81/</guid><description>&lt;p&gt;Dolphin 中无法加载缩略图，也无法打开图片。&lt;/p&gt;
 &lt;p&gt;安装&lt;code&gt;kimageformats&lt;/code&gt;后解决。&lt;/p&gt;
-&lt;details class="code-fold" open&gt;
-&lt;summary&gt;
-&lt;div class="code-summary-wrapper"&gt;
-&lt;span class="code-summary"&gt;Show/Hide the code&lt;/span&gt;
-&lt;/div&gt;
-&lt;/summary&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S kimageformats&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yay -S kimageformats
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/details&gt;&lt;blockquote&gt;
-&lt;p&gt;参考 &lt;a class="link" href="https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/" target="_blank" rel="noopener"
-&gt;https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item></channel></rss>
+ &lt;blockquote&gt;
+ &lt;p&gt;参考 &lt;a class="link" href="https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/" target="_blank" rel="noopener"
+ &gt;https://www.reddit.com/r/kde/comments/s4bres/heifheic_support_in_dolphingwenview/&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;</description></item></channel></rss>
