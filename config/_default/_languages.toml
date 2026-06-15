@@ -6,9 +6,9 @@ languagedirection = "en"
 title = "Kyle's Blog"
 weight = 1
 
-[zh-cn]
+[zh]
 languageName = "中文"
-languagedirection = "zh-cn"
+languagedirection = "zh"
 title = "陈默的博客"
 weight = 2
 

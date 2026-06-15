@@ -17,11 +17,7 @@ lastUpdated = "2006-01-02"
 [sidebar]
 emoji = ""
 subtitle = "Nothing happened to me"
-
-[sidebar.avatar]
-enabled = true
-local = true
-src = "img/avatar.jpg"
+avatar = "img/avatar.jpg"
 
 [article]
 headingAnchor = false
@@ -61,16 +57,12 @@ type = "toc"
 site = ""
 card = "summary_large_image"
 
-[defaultImage.opengraph]
-enabled = false
-local = false
-src = ""
 
 [colorScheme]
 toggle = true
 default = "auto"
 
-[imageProcessing.cover]
+[imageProcessing.thumbnail]
 enabled = true
 
 [imageProcessing.content]
