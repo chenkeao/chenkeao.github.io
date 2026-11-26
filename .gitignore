@@ -6,3 +6,5 @@ resources
 /.luarc.json
 /_freeze/
 /.vscode/
+.DS_Store
+._*

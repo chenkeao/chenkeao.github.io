@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://keao.me"
+baseURL = "https://kyle.hidns.cc/"
 locale = "en-us"
 title = "Kyle's Blog"
 enableRobotsTXT = true
@@ -17,7 +17,7 @@ ignoreFiles = [ "\\.qmd$", "\\.ipynb$", "\\.py$" ]
 summaryLength = 30
 
 [pagination]
-pagerSize = 50
+pagerSize = 10
 
 [outputFormats.json]
 mediaType = "application/json"
